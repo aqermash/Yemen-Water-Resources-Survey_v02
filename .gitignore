@@ -1,0 +1,31 @@
+node_modules/
+build/
+dist/
+coverage/
+
+# Android / Gradle
+.gradle/
+**/build/
+local.properties
+*.iml
+.idea/
+.externalNativeBuild/
+.cxx/
+
+# Environment / secrets
+.env*
+!.env.example
+
+# Logs / temporary files
+*.log
+*.tmp
+*.temp
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Gradle cache/directories
+.gradle/
+**/.gradle/

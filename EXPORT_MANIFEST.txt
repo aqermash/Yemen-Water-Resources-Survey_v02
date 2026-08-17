@@ -1,0 +1,122 @@
+================================================================================
+YEMEN WATER SURVEY FIELD APPLICATION — FULL SOURCE CODE EXPORT MANIFEST
+================================================================================
+Export Timestamp (UTC):     2026-08-15T15:27:42Z
+Archive Filename:           yemen_water_survey_full_export_20260815_152742.zip
+Total Exported Files:       95
+Total Uncompressed Size:    906536 bytes (0.8645 MB)
+
+FILE TYPE BREAKDOWN:
+--------------------------------------------------------------------------------
+  .kt             :  67 files |    750282 bytes (732.70 KB)
+  .md             :   8 files |     63458 bytes (61.97 KB)
+  .json           :   6 files |     12157 bytes (11.87 KB)
+  .kts            :   3 files |      3242 bytes (3.17 KB)
+  .xml            :   3 files |      2185 bytes (2.13 KB)
+  .tsx            :   2 files |       347 bytes (0.34 KB)
+  .lock           :   1 files |     73016 bytes (71.30 KB)
+  .html           :   1 files |       670 bytes (0.65 KB)
+  .ts             :   1 files |       708 bytes (0.69 KB)
+  .properties     :   1 files |       136 bytes (0.13 KB)
+  .pro            :   1 files |       312 bytes (0.30 KB)
+  .css            :   1 files |        23 bytes (0.02 KB)
+--------------------------------------------------------------------------------
+
+DETAILED FILE INVENTORY (Path | Size in Bytes | SHA-256):
+--------------------------------------------------------------------------------
+README.md                                                                                        928 bytes  c34d35796fbd9d5e4048a58143879034d6836bd1710d9a6a9a97bad84e9d950d
+android_app/app/build.gradle.kts                                                                2640 bytes  4d855738d860efa9918e6355ac0860c6e3c6abf80abc6d14d4b3470afe4621e3
+android_app/app/proguard-rules.pro                                                               312 bytes  d544037e4217aa744a759b907843d6ae8ae0becba78495ea042297ff6df14997
+android_app/app/src/main/AndroidManifest.xml                                                    1747 bytes  e30fe0678e57d5a41422335285a046de9e0fc1754e62b9e4b09ee06df1d9d5ae
+android_app/app/src/main/assets/pdf_templates/dam_mapping.json                                  3542 bytes  28bc46c37589baae9bed4560c0d1c7c89f3d6658cd883066e615adea9996e795
+android_app/app/src/main/assets/pdf_templates/spring_mapping.json                               3404 bytes  de36eba703eebdf204b02f3fb4b060d06e498198b3b1c32a762bad000b5e4099
+android_app/app/src/main/assets/pdf_templates/well_mapping.json                                 3511 bytes  46d03f95246ae0169d674fa137147420e0e9c9861141c6c0a2daba1cf11df513
+android_app/app/src/main/java/com/yemen/watersurvey/core/admin/AdminCascadingSelector.kt       10195 bytes  c06925266e13a5269ef8ea741083d29f6aaa90d6a467adfda9f0a3f6e074e71b
+android_app/app/src/main/java/com/yemen/watersurvey/core/admin/AdminCrossMappingEngine.kt       9729 bytes  97500b9ef37ee8e5d27f8cc7d94184e339bc43092eafb0a66f37da41a1bcba76
+android_app/app/src/main/java/com/yemen/watersurvey/core/admin/AdminReferencePackageBuilder.kt      7598 bytes  fa04ba65703a4c50714c7f39e06050cf30caa375494e04c1cfab0fa56e332811
+android_app/app/src/main/java/com/yemen/watersurvey/core/admin/AdminReferencePackageManager.kt     24872 bytes  20738d2b52f1ac94f1e2bd35f97e245a539eda22e6250146d0665ba9b69b26e5
+android_app/app/src/main/java/com/yemen/watersurvey/core/admin/AdministrativeOverrideManager.kt      5665 bytes  be4b4aab3667d18fb1aebbaa7fb6aa869ecd84703fe3200526d340e67530df2c
+android_app/app/src/main/java/com/yemen/watersurvey/core/admin/GpsAdministrativeResolver.kt     11740 bytes  0c370e173adbd877aa4e333f5517ef7b4e2aa3551d19cfdd98fdeb003b75e516
+android_app/app/src/main/java/com/yemen/watersurvey/core/admin/TopoJsonIngestionEngine.kt       7868 bytes  023f8ca27c77ce8616fdfccb7d655099d84f859635bceb04bc57f1ab18948fb6
+android_app/app/src/main/java/com/yemen/watersurvey/core/excel/ExcelExporter.kt                27108 bytes  4f0f8ea7a70560bc0c4ded8b05dfa675f07ef2fdef64ab7e73ebd6dc1be737b9
+android_app/app/src/main/java/com/yemen/watersurvey/core/form/FormPackageManager.kt            22358 bytes  4c5d0bc8d9895f54b6d6211e736cb6aa76f7937445afb64ea6aaea14583eca1a
+android_app/app/src/main/java/com/yemen/watersurvey/core/pdf/PdfMappingModels.kt                1373 bytes  35ebf10122fdbb01b6adb1fd09baf9aadb9fe3308eac7586eabba30fe8d6c0c7
+android_app/app/src/main/java/com/yemen/watersurvey/core/pdf/PdfStampingEngine.kt              24314 bytes  31445c73cf610373314e5360aa5b6ce861241141d1e04b5ef48ad53772523f27
+android_app/app/src/main/java/com/yemen/watersurvey/core/sync/ConflictDetectionEngine.kt       21982 bytes  dabff0409114c750dba27eb21ba174b9330fc1090d955d3328d3d8938fe8e1a3
+android_app/app/src/main/java/com/yemen/watersurvey/core/sync/ControlledMergeExecutor.kt       24574 bytes  103a7817a3198566b2c6e7695326960609610dd4c29b22fff550fbd706726a87
+android_app/app/src/main/java/com/yemen/watersurvey/core/sync/SupervisorSyncWorkspaceManager.kt     31232 bytes  229f7b4ce2dfd8738108181c67b0cda8c954772a6795ec6629e18a05bfef2706
+android_app/app/src/main/java/com/yemen/watersurvey/core/sync/SurveySyncExporter.kt            25654 bytes  9f930593a49252149fa88398b0f9b546dbc68c08e339f59d921bae29d02048dc
+android_app/app/src/main/java/com/yemen/watersurvey/core/sync/SurveySyncImporter.kt            26828 bytes  88537686382d2676154724c45125a0b1a3d1d0e99c0997b596718224f1a74240
+android_app/app/src/main/java/com/yemen/watersurvey/data/dao/AdminGeometryDao.kt                1283 bytes  833416ce6f46a48f9a21d9a7f70da9e21ce7038f296e9c2a4c8327c7ece027e4
+android_app/app/src/main/java/com/yemen/watersurvey/data/dao/AdminReferenceDao.kt               5462 bytes  b64e1b166c27820fe5543b8d8ace956adda99afb5c123ee8064cb237db8c2127
+android_app/app/src/main/java/com/yemen/watersurvey/data/dao/AdminReferencePackageDao.kt        1357 bytes  06efa9dbe3b7c53d32fcc1c82ea09dec7a200c9b2c2c4289931aa7ed623a4832
+android_app/app/src/main/java/com/yemen/watersurvey/data/dao/AdministrativeOverrideDao.kt       1727 bytes  b51bc8c25181231405dc84e7f862d64304514750f2ff80d41e533d9b57829f0e
+android_app/app/src/main/java/com/yemen/watersurvey/data/dao/AuditLogDao.kt                      917 bytes  b48a86cfc28b8c8364683b0b375f8c37939ae0318ea7613fefb38647cc3dbee0
+android_app/app/src/main/java/com/yemen/watersurvey/data/dao/FormPackageDao.kt                  2048 bytes  3bf6df1b360f02dfc925676faafe50e69ecd294050e7c01864e6ae8ae24a0b44
+android_app/app/src/main/java/com/yemen/watersurvey/data/dao/SurveyAttachmentDao.kt             1037 bytes  8fceecdad60f1cb2d16caac923c0b2bdff3c58c18cce30bd0c6e7f8f838c9554
+android_app/app/src/main/java/com/yemen/watersurvey/data/dao/SurveyRecordDao.kt                 1452 bytes  841c11d7e4c006fbf6a41a0ab4e8514447f9a9c02203dae95b89e8a100edb42e
+android_app/app/src/main/java/com/yemen/watersurvey/data/dao/SurveyRevisionDao.kt               1171 bytes  ddea20fad8fe754ab25aff867ab639981012592e9dc1d5edf670aa7bff775d6e
+android_app/app/src/main/java/com/yemen/watersurvey/data/dao/SyncPackageDao.kt                  3699 bytes  9033ce1853299c2f132a62f95a556daf6f685cc5e43e8f284dbe32426c6b9010
+android_app/app/src/main/java/com/yemen/watersurvey/data/database/SurveyAppDatabase.kt          2552 bytes  4eda40a8e91a26d59c3d416d1b8803a495de124daec861e1dc292c0d53d5dc62
+android_app/app/src/main/java/com/yemen/watersurvey/data/entity/Admin1Entity.kt                  745 bytes  c4133e00e193d1899befc105b9b0f2c620a638063c52ce352aa16a7aba77399d
+android_app/app/src/main/java/com/yemen/watersurvey/data/entity/Admin2Entity.kt                 1101 bytes  c9cafc66639dc9465af5dcbbbff1a7710e91eefa954e56b1335627c0001e941e
+android_app/app/src/main/java/com/yemen/watersurvey/data/entity/Admin3Entity.kt                 1183 bytes  beb89ee48efbfde6e7617503b11f3e720a7f81781c07d14522b8c5733d55deef
+android_app/app/src/main/java/com/yemen/watersurvey/data/entity/AdminGeometryEntity.kt          1075 bytes  cadbb5cae93f288b1dab8aebbadfc4275c963cc854a377fdf6f74ed40a7b950b
+android_app/app/src/main/java/com/yemen/watersurvey/data/entity/AdminReferencePackageEntity.kt       934 bytes  e657df6105b7807e53392237c5f6fde18049ba33e24e9943e36af8495fdf868c
+android_app/app/src/main/java/com/yemen/watersurvey/data/entity/AdministrativeOverrideEntity.kt      1498 bytes  7b6bd2fb937db59659607347ed2d794fe6c6882d7183ceee4a45c79bf8c8eb20
+android_app/app/src/main/java/com/yemen/watersurvey/data/entity/AuditLogEntity.kt                820 bytes  88c1eb1e6e285707122647d44771233bf2733568fcc0a1b5455f1337cd7623a2
+android_app/app/src/main/java/com/yemen/watersurvey/data/entity/FormPackageEntity.kt            3144 bytes  27405e20e2ce42a0f11a679c2762d67ee19e4efefedfd53acf401b5df24bbf19
+android_app/app/src/main/java/com/yemen/watersurvey/data/entity/SurveyAttachmentEntity.kt        872 bytes  b33390c65b81d5cdbfc11d7f5aaf831477d9b207de5720e6c8695238be45426e
+android_app/app/src/main/java/com/yemen/watersurvey/data/entity/SurveyRecordEntity.kt           2499 bytes  b30c56cebb7e448eefc27b54820bb19c9e55b3b39decbf448ee7f195c3bee085
+android_app/app/src/main/java/com/yemen/watersurvey/data/entity/SurveyRevisionEntity.kt          842 bytes  32ae7537bf54f8afd4de2522f748e143aea84ca2b76e5cb339f081d10fd13af0
+android_app/app/src/main/java/com/yemen/watersurvey/data/entity/SyncPackageEntity.kt            1809 bytes  12a901abda92586b2dfeb4a5551210fb779eeffb287a9952235d69d2ded9c99e
+android_app/app/src/main/java/com/yemen/watersurvey/data/entity/SyncPackageHistoryEntity.kt       791 bytes  efe4206794c4790773ba57985c5ee070eaa9eb12d5b2a2feb84b345b86e3ca2d
+android_app/app/src/main/java/com/yemen/watersurvey/data/entity/VillageEntity.kt                1477 bytes  66db7d7f980d9efc1c53c8c6583de3c4b6b8a7e681aec1cddebfa2081b6b7af6
+android_app/app/src/main/java/com/yemen/watersurvey/domain/model/AdminReferenceIngestionModels.kt      3696 bytes  c29cd047d19978817d4542178abf8c4ee6ba9bbcf67f29f763ab8a978e505d66
+android_app/app/src/main/java/com/yemen/watersurvey/domain/model/AdminReferenceModels.kt       11059 bytes  11dccdfcd314d87d4a125ab9a1ccc5fe858b533e057891f535db6cea40f2865e
+android_app/app/src/main/java/com/yemen/watersurvey/domain/model/FormPackageModels.kt           1857 bytes  0c184190f04377989b6e7b47f73ebff5b1e43eb3723169c0a26b36919647379f
+android_app/app/src/main/java/com/yemen/watersurvey/domain/model/SurveyMergeModels.kt           3503 bytes  10975d55477a3bcc9660d2fe5ba15dcad87b48139ee86985cbd3dbfa4553010c
+android_app/app/src/main/java/com/yemen/watersurvey/domain/model/SurveyModels.kt                3744 bytes  be7c05968429c228ffa8814fd8f78578d4980587cf047dbb1025b9cde1a7a6d9
+android_app/app/src/main/java/com/yemen/watersurvey/domain/model/SurveySyncPackageModels.kt      5655 bytes  15b5dabb7b7d86a05da54ef5471c558a7b20d635640c45b3f3c6d3a67571a6c8
+android_app/app/src/main/java/com/yemen/watersurvey/domain/model/SurveyWorkspaceModels.kt       5810 bytes  3611e05da2622fc4abae81c7a61179a89ef9917dc44cb7680f7fca6bd4686b85
+android_app/app/src/main/java/com/yemen/watersurvey/presentation/navigation/ScreenRoute.kt       682 bytes  340b16bd1aa6a7a84719782d0ff4b87de3e5c913bc424007064620761827f36e
+android_app/app/src/main/java/com/yemen/watersurvey/presentation/screens/AdminReferenceManagementScreen.kt     37284 bytes  39d66b1611dc87443c5dc6faffb8db1bb4da5337d69eac53cf191dc8dd0c3b0d
+android_app/app/src/main/java/com/yemen/watersurvey/presentation/screens/ExportScreen.kt       20750 bytes  bdb695eb0f89020cc95cd653217339c4d3d3d4a5463dfaac36f5002d2b1a4767
+android_app/app/src/main/java/com/yemen/watersurvey/presentation/screens/FormManagementScreen.kt     32099 bytes  036fa11b85e26efbf3bff2686777672a7258976030b5d53027af0b972f5e9581
+android_app/app/src/main/java/com/yemen/watersurvey/presentation/screens/SupervisorSyncDashboardScreen.kt     42205 bytes  adde8f546be04dbf8e5c7064a6ccd479a27e42c08405bd5c2ac0ad32567ea6df
+android_app/app/src/main/java/com/yemen/watersurvey/presentation/screens/SurveyAdminLocationBindingSection.kt     35936 bytes  6bd25b5a7e7bbc1236855a17ec7429b382ad4d8c7279c41666102587b9db73a6
+android_app/app/src/main/java/com/yemen/watersurvey/presentation/screens/SurveyMergeReviewScreen.kt     47120 bytes  8606735015a68b4fd686f2c55b96b71f9a1dd162541610a926106198d9ac5724
+android_app/app/src/main/java/com/yemen/watersurvey/presentation/screens/SurveySyncExportScreen.kt     32934 bytes  aed18e3f897366b653a51f8066308caf1dc79b2b70fd5b4ab50df6417253d6a3
+android_app/app/src/main/java/com/yemen/watersurvey/presentation/screens/SurveySyncImportScreen.kt     39386 bytes  a16ecf66b5f5cff0d68c56bcc202af9523c649ea2473433d16bafec47e43a00e
+android_app/app/src/main/java/com/yemen/watersurvey/presentation/theme/Theme.kt                 1116 bytes  5c0b986fa225a8453a2a8b6bbd92e59c6d42b45888565fae5f30df65a5154231
+android_app/app/src/main/res/values/strings.xml                                                  210 bytes  129a835512b81f91a6d1193d0b912ac1a5fba966c53c76fa5beea515de26119a
+android_app/app/src/main/res/values/themes.xml                                                   228 bytes  e91cd98131db56a5cd01c9707d909fc2daf64b28bfce3af80d75a353f2b48766
+android_app/app/src/test/java/com/yemen/watersurvey/core/admin/AdminReferenceTest.kt           10369 bytes  2ee2913ae9c7cc9b52af9ba93a8bf8b1b2bae5f31da4fdbcbf05eba4adc4d627
+android_app/app/src/test/java/com/yemen/watersurvey/core/excel/ExcelExporterTest.kt             7580 bytes  6129d9c3961fb2cb218faf01b63a3419bc3b17c773312c722f1e682f3d837e4d
+android_app/app/src/test/java/com/yemen/watersurvey/core/form/FormPackageManagerTest.kt        10476 bytes  718996aee075e53712f694b8d888755c32f96c6cec69b004bcd1b8f10801c41d
+android_app/app/src/test/java/com/yemen/watersurvey/core/pdf/PdfStampingEngineTest.kt          10323 bytes  ea9283dfdbe877d27ce7a6ce35751c1af743a54653eaf651b161dee5b5abddff
+android_app/app/src/test/java/com/yemen/watersurvey/core/sync/ConflictDetectionEngineTest.kt      8947 bytes  12c3cfd07377ffe4a57c7cbec67411d3f569abccdf335eef58303332c836d5f7
+android_app/app/src/test/java/com/yemen/watersurvey/core/sync/ControlledMergeExecutorTest.kt     11262 bytes  3e4f6731c66fd850d747141cd392e1e4bbb99284d32f3f8ccb332755ca05a066
+android_app/app/src/test/java/com/yemen/watersurvey/core/sync/SupervisorSyncWorkspaceTest.kt     14139 bytes  ce829dff00b0f01eb5ffcc717f38acc1fe1bf2c7af747521415695a51bd67326
+android_app/app/src/test/java/com/yemen/watersurvey/core/sync/SurveySyncExporterTest.kt        15409 bytes  9bacac4c3cd80f5e941b8ac36cf720f78f38477cbae02b9ec4c8172fb8f723e9
+android_app/app/src/test/java/com/yemen/watersurvey/core/sync/SurveySyncImporterTest.kt        12356 bytes  e8875fa834141fddd7c27f54461e9d43860e027958564f82681adf83b507e5e0
+android_app/build.gradle.kts                                                                     267 bytes  9f024c2adc85522281134a95c50ee886b54da9edd4ee16d89c5dabed1662e1e5
+android_app/gradle.properties                                                                    136 bytes  5ff4359bb22b9436ec644207f9240f4e47b9a733fe03ba402c77944a05283574
+android_app/settings.gradle.kts                                                                  335 bytes  9a96574e65846e774d1e0e713991c5beed0334ff239747364c221df3458e11f2
+bun.lock                                                                                       73016 bytes  bcc546cb3816df6a7a9e7321b47d418a3ac5eb861be0e88b2a8a30c9e662f9c2
+index.html                                                                                       670 bytes  ce81120a744e4a591a80cabcac0f31373e34598ebc6e264798ba238f7503b11a
+metadata.json                                                                                    347 bytes  886752b7e3cbb7e2bc3d2d2c7ca3c2bca5ec98da387b3cc4313fb05870a102a9
+package.json                                                                                     845 bytes  afa032ccaf4549c5d7b341d6b64747e5518575a3620cb74166615d58c8a7ef4a
+project_management/ARCHITECTURE.md                                                             14864 bytes  78a3ae2df4d8e1ad18c21538129f09bce28fdb69ca7855381cd6c2fa3b203a01
+project_management/CHANGELOG.md                                                                12268 bytes  eaa06a6d246eebacc693145c5b679ac9f0ff6b7f02ce82272d366e4571ae20f7
+project_management/DECISIONS_LOG.md                                                            14339 bytes  e0cdd3f527b317d1f716a315dd4ba865176fafa56062d2cff415b15b248801fa
+project_management/DEVELOPMENT_PLAN.md                                                          9868 bytes  50ab05fd2aeb3c0a0ff080f9cb0d02cad5ceacaf7df301187dacfd6cac9b9539
+project_management/KNOWN_ISSUES.md                                                              1481 bytes  1ec300495189a67742dcdd031df01904c2d1ba2b35562c78c22930b739c73579
+project_management/NEXT_TASKS.md                                                                2884 bytes  f4c5b0534c617896b3e1c78c54fd8d2d3c76a0d71bbbd94c8b93057d78ec2cf1
+project_management/PROJECT_STATUS.md                                                            6826 bytes  db2e25baadba8938191a003d989dc3d967f33dee40e7ecfbcc7beb89ff6094c4
+src/App.tsx                                                                                      116 bytes  26753d3d5863cc8285d5ae26507f492ff9476602b293abbc71aa8f3c61006137
+src/index.css                                                                                     23 bytes  42070e0b45bb201b2b838a52aaaa6e965f964e0b542d97f1fe517fe59c4b75a8
+src/main.tsx                                                                                     231 bytes  5580d48b0fec68698a113d45a640b88d479dc35eb1f4b87c51f67c6cc81cee9b
+tsconfig.json                                                                                    508 bytes  e93e15c3794e43a117964ea191ae985cbedea70c41d3d82b2e20aa8d07374fe4
+vite.config.ts                                                                                   708 bytes  c7b7cc4b3a6b6a08f0a4fb916bb4d4e41804d5767611bce43d4c1ad53a198192
+================================================================================

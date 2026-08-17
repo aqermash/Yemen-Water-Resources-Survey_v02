@@ -1,0 +1,30 @@
+{
+  "surveyType": "SPRING",
+  "templateTitleAr": "استمارة حصر وتوثيق عين / ينبوع مياه - الجمهورية اليمنية",
+  "pageWidthPt": 595.28,
+  "pageHeightPt": 841.89,
+  "totalPages": 1,
+  "fields": [
+    { "key": "header_ministry", "labelAr": "الجهة الرسمية", "x": 297.64, "y": 45.0, "fontSize": 14.0, "isBold": true, "align": "CENTER" },
+    { "key": "header_sub", "labelAr": "المسح الميداني للمنشآت المائية", "x": 297.64, "y": 65.0, "fontSize": 11.0, "isBold": false, "align": "CENTER" },
+    { "key": "recordId", "labelAr": "رقم السجل", "x": 520.0, "y": 95.0, "fontSize": 10.0, "isBold": true, "align": "RIGHT" },
+    { "key": "surveyDate", "labelAr": "تاريخ المسح", "x": 200.0, "y": 95.0, "fontSize": 10.0, "isBold": false, "align": "RIGHT" },
+    { "key": "governorate", "labelAr": "المحافظة", "x": 520.0, "y": 125.0, "fontSize": 9.5, "isBold": false, "align": "RIGHT" },
+    { "key": "district", "labelAr": "المديرية", "x": 370.0, "y": 125.0, "fontSize": 9.5, "isBold": false, "align": "RIGHT" },
+    { "key": "uzlah", "labelAr": "العزلة", "x": 220.0, "y": 125.0, "fontSize": 9.5, "isBold": false, "align": "RIGHT" },
+    { "key": "village", "labelAr": "القرية / المحلة", "x": 100.0, "y": 125.0, "fontSize": 9.5, "isBold": false, "align": "RIGHT" },
+    { "key": "gps_latitude", "labelAr": "خط العرض", "x": 520.0, "y": 160.0, "fontSize": 9.0, "isBold": false, "align": "RIGHT" },
+    { "key": "gps_longitude", "labelAr": "خط الطول", "x": 370.0, "y": 160.0, "fontSize": 9.0, "isBold": false, "align": "RIGHT" },
+    { "key": "gps_altitude", "labelAr": "الارتفاع (م)", "x": 220.0, "y": 160.0, "fontSize": 9.0, "isBold": false, "align": "RIGHT" },
+    { "key": "gps_accuracy", "labelAr": "دقة الـ GPS", "x": 120.0, "y": 160.0, "fontSize": 9.0, "isBold": false, "align": "RIGHT" },
+    { "key": "gps_quality", "labelAr": "تصنيف جودة الإشارة", "x": 520.0, "y": 180.0, "fontSize": 9.0, "isBold": false, "align": "RIGHT" },
+    { "key": "springNameAr", "labelAr": "اسم العين / الينبوع الميداني", "x": 520.0, "y": 220.0, "fontSize": 11.0, "isBold": true, "align": "RIGHT" },
+    { "key": "flowRateLps", "labelAr": "معدل التدفق (لتر / ثانية)", "x": 520.0, "y": 250.0, "fontSize": 9.5, "isBold": false, "align": "RIGHT" },
+    { "key": "waterClarity", "labelAr": "عكارة ونقاء المياه", "x": 320.0, "y": 250.0, "fontSize": 9.5, "isBold": false, "align": "RIGHT" },
+    { "key": "dischargeSeasonality", "labelAr": "الموسمية وطبيعة التدفق", "x": 520.0, "y": 280.0, "fontSize": 9.5, "isBold": false, "align": "RIGHT" },
+    { "key": "enumerator", "labelAr": "اسم وبيانات المساح الميداني", "x": 520.0, "y": 320.0, "fontSize": 9.0, "isBold": false, "align": "RIGHT" },
+    { "key": "workflowStatus", "labelAr": "حالة الاعتماد", "x": 250.0, "y": 320.0, "fontSize": 9.0, "isBold": true, "align": "RIGHT" },
+    { "key": "attachmentsSummary", "labelAr": "الملفات والمرفقات والصور", "x": 520.0, "y": 355.0, "fontSize": 8.5, "isBold": false, "align": "RIGHT" },
+    { "key": "revisionCount", "labelAr": "رقم المراجعة", "x": 150.0, "y": 320.0, "fontSize": 9.0, "isBold": false, "align": "RIGHT" }
+  ]
+}

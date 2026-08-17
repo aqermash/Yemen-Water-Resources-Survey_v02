@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.YemenWaterSurvey" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">#0D9488</item>
+    </style>
+</resources>

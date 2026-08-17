@@ -1,0 +1,11 @@
+{
+  "name": "Yemen Water Survey Field Application",
+  "description": "Offline-first water infrastructure field survey application for nationwide water data collection in Yemen (Wells, Springs, Dams).",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
