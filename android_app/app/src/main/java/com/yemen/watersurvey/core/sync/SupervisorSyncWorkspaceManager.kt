@@ -6,6 +6,7 @@ import com.yemen.watersurvey.data.entity.AuditLogEntity
 import com.yemen.watersurvey.data.entity.SyncPackageEntity
 import com.yemen.watersurvey.data.entity.SyncPackageHistoryEntity
 import com.yemen.watersurvey.domain.model.*
+import kotlinx.coroutines.flow.first
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
@@ -84,7 +85,7 @@ class SupervisorSyncWorkspaceManager(
         }
 
         // 2. Perform safe preliminary extraction to read manifest
-        val inspection = syncImporter.inspectPackage(packageFile)
+        val inspection = syncImporter.inspectAndValidatePackage(packageFile)
         val packageId = inspection.packageId.ifBlank { "PKG-${packageFile.nameWithoutExtension}" }
 
         // 3. Check if Package ID already exists
@@ -176,7 +177,7 @@ class SupervisorSyncWorkspaceManager(
             return Result.failure(IllegalStateException("ملف الحزمة غير متوفر على مسار التخزين: ${entity.packageFilePath}"))
         }
 
-        val inspection = syncImporter.inspectPackage(file)
+        val inspection = syncImporter.inspectAndValidatePackage(file)
         val nowIso = dateFormat.format(Date())
 
         if (!inspection.checksumVerified || !inspection.isValidStructure) {
@@ -259,7 +260,7 @@ class SupervisorSyncWorkspaceManager(
             return Result.failure(IllegalStateException("ملف الحزمة غير متوفر: ${entity.packageFilePath}"))
         }
 
-        val inspection = syncImporter.inspectPackage(file)
+        val inspection = syncImporter.inspectAndValidatePackage(file)
         if (inspection.surveyItems.isEmpty()) {
             return Result.failure(IllegalStateException("الحزمة لا تحتوي على استمارات ميدانية صالحة."))
         }
@@ -432,7 +433,7 @@ class SupervisorSyncWorkspaceManager(
         val packages = database.syncPackageDao().getAllPackagesSync()
         val surveys = database.surveyRecordDao().getAllSurveysSync()
         val attachments = database.surveyAttachmentDao().getAttachmentsForSurvey("%") // all attachments
-        val auditLogs = database.auditLogDao().getAllAuditLogs()
+        val auditLogs = database.auditLogDao().getAllAuditLogs().first()
 
         var pendingReviews = 0
         var validatedReady = 0
@@ -481,7 +482,7 @@ class SupervisorSyncWorkspaceManager(
 
         var totalAttachmentSizeBytes = 0L
         attachments.forEach {
-            totalAttachmentSizeBytes += it.fileSize
+            totalAttachmentSizeBytes += it.fileSizeBytes
         }
 
         return WorkspaceDashboardStats(
@@ -525,7 +526,7 @@ class SupervisorSyncWorkspaceManager(
             (it.district.contains(district, ignoreCase = true) || it.district.isBlank())
         }
 
-        val auditLogs = database.auditLogDao().getAllAuditLogs()
+        val auditLogs = database.auditLogDao().getAllAuditLogs().first()
         val revisions = database.surveyRevisionDao().getAllRevisionsSync()
 
         var wells = 0

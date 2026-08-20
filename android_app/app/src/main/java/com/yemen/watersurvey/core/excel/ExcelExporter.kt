@@ -188,7 +188,12 @@ class ExcelExporter(private val context: Context) {
 
     private fun cellNum(col: String, row: Int, value: Double, styleIndex: Int = 0): String {
         val sAttr = if (styleIndex > 0) " s=\"$styleIndex\"" else ""
-        return "<c r=\"$col$row\"$sAttr><v>$value</v></c>"
+        val formattedValue = if (value % 1.0 == 0.0) {
+            value.toLong().toString()
+        } else {
+            String.format(Locale.US, "%.5f", value).trimEnd('0').trimEnd('.')
+        }
+        return "<c r=\"$col$row\"$sAttr><v>$formattedValue</v></c>"
     }
 
     private fun buildWellsSheetXml(records: List<SurveyRecord>): String {

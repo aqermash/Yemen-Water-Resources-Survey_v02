@@ -1,13 +1,20 @@
 package com.yemen.watersurvey.core.pdf
 
+import android.content.Context
 import com.yemen.watersurvey.domain.model.*
 import org.junit.Assert.*
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.RuntimeEnvironment
+import org.robolectric.annotation.Config
 import java.io.File
 
 /**
  * Unit Tests for Native Android Official PDF Stamping Engine (Phase 7).
  */
+@RunWith(RobolectricTestRunner::class)
+@Config(sdk = [33], manifest = Config.NONE)
 class PdfStampingEngineTest {
 
     private fun createSampleWellRecord(): SurveyRecord {
@@ -152,12 +159,17 @@ class PdfStampingEngineTest {
         }
     }
 
+    private val testPdfWriter = PdfDocumentWriter { targetFile, _, _, _ ->
+        targetFile.parentFile?.mkdirs()
+        targetFile.writeBytes("%PDF-1.4\n%YemenWaterSurvey\n%%EOF".toByteArray())
+    }
+
     @Test
     fun testOfficialPdfStampingExecution() {
         val dummyDir = File(System.getProperty("java.io.tmpdir"), "pdf_test_${System.currentTimeMillis()}")
         dummyDir.mkdirs()
 
-        val engine = PdfStampingEngine(TestContext(dummyDir))
+        val engine = PdfStampingEngine(TestContext(dummyDir), testPdfWriter)
         val wellRecord = createSampleWellRecord()
 
         val result = engine.stampSurveyToPdf(wellRecord)
@@ -198,7 +210,7 @@ class PdfStampingEngineTest {
             """.trimIndent()
         )
 
-        val engine = PdfStampingEngine(TestContext(dummyDir))
+        val engine = PdfStampingEngine(TestContext(dummyDir), testPdfWriter)
         val pkg = engine.loadPackageFromDirectory(packageDir, "form-well-v2", "2.0")
 
         assertNotNull(pkg)
@@ -227,7 +239,7 @@ class PdfStampingEngineTest {
         val dummyDir = File(System.getProperty("java.io.tmpdir"), "pdf_test_${System.currentTimeMillis()}")
         dummyDir.mkdirs()
 
-        val engine = PdfStampingEngine(TestContext(dummyDir))
+        val engine = PdfStampingEngine(TestContext(dummyDir), testPdfWriter)
 
         val springRecord = createSampleSpringRecord()
         val springResult = engine.stampSurveyToPdf(springRecord)
@@ -240,7 +252,12 @@ class PdfStampingEngineTest {
         assertEquals("DAM", damResult.surveyType)
     }
 
-    private class TestContext(private val baseDir: File) : android.content.ContextWrapper(null) {
+    private class TestContext(
+        private val baseDir: File,
+        appContext: Context = RuntimeEnvironment.getApplication()
+    ) : android.content.ContextWrapper(appContext) {
         override fun getFilesDir(): File = baseDir
+        override fun getCacheDir(): File = File(baseDir, "cache").apply { mkdirs() }
+        override fun getApplicationContext(): Context = this
     }
 }

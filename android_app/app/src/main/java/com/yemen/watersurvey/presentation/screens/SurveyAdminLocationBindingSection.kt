@@ -19,21 +19,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.yemen.watersurvey.core.admin.AdminCascadingSelector
 import com.yemen.watersurvey.core.admin.GpsAdministrativeResolver
-import com.yemen.watersurvey.data.entity.*
 import com.yemen.watersurvey.domain.model.*
 import com.yemen.watersurvey.presentation.theme.*
 import kotlinx.coroutines.launch
 
-/**
- * Phase 11 Administrative Reference Integration & GPS Location Resolution UI Component.
- *
- * Implements:
- * 1. Cascading selection: Admin1 (المحافظة) -> Admin2 (المديرية) -> Admin3 (العزلة) -> Village (القرية).
- * 2. Controlled Local Name Override (تسجيل مسمى محلي بديل مع توثيق السبب).
- * 3. Real-time offline spatial verification using Point-in-Polygon (PIP) raycasting against loaded geometry.
- * 4. Clear visual feedback for LOCATION_MATCH and LOCATION_MISMATCH (non-destructive; manual choice is never overwritten automatically).
- * 5. Generation of immutable AdministrativeLocationSnapshot for survey record binding.
- */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SurveyAdminLocationBindingSection(
@@ -62,49 +51,42 @@ fun SurveyAdminLocationBindingSection(
 ) {
     val coroutineScope = rememberCoroutineScope()
 
-    // Administrative Lists
-    var admin1List by remember { mutableStateOf<List<Admin1Entity>>(emptyList()) }
-    var admin2List by remember { mutableStateOf<List<Admin2Entity>>(emptyList()) }
-    var admin3List by remember { mutableStateOf<List<Admin3Entity>>(emptyList()) }
-    var villageList by remember { mutableStateOf<List<VillageEntity>>(emptyList()) }
+    var admin1List by remember { mutableStateOf<List<Admin1Governorate>>(emptyList()) }
+    var admin2List by remember { mutableStateOf<List<Admin2District>>(emptyList()) }
+    var admin3List by remember { mutableStateOf<List<Admin3Uzlah>>(emptyList()) }
+    var villageList by remember { mutableStateOf<List<AdminVillage>>(emptyList()) }
 
-    // Selected Administrative States
     var selectedAdmin1 by remember { mutableStateOf(initialAdmin1Pcode) }
     var selectedAdmin2 by remember { mutableStateOf(initialAdmin2Pcode) }
     var selectedAdmin3 by remember { mutableStateOf(initialAdmin3Pcode) }
     var selectedVillageId by remember { mutableStateOf(initialVillageRefId) }
 
-    // Local Override States
     var isLocalOverride by remember { mutableStateOf(initialIsOverride) }
     var customVillageName by remember { mutableStateOf(initialCustomVillageName ?: "") }
     var overrideReason by remember { mutableStateOf(initialOverrideReason ?: "") }
 
-    // GPS Resolution & Consistency States
     var isResolvingGps by remember { mutableStateOf(false) }
     var resolvedGpsLocation by remember { mutableStateOf<ResolvedAdministrativeLocation?>(null) }
-    var consistencyResult by remember { mutableStateOf<GpsAdministrativeResolver.SelectionConsistencyResult?>(null) }
+    var consistencyResult by remember { mutableStateOf<Pair<AdminResolutionStatus, String>?>(null) }
 
-    // Dropdown expansion states
     var expandedAdmin1 by remember { mutableStateOf(false) }
     var expandedAdmin2 by remember { mutableStateOf(false) }
     var expandedAdmin3 by remember { mutableStateOf(false) }
     var expandedVillage by remember { mutableStateOf(false) }
 
-    // Load initial Admin1 list
     LaunchedEffect(Unit) {
         admin1List = selector.getGovernorates()
         if (selectedAdmin1.isNotBlank()) {
-            admin2List = selector.getDistricts(selectedAdmin1)
+            admin2List = selector.getDistrictsForGovernorate(selectedAdmin1)
         }
         if (selectedAdmin2.isNotBlank()) {
-            admin3List = selector.getSubDistricts(selectedAdmin2)
+            admin3List = selector.getUzlahsForDistrict(selectedAdmin2)
         }
         if (selectedAdmin3.isNotBlank()) {
-            villageList = selector.getVillages(selectedAdmin3)
+            villageList = selector.getVillagesForUzlah(selectedAdmin3)
         }
     }
 
-    // Function to re-evaluate and emit snapshot
     fun updateAndEmitBinding() {
         coroutineScope.launch {
             val snapshot = selector.createAdministrativeSnapshot(
@@ -113,11 +95,11 @@ fun SurveyAdminLocationBindingSection(
                 admin3Pcode = selectedAdmin3,
                 villageReferenceId = selectedVillageId,
                 customVillageNameAr = if (isLocalOverride) customVillageName else null,
-                isLocalOverride = isLocalOverride,
+                isLocalNameOverride = isLocalOverride,
                 localOverrideId = if (isLocalOverride) "OVR-${System.currentTimeMillis()}" else null
             )
 
-            val status = consistencyResult?.status ?: AdminResolutionStatus.NOT_EVALUATED
+            val status = consistencyResult?.first ?: AdminResolutionStatus.NOT_EVALUATED
 
             onAdministrativeIdentityChanged(
                 selectedAdmin1,
@@ -133,15 +115,9 @@ fun SurveyAdminLocationBindingSection(
         }
     }
 
-    // Trigger GPS Spatial Verification
     fun performSpatialVerification() {
         if (currentGpsLocation == null) {
-            consistencyResult = GpsAdministrativeResolver.SelectionConsistencyResult(
-                status = AdminResolutionStatus.NO_GPS_FIX,
-                isConsistent = false,
-                detailsAr = "إحداثيات GPS غير متوفرة حالياً لتنفيذ التحقق المكاني.",
-                resolvedLocation = null
-            )
+            consistencyResult = Pair(AdminResolutionStatus.NO_GPS, "إحداثيات GPS غير متوفرة حالياً لتنفيذ التحقق المكاني.")
             updateAndEmitBinding()
             return
         }
@@ -152,7 +128,7 @@ fun SurveyAdminLocationBindingSection(
                 val resolved = resolver.resolveAdministrativeLocation(
                     latitude = currentGpsLocation.latitude,
                     longitude = currentGpsLocation.longitude,
-                    gpsAccuracyM = currentGpsLocation.accuracyM
+                    accuracyM = currentGpsLocation.accuracyM
                 )
                 resolvedGpsLocation = resolved
 
@@ -160,26 +136,18 @@ fun SurveyAdminLocationBindingSection(
                     selectedAdmin1Pcode = selectedAdmin1,
                     selectedAdmin2Pcode = selectedAdmin2,
                     selectedAdmin3Pcode = selectedAdmin3,
-                    latitude = currentGpsLocation.latitude,
-                    longitude = currentGpsLocation.longitude,
-                    gpsAccuracyM = currentGpsLocation.accuracyM
+                    resolvedLocation = resolved
                 )
                 consistencyResult = consistency
                 updateAndEmitBinding()
             } catch (e: Exception) {
-                consistencyResult = GpsAdministrativeResolver.SelectionConsistencyResult(
-                    status = AdminResolutionStatus.NOT_EVALUATED,
-                    isConsistent = false,
-                    detailsAr = "حدث خطأ أثناء إجراء التحقق المكاني: ${e.message}",
-                    resolvedLocation = null
-                )
+                consistencyResult = Pair(AdminResolutionStatus.NOT_EVALUATED, "حدث خطأ أثناء إجراء التحقق المكاني: ${e.message}")
             } finally {
                 isResolvingGps = false
             }
         }
     }
 
-    // Auto-verify if GPS arrives or changes
     LaunchedEffect(currentGpsLocation, selectedAdmin1, selectedAdmin2, selectedAdmin3) {
         if (currentGpsLocation != null && selectedAdmin1.isNotBlank()) {
             performSpatialVerification()
@@ -198,7 +166,6 @@ fun SurveyAdminLocationBindingSection(
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp)
         ) {
-            // Header
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -251,7 +218,6 @@ fun SurveyAdminLocationBindingSection(
 
             HorizontalDivider(color = Slate800, thickness = 0.75.dp)
 
-            // 1. Governorate (Admin1) Selector
             Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(
                     text = "1. المحافظة (Governorate - Admin1) *",
@@ -304,7 +270,7 @@ fun SurveyAdminLocationBindingSection(
                                     selectedVillageId = null
                                     expandedAdmin1 = false
                                     coroutineScope.launch {
-                                        admin2List = selector.getDistricts(gov.admin1Pcode)
+                                        admin2List = selector.getDistrictsForGovernorate(gov.admin1Pcode)
                                         admin3List = emptyList()
                                         villageList = emptyList()
                                         updateAndEmitBinding()
@@ -316,7 +282,6 @@ fun SurveyAdminLocationBindingSection(
                 }
             }
 
-            // 2. District (Admin2) Selector
             Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(
                     text = "2. المديرية (District - Admin2) *",
@@ -369,7 +334,7 @@ fun SurveyAdminLocationBindingSection(
                                     selectedVillageId = null
                                     expandedAdmin2 = false
                                     coroutineScope.launch {
-                                        admin3List = selector.getSubDistricts(dist.admin2Pcode)
+                                        admin3List = selector.getUzlahsForDistrict(dist.admin2Pcode)
                                         villageList = emptyList()
                                         updateAndEmitBinding()
                                     }
@@ -380,7 +345,6 @@ fun SurveyAdminLocationBindingSection(
                 }
             }
 
-            // 3. Sub-district (Admin3 / العزلة) Selector
             Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(
                     text = "3. العزلة (Sub-district - Admin3) *",
@@ -432,7 +396,7 @@ fun SurveyAdminLocationBindingSection(
                                     selectedVillageId = null
                                     expandedAdmin3 = false
                                     coroutineScope.launch {
-                                        villageList = selector.getVillages(uzlah.admin3Pcode)
+                                        villageList = selector.getVillagesForUzlah(uzlah.admin3Pcode)
                                         updateAndEmitBinding()
                                     }
                                 }
@@ -442,7 +406,6 @@ fun SurveyAdminLocationBindingSection(
                 }
             }
 
-            // 4. Village / Local Name Override Selector
             Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -524,7 +487,6 @@ fun SurveyAdminLocationBindingSection(
                         }
                     }
                 } else {
-                    // Local Name Override Inputs
                     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                         OutlinedTextField(
                             value = customVillageName,
@@ -568,10 +530,11 @@ fun SurveyAdminLocationBindingSection(
                 }
             }
 
-            // 5. GPS Spatial Verification Results Banner
             consistencyResult?.let { result ->
-                val (bannerBg, bannerBorder, bannerIcon, bannerTitleColor) = when (result.status) {
-                    AdminResolutionStatus.LOCATION_MATCH -> Quadruple(
+                val status = result.first
+                val details = result.second
+                val (bannerBg, bannerBorder, bannerIcon, bannerTitleColor) = when (status) {
+                    AdminResolutionStatus.CONFIRMED -> Quadruple(
                         Emerald950.copy(alpha = 0.4f),
                         Emerald600,
                         Icons.Default.CheckCircle,
@@ -583,13 +546,13 @@ fun SurveyAdminLocationBindingSection(
                         Icons.Default.Warning,
                         Red400
                     )
-                    AdminResolutionStatus.AMBIGUOUS_BOUNDARY, AdminResolutionStatus.OUTSIDE_COVERAGE -> Quadruple(
+                    AdminResolutionStatus.UNRESOLVED, AdminResolutionStatus.OUTSIDE_BOUNDARIES -> Quadruple(
                         Amber950.copy(alpha = 0.4f),
                         Amber600,
                         Icons.Default.Info,
                         Amber400
                     )
-                    AdminResolutionStatus.NO_GPS_FIX, AdminResolutionStatus.NOT_EVALUATED -> Quadruple(
+                    AdminResolutionStatus.NO_GPS, AdminResolutionStatus.NOT_EVALUATED -> Quadruple(
                         Slate800.copy(alpha = 0.5f),
                         Slate700,
                         Icons.Default.LocationOff,
@@ -617,7 +580,7 @@ fun SurveyAdminLocationBindingSection(
                                 modifier = Modifier.size(18.dp)
                             )
                             Text(
-                                text = "حالة التحقق المكاني: ${result.status.titleAr}",
+                                text = "حالة التحقق المكاني: ${status.titleAr}",
                                 color = bannerTitleColor,
                                 fontSize = 13.sp,
                                 fontWeight = FontWeight.Bold
@@ -625,82 +588,81 @@ fun SurveyAdminLocationBindingSection(
                         }
 
                         Text(
-                            text = result.detailsAr,
+                            text = details,
                             color = Slate200,
                             fontSize = 11.5.sp,
                             lineHeight = 16.sp
                         )
 
-                        // If Mismatch: Show comparison table and action button
-                        if (result.status == AdminResolutionStatus.LOCATION_MISMATCH && result.resolvedLocation != null) {
-                            val res = result.resolvedLocation
-                            Column(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .background(Slate950.copy(alpha = 0.6f), RoundedCornerShape(6.dp))
-                                    .padding(8.dp),
-                                verticalArrangement = Arrangement.spacedBy(4.dp)
-                            ) {
-                                Text(
-                                    text = "الموقع المكتشف فضائياً عبر إحداثيات GPS:",
-                                    color = Slate300,
-                                    fontSize = 11.sp,
-                                    fontWeight = FontWeight.SemiBold
-                                )
-                                Text(
-                                    text = "المحافظة: ${res.admin1Pcode} | المديرية: ${res.admin2Pcode ?: "غير محدد"} | العزلة: ${res.admin3Pcode ?: "غير محدد"}",
-                                    color = Emerald400,
-                                    fontSize = 11.sp
-                                )
-
-                                Button(
-                                    onClick = {
-                                        selectedAdmin1 = res.admin1Pcode
-                                        res.admin2Pcode?.let { selectedAdmin2 = it }
-                                        res.admin3Pcode?.let { selectedAdmin3 = it }
-                                        coroutineScope.launch {
-                                            admin2List = selector.getDistricts(selectedAdmin1)
-                                            if (selectedAdmin2.isNotBlank()) {
-                                                admin3List = selector.getSubDistricts(selectedAdmin2)
-                                            }
-                                            if (selectedAdmin3.isNotBlank()) {
-                                                villageList = selector.getVillages(selectedAdmin3)
-                                            }
-                                            performSpatialVerification()
-                                        }
-                                    },
-                                    colors = ButtonDefaults.buttonColors(
-                                        containerColor = Slate800,
-                                        contentColor = Slate100
-                                    ),
-                                    modifier = Modifier.fillMaxWidth()
+                        if (status == AdminResolutionStatus.LOCATION_MISMATCH) {
+                            resolvedGpsLocation?.let { res ->
+                                Column(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .background(Slate950.copy(alpha = 0.6f), RoundedCornerShape(6.dp))
+                                        .padding(8.dp),
+                                    verticalArrangement = Arrangement.spacedBy(4.dp)
                                 ) {
                                     Text(
-                                        text = "اعتماد وتطبيق الموقع المقترح من الـ GPS",
+                                        text = "الموقع المكتشف فضائياً عبر إحداثيات GPS:",
+                                        color = Slate300,
+                                        fontSize = 11.sp,
+                                        fontWeight = FontWeight.SemiBold
+                                    )
+                                    Text(
+                                        text = "المحافظة: ${res.admin1Pcode ?: "غير محدد"} | المديرية: ${res.admin2Pcode ?: "غير محدد"} | العزلة: ${res.admin3Pcode ?: "غير محدد"}",
+                                        color = Emerald400,
                                         fontSize = 11.sp
                                     )
-                                }
-                            }
-                        }
 
-                        // Nearest village information if available
-                        result.resolvedLocation?.nearestVillageNameAr?.let { nearestName ->
-                            val dist = result.resolvedLocation.distanceToNearestVillageM
-                            Row(
-                                horizontalArrangement = Arrangement.spacedBy(6.dp),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Default.Place,
-                                    contentDescription = null,
-                                    tint = Slate400,
-                                    modifier = Modifier.size(14.dp)
-                                )
-                                Text(
-                                    text = "أقرب قرية مسجلة: $nearestName ${dist?.let { "(على بعد ${it.toInt()} م)" } ?: ""}",
-                                    color = Slate300,
-                                    fontSize = 11.sp
-                                )
+                                    Button(
+                                        onClick = {
+                                            selectedAdmin1 = res.admin1Pcode ?: selectedAdmin1
+                                            selectedAdmin2 = res.admin2Pcode ?: selectedAdmin2
+                                            selectedAdmin3 = res.admin3Pcode ?: selectedAdmin3
+                                            coroutineScope.launch {
+                                                admin2List = selector.getDistrictsForGovernorate(selectedAdmin1)
+                                                if (selectedAdmin2.isNotBlank()) {
+                                                    admin3List = selector.getUzlahsForDistrict(selectedAdmin2)
+                                                }
+                                                if (selectedAdmin3.isNotBlank()) {
+                                                    villageList = selector.getVillagesForUzlah(selectedAdmin3)
+                                                }
+                                                performSpatialVerification()
+                                            }
+                                        },
+                                        colors = ButtonDefaults.buttonColors(
+                                            containerColor = Slate800,
+                                            contentColor = Slate100
+                                        ),
+                                        modifier = Modifier.fillMaxWidth()
+                                    ) {
+                                        Text(
+                                            text = "اعتماد وتطبيق الموقع المقترح من الـ GPS",
+                                            fontSize = 11.sp
+                                        )
+                                    }
+                                }
+
+                                res.nearestVillageNameAr?.let { nearestName ->
+                                    val dist = res.distanceToNearestVillageM
+                                    Row(
+                                        horizontalArrangement = Arrangement.spacedBy(6.dp),
+                                        verticalAlignment = Alignment.CenterVertically
+                                    ) {
+                                        Icon(
+                                            imageVector = Icons.Default.Place,
+                                            contentDescription = null,
+                                            tint = Slate400,
+                                            modifier = Modifier.size(14.dp)
+                                        )
+                                        Text(
+                                            text = "أقرب قرية مسجلة: $nearestName ${dist?.let { "(على بعد ${it.toInt()} م)" } ?: ""}",
+                                            color = Slate300,
+                                            fontSize = 11.sp
+                                        )
+                                    }
+                                }
                             }
                         }
                     }

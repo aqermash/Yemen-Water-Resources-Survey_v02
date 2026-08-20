@@ -3,6 +3,7 @@ package com.yemen.watersurvey.core.sync
 import com.yemen.watersurvey.data.database.SurveyAppDatabase
 import com.yemen.watersurvey.data.entity.SurveyRecordEntity
 import com.yemen.watersurvey.domain.model.*
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*
 import org.junit.Before
@@ -73,7 +74,7 @@ class SupervisorSyncWorkspaceTest {
                 wellType = "ARTESIAN",
                 wellDepthM = 120.0,
                 pumpingMechanism = "SOLAR",
-                waterQualityStatus = "POTABLE"
+                operationalStatus = "POTABLE"
             ) else null
         )
     }
@@ -84,22 +85,20 @@ class SupervisorSyncWorkspaceTest {
         username: String = "enum_user_1",
         deviceId: String = "DEV-NORTH-01"
     ): File {
-        val destFile = File(tempDir, "$packageId.ywsync")
-        val metadata = SyncPackageMetadata(
+        val result = exporter.exportSyncPackage(
+            allSurveys = surveys,
+            allRevisions = emptyList(),
             sourceDeviceId = deviceId,
-            senderUserId = "usr-$username",
-            senderUsername = username,
             senderRole = "FIELD_ENUMERATOR",
-            targetRole = "DISTRICT_SUPERVISOR",
+            senderUsername = username,
+            district = "سحار",
             governorate = "صعدة",
-            district = "سحار"
+            packageId = packageId
         )
-        return exporter.exportSyncPackage(
-            surveys = surveys,
-            revisions = emptyList(),
-            metadata = metadata,
-            destinationFile = destFile
-        )
+        check(result is SyncExportResult.Success) {
+            "generateTestSyncPackage failed: ${(result as? SyncExportResult.Failure)?.errorMessage}"
+        }
+        return result.packageFile
     }
 
     @Test
@@ -184,7 +183,7 @@ class SupervisorSyncWorkspaceTest {
         assertTrue("Must have recorded transition history", history.size >= 5)
 
         // Verify Audit Logs
-        val auditLogs = database.auditLogDao().getAllAuditLogs()
+        val auditLogs = database.auditLogDao().getAllAuditLogs().first()
         assertTrue("Must have recorded audit logs for package events", auditLogs.isNotEmpty())
     }
 
@@ -210,7 +209,7 @@ class SupervisorSyncWorkspaceTest {
         assertNotNull(rejectTransition)
         assertEquals("super_ali", rejectTransition?.actorId)
 
-        val auditLogs = database.auditLogDao().getAllAuditLogs()
+        val auditLogs = database.auditLogDao().getAllAuditLogs().first()
         val rejectAudit = auditLogs.find { it.actionType == "SYNC_PACKAGE_REJECTED" }
         assertNotNull(rejectAudit)
         assertEquals("PKG-REJECT-01", rejectAudit?.recordId)
@@ -219,38 +218,38 @@ class SupervisorSyncWorkspaceTest {
     @Test
     fun `test offline dashboard statistics computation`() = runBlocking {
         // Seed local database with existing survey records
-        database.surveyRecordDao().insertSurveys(
-            listOf(
-                SurveyRecordEntity(
-                    surveyUUID = "UUID-EXISTING-1",
-                    recordId = "WELL-EXIST-1",
-                    surveyType = "WELL",
-                    governorateCode = "صعدة",
-                    districtCode = "سحار",
-                    uzlahCode = "الطلح",
-                    villageCode = "المقاش",
-                    enumeratorId = "enum-01",
-                    enumeratorUsername = "ahmed",
-                    workflowStatus = "APPROVED",
-                    revisionCount = 1,
-                    createdAt = "2026-08-10 10:00:00",
-                    updatedAt = "2026-08-10 10:00:00"
-                ),
-                SurveyRecordEntity(
-                    surveyUUID = "UUID-EXISTING-2",
-                    recordId = "SPRING-EXIST-1",
-                    surveyType = "SPRING",
-                    governorateCode = "صعدة",
-                    districtCode = "سحار",
-                    uzlahCode = "الطلح",
-                    villageCode = "المقاش",
-                    enumeratorId = "enum-02",
-                    enumeratorUsername = "salem",
-                    workflowStatus = "COMPLETED",
-                    revisionCount = 1,
-                    createdAt = "2026-08-11 10:00:00",
-                    updatedAt = "2026-08-11 10:00:00"
-                )
+        database.surveyRecordDao().insertOrUpdateSurvey(
+            SurveyRecordEntity(
+                surveyUUID = "UUID-EXISTING-1",
+                recordId = "WELL-EXIST-1",
+                surveyType = "WELL",
+                governorateCode = "صعدة",
+                districtCode = "سحار",
+                uzlahCode = "الطلح",
+                villageCode = "المقاش",
+                enumeratorId = "enum-01",
+                enumeratorUsername = "ahmed",
+                workflowStatus = "APPROVED",
+                revisionCount = 1,
+                createdAt = "2026-08-10 10:00:00",
+                updatedAt = "2026-08-10 10:00:00"
+            )
+        )
+        database.surveyRecordDao().insertOrUpdateSurvey(
+            SurveyRecordEntity(
+                surveyUUID = "UUID-EXISTING-2",
+                recordId = "SPRING-EXIST-1",
+                surveyType = "SPRING",
+                governorateCode = "صعدة",
+                districtCode = "سحار",
+                uzlahCode = "الطلح",
+                villageCode = "المقاش",
+                enumeratorId = "enum-02",
+                enumeratorUsername = "salem",
+                workflowStatus = "COMPLETED",
+                revisionCount = 1,
+                createdAt = "2026-08-11 10:00:00",
+                updatedAt = "2026-08-11 10:00:00"
             )
         )
 
@@ -272,23 +271,21 @@ class SupervisorSyncWorkspaceTest {
     @Test
     fun `test district sync summary aggregation`() = runBlocking {
         // Seed database
-        database.surveyRecordDao().insertSurveys(
-            listOf(
-                SurveyRecordEntity(
-                    surveyUUID = "UUID-DIST-1",
-                    recordId = "WELL-DIST-1",
-                    surveyType = "WELL",
-                    governorateCode = "صعدة",
-                    districtCode = "سحار",
-                    uzlahCode = "الطلح",
-                    villageCode = "المقاش",
-                    enumeratorId = "enum-01",
-                    enumeratorUsername = "ahmed_local",
-                    workflowStatus = "APPROVED",
-                    revisionCount = 1,
-                    createdAt = "2026-08-12 10:00:00",
-                    updatedAt = "2026-08-12 10:00:00"
-                )
+        database.surveyRecordDao().insertOrUpdateSurvey(
+            SurveyRecordEntity(
+                surveyUUID = "UUID-DIST-1",
+                recordId = "WELL-DIST-1",
+                surveyType = "WELL",
+                governorateCode = "صعدة",
+                districtCode = "سحار",
+                uzlahCode = "الطلح",
+                villageCode = "المقاش",
+                enumeratorId = "enum-01",
+                enumeratorUsername = "ahmed_local",
+                workflowStatus = "APPROVED",
+                revisionCount = 1,
+                createdAt = "2026-08-12 10:00:00",
+                updatedAt = "2026-08-12 10:00:00"
             )
         )
 

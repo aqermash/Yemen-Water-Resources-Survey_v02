@@ -22,8 +22,8 @@ class AdminCrossMappingEngine {
     companion object {
         private val TASHKEEL_REGEX = Regex("[\\u064B-\\u065F\\u0670\\u06D6-\\u06ED]")
         private val TATWEEL_REGEX = Regex("\\u0640")
-        private val ARABIC_PREFIXES = listOf("قرية", "محلة", "عزلة", "حارة", "تجمع", "سكن")
-        private val ENGLISH_PREFIXES = listOf("al-", "el-", "as-", "ash-", "ad-", "an-", "ar-", "az-", "at-", "ath-", "al ", "el ")
+        private val ARABIC_PREFIXES = listOf("قرية", "قريه", "محلة", "محله", "عزلة", "عزله", "حارة", "حاره", "تجمع", "سكن")
+        private val ENGLISH_PREFIXES = listOf("al-", "el-", "as-", "ash-", "ad-", "an-", "ar-", "az-", "at-", "ath-", "al ", "el ", "as ", "ash ", "ad ", "an ", "ar ", "az ", "at ", "ath ")
     }
 
     /**
@@ -48,8 +48,9 @@ class AdminCrossMappingEngine {
     fun stripArabicPrefixes(text: String?): String {
         var normalized = normalizeArabic(text)
         for (prefix in ARABIC_PREFIXES) {
-            if (normalized.startsWith("$prefix ")) {
-                normalized = normalized.substring(prefix.length + 1).trim()
+            val normPrefix = normalizeArabic(prefix)
+            if (normalized.startsWith("$normPrefix ")) {
+                normalized = normalized.substring(normPrefix.length + 1).trim()
             }
         }
         return normalized
@@ -64,6 +65,7 @@ class AdminCrossMappingEngine {
         for (prefix in ENGLISH_PREFIXES) {
             if (normalized.startsWith(prefix)) {
                 normalized = normalized.substring(prefix.length).trim()
+                break
             }
         }
         normalized = normalized.replace(Regex("[^a-z0-9\\s]"), "")

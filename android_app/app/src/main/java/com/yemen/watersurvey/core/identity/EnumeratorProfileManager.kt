@@ -17,11 +17,12 @@ class EnumeratorProfileManager(context: Context) {
      * Retrieves or auto-generates the canonical anonymous enumerator code (e.g. ENUM-YEM-8492).
      */
     fun getOrCreateEnumeratorCode(): String {
-        var code = prefs.getString(KEY_ENUMERATOR_CODE, null)
-        if (code.isNull_or_empty()) {
+        val code = prefs.getString(KEY_ENUMERATOR_CODE, null)
+        if (code.isNullOrBlank()) {
             val randomSuffix = UUID.randomUUID().toString().substring(0, 6).uppercase()
-            code = "ENUM-YEM-$randomSuffix"
-            prefs.edit().putString(KEY_ENUMERATOR_CODE, code).apply()
+            val newCode = "ENUM-YEM-$randomSuffix"
+            prefs.edit().putString(KEY_ENUMERATOR_CODE, newCode).apply()
+            return newCode
         }
         return code
     }
@@ -30,11 +31,12 @@ class EnumeratorProfileManager(context: Context) {
      * Retrieves or auto-generates the hardware device identifier (e.g. DEV-ANDROID-A1B2).
      */
     fun getOrCreateDeviceId(): String {
-        var deviceId = prefs.getString(KEY_DEVICE_ID, null)
-        if (deviceId.isNull_or_empty()) {
+        val deviceId = prefs.getString(KEY_DEVICE_ID, null)
+        if (deviceId.isNullOrBlank()) {
             val randomSuffix = UUID.randomUUID().toString().substring(0, 8).uppercase()
-            deviceId = "DEV-YEM-$randomSuffix"
-            prefs.edit().putString(KEY_DEVICE_ID, deviceId).apply()
+            val newDeviceId = "DEV-YEM-$randomSuffix"
+            prefs.edit().putString(KEY_DEVICE_ID, newDeviceId).apply()
+            return newDeviceId
         }
         return deviceId
     }
@@ -45,5 +47,3 @@ class EnumeratorProfileManager(context: Context) {
         private const val KEY_DEVICE_ID = "key_device_id"
     }
 }
-
-private fun String?.isNull_or_empty(): Boolean = this == null || this.trim().isEmpty()

@@ -1,7 +1,9 @@
 package com.yemen.watersurvey.core.form
 
 import android.content.Context
+import com.yemen.watersurvey.data.dao.DeviceSequenceDao
 import com.yemen.watersurvey.data.dao.FormPackageDao
+import com.yemen.watersurvey.data.entity.DeviceSequencePoolEntity
 import com.yemen.watersurvey.data.entity.FormPackageEntity
 import com.yemen.watersurvey.domain.model.*
 import kotlinx.coroutines.flow.Flow
@@ -11,11 +13,17 @@ import org.json.JSONObject
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.RuntimeEnvironment
+import org.robolectric.annotation.Config
 import java.io.File
 
 /**
  * Unit Tests for Native Android Form Package Management System (Phase 8).
  */
+@RunWith(RobolectricTestRunner::class)
+@Config(sdk = [33], manifest = Config.NONE)
 class FormPackageManagerTest {
 
     private lateinit var testBaseDir: File
@@ -31,8 +39,9 @@ class FormPackageManagerTest {
         cacheDir.mkdirs()
 
         mockDao = InMemoryFormPackageDao()
+        val mockSeqDao = InMemoryDeviceSequenceDao()
         val testContext = TestContext(testBaseDir, cacheDir)
-        packageManager = FormPackageManager(testContext, mockDao)
+        packageManager = FormPackageManager(testContext, mockDao, mockSeqDao)
     }
 
     @Test
@@ -236,11 +245,28 @@ class FormPackageManagerTest {
         }
     }
 
+    private class InMemoryDeviceSequenceDao : DeviceSequenceDao {
+        private val pools = mutableListOf<DeviceSequencePoolEntity>()
+        override suspend fun getPool(adminBucketKey: String, facilityType: String): DeviceSequencePoolEntity? {
+            return pools.find { it.adminBucketKey == adminBucketKey && it.facilityType == facilityType }
+        }
+        override suspend fun insertOrUpdatePool(pool: DeviceSequencePoolEntity) {
+            pools.removeAll { it.adminBucketKey == pool.adminBucketKey && it.facilityType == pool.facilityType }
+            pools.add(pool)
+        }
+        override suspend fun insertOrUpdatePools(pools: List<DeviceSequencePoolEntity>) {
+            pools.forEach { insertOrUpdatePool(it) }
+        }
+        override suspend fun getAllPools(): List<DeviceSequencePoolEntity> = pools.toList()
+    }
+
     private class TestContext(
         private val baseDir: File,
-        private val testCacheDir: File
-    ) : android.content.ContextWrapper(null) {
+        private val testCacheDir: File,
+        appContext: Context = RuntimeEnvironment.getApplication()
+    ) : android.content.ContextWrapper(appContext) {
         override fun getFilesDir(): File = baseDir
         override fun getCacheDir(): File = testCacheDir
+        override fun getApplicationContext(): Context = this
     }
 }

@@ -79,7 +79,15 @@ class SurveySyncImporterTest {
                     operationalStatus = "شغال"
                 ),
                 attachments = listOf(
-                    AttachmentInfo("att-1", "WELL-YE-30-001", "PHOTO", photo1.absolutePath, "well_photo_01.jpg", photo1.length(), "2026-08-14 09:00:00")
+                    AttachmentInfo(
+                        attachmentId = "att-1",
+                        surveyId = "WELL-YE-30-001",
+                        attachmentType = "PHOTO",
+                        filePath = photo1.absolutePath,
+                        fileName = "well_photo_01.jpg",
+                        fileSize = photo1.length(),
+                        timestamp = "2026-08-14 09:00:00"
+                    )
                 )
             ),
             SurveyRecord(
@@ -96,7 +104,15 @@ class SurveySyncImporterTest {
                 createdAt = "2026-08-14 10:30:00",
                 springDetails = SpringDetails("عين الغيل", 15.0, "عذبة", "دائم"),
                 attachments = listOf(
-                    AttachmentInfo("att-2", "SPRING-YE-30-002", "PHOTO", photo2.absolutePath, "spring_photo_01.jpg", photo2.length(), "2026-08-14 10:30:00")
+                    AttachmentInfo(
+                        attachmentId = "att-2",
+                        surveyId = "SPRING-YE-30-002",
+                        attachmentType = "PHOTO",
+                        filePath = photo2.absolutePath,
+                        fileName = "spring_photo_01.jpg",
+                        fileSize = photo2.length(),
+                        timestamp = "2026-08-14 10:30:00"
+                    )
                 )
             )
         )
@@ -243,7 +259,7 @@ class SurveySyncImporterTest {
         assertTrue("Must flag duplicate package ID", preview.isDuplicatePackage)
         assertEquals(1, preview.duplicateSurveysCount)
         assertEquals(1, preview.newSurveysCount)
-        assertEquals(listOf("WELL-YE-30-001"), preview.duplicateSurveyUuids)
+        assertEquals(listOf(sampleSurveys[0].surveyUUID), preview.duplicateSurveyUuids)
         assertTrue("Must produce warning for existing duplicate record", preview.validationWarnings.any { it.contains("مسبقاً") })
     }
 

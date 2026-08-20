@@ -123,7 +123,7 @@ fun SurveyMergeReviewScreen(
                     )
                 }
 
-                val preview = importer.inspectPackage(
+                val preview = importer.inspectAndValidatePackage(
                     packageFile = pkgFile,
                     existingSurveys = localSurveys
                 )

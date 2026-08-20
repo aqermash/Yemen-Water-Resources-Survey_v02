@@ -216,11 +216,14 @@ class ConflictDetectionEngineTest {
             districtCode = "سنحان",
             uzlahCode = "سيان",
             villageCode = "حمل",
+            createdAt = "2026-08-14 10:00:00",
             gpsPoint = GpsLocationResult(
                 latitude = 15.35000,
                 longitude = 44.20000,
+                altitudeM = 2200.0,
                 accuracyM = 4.5f,
-                quality = GpsAccuracyQuality.EXCELLENT
+                quality = GpsAccuracyQuality.EXCELLENT,
+                capturedAt = "2026-08-14 10:00:00"
             )
         )
 
@@ -229,15 +232,17 @@ class ConflictDetectionEngineTest {
             gpsPoint = GpsLocationResult(
                 latitude = 15.36120,
                 longitude = 44.21500,
+                altitudeM = 2200.0,
                 accuracyM = 8.0f,
-                quality = GpsAccuracyQuality.GOOD
+                quality = GpsAccuracyQuality.GOOD,
+                capturedAt = "2026-08-14 10:05:00"
             )
         )
 
         val diffs = engine.generateFieldDifferences(existing, incoming)
         val fieldNames = diffs.map { it.fieldName }
 
-        assertTrue(fieldNames.contains("districtCode"))
+        assertTrue(fieldNames.contains("admin2Pcode"))
         assertTrue(fieldNames.contains("gpsCoordinates"))
         assertTrue(fieldNames.contains("gpsAccuracy"))
     }

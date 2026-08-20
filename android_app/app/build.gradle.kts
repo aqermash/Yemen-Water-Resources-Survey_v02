@@ -19,12 +19,11 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+    }
 
-        kapt {
-            arguments {
-                arg("room.schemaLocation", "$projectDir/schemas")
-                arg("room.incremental", "true")
-            }
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
         }
     }
 
@@ -65,6 +64,10 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
     // Core Android & Compose
     implementation("androidx.core:core-ktx:1.12.0")
@@ -92,4 +95,5 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
     testImplementation("androidx.room:room-testing:$roomVersion")
     testImplementation("org.json:json:20231013")
+    testImplementation("org.robolectric:robolectric:4.11.1")
 }

@@ -146,7 +146,10 @@ class ConflictDetectionEngine {
         }
 
         // Administrative: District (Admin2)
-        if (existing.admin2Pcode != incoming.admin2Pcode || existing.districtNameSnapshotAr != incoming.districtNameSnapshotAr) {
+        if (existing.admin2Pcode != incoming.admin2Pcode ||
+            existing.districtNameSnapshotAr != incoming.districtNameSnapshotAr ||
+            existing.districtCode != incoming.districtCode
+        ) {
             diffs.add(
                 FieldDifference(
                     fieldName = "admin2Pcode",

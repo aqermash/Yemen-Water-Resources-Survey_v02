@@ -8,10 +8,15 @@ import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.Assert.*
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 
 /**
  * Unit Tests for Phase 10 & 10.1 Administrative Reference, Ingestion & GIS Subsystem.
  */
+@RunWith(RobolectricTestRunner::class)
+@Config(manifest = Config.NONE)
 class AdminReferenceTest {
 
     private val crossMappingEngine = AdminCrossMappingEngine()
@@ -207,7 +212,6 @@ class AdminReferenceTest {
             villageNameAr = "المقاش",
             isLocalNameOverride = false,
             localOverrideId = null,
-            snapshotTimestamp = "2026-08-15 12:00:00",
             adminRefVersionTag = "OCHA_YEM_2024_V1"
         )
 
@@ -224,35 +228,47 @@ class AdminReferenceTest {
 
     @Test
     fun testSelectionConsistencyEvaluation() {
+        val resolver = GpsAdministrativeResolver(
+            com.yemen.watersurvey.data.database.SurveyAppDatabase.createInMemory(
+                org.robolectric.RuntimeEnvironment.getApplication()
+            )
+        )
+
         val resolved = ResolvedAdministrativeLocation(
+            latitude = 16.5,
+            longitude = 44.2,
             admin1Pcode = "YE11",
+            admin1NameAr = "صعدة",
             admin2Pcode = "YE1101",
+            admin2NameAr = "سحار",
             admin3Pcode = "YE110101",
-            confidence = ResolutionConfidence.HIGH,
-            resolutionMethod = "POINT_IN_POLYGON_EXACT",
+            admin3NameAr = "الطلح",
+            nearestVillageReferenceId = "YINFO-001",
+            nearestVillageNameAr = "المقاش",
             distanceToNearestVillageM = 320.0,
-            nearestVillageId = "YINFO-001",
-            nearestVillageNameAr = "المقاش"
+            gpsAccuracyM = 8.0f,
+            resolutionStatus = AdminResolutionStatus.CONFIRMED,
+            resolutionConfidence = ResolutionConfidence.HIGH,
+            validationMessageAr = "تم التحقق المكاني بنجاح",
+            isExactMatch = true
         )
 
-        // Case 1: Match
-        val matchResult = GpsAdministrativeResolver.SelectionConsistencyResult(
-            status = AdminResolutionStatus.LOCATION_MATCH,
-            isConsistent = true,
-            detailsAr = "الموقع الإداري المختار مطابق للتحقق المكاني الفضائي (GPS).",
+        val (matchStatus, matchMessage) = resolver.evaluateManualSelectionConsistency(
+            selectedAdmin1Pcode = "YE11",
+            selectedAdmin2Pcode = "YE1101",
+            selectedAdmin3Pcode = "YE110101",
             resolvedLocation = resolved
         )
-        assertEquals(AdminResolutionStatus.LOCATION_MATCH, matchResult.status)
-        assertTrue(matchResult.isConsistent)
+        assertEquals(AdminResolutionStatus.CONFIRMED, matchStatus)
+        assertTrue(matchMessage.contains("متطابق"))
 
-        // Case 2: Mismatch
-        val mismatchResult = GpsAdministrativeResolver.SelectionConsistencyResult(
-            status = AdminResolutionStatus.LOCATION_MISMATCH,
-            isConsistent = false,
-            detailsAr = "تحذير: إحداثيات GPS تقع ضمن (YE110101) بينما تم اختيار (YE110102).",
+        val (mismatchStatus, mismatchMessage) = resolver.evaluateManualSelectionConsistency(
+            selectedAdmin1Pcode = "YE11",
+            selectedAdmin2Pcode = "YE1101",
+            selectedAdmin3Pcode = "YE110102",
             resolvedLocation = resolved
         )
-        assertEquals(AdminResolutionStatus.LOCATION_MISMATCH, mismatchResult.status)
-        assertFalse(mismatchResult.isConsistent)
+        assertEquals(AdminResolutionStatus.LOCATION_MISMATCH, mismatchStatus)
+        assertTrue(mismatchMessage.contains("تنبيه"))
     }
 }

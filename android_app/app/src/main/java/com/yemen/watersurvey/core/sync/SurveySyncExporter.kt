@@ -76,7 +76,8 @@ class SurveySyncExporter(
         senderRole: String = "ENUMERATOR",
         senderUsername: String = "enumerator_field",
         district: String = "صعدة",
-        governorate: String = "صعدة"
+        governorate: String = "صعدة",
+        packageId: String = UUID.randomUUID().toString()
     ): SyncExportResult {
         // 1. Filter surveys
         val filteredSurveys = applyFilter(allSurveys, filter)
@@ -90,11 +91,12 @@ class SurveySyncExporter(
         val filteredRecordIds = filteredSurveys.map { it.recordId }.toSet()
         val matchingRevisions = allRevisions.filter { it.recordId in filteredRecordIds }
 
-        val packageId = UUID.randomUUID().toString()
         val timestampIso = dateFormat.format(Date())
         val timestampFile = fileTimestampFormat.format(Date())
         val sanitizedRole = senderRole.replace(" ", "_").lowercase()
-        val outputFileName = "SYNC_${sanitizedRole}_${filteredSurveys.size}surveys_${timestampFile}$PACKAGE_EXTENSION"
+        // Sanitize full packageId to guarantee filename uniqueness across rapid successive exports
+        val sanitizedPkgId = packageId.replace(Regex("[^a-zA-Z0-9_.-]"), "_")
+        val outputFileName = "SYNC_${sanitizedRole}_${filteredSurveys.size}surveys_${timestampFile}_${sanitizedPkgId}$PACKAGE_EXTENSION"
         val destinationZipFile = File(syncPackagesDir, outputFileName)
 
         // 3. Staging directory

@@ -29,7 +29,24 @@ import java.util.Locale
  * - Dynamic field coordinate resolution matching government archive dimensions.
  * - Zero Room database mutation (100% read-only).
  */
-class PdfStampingEngine(private val context: Context) {
+/**
+ * Testability seam for PDF document rendering and byte stream writing.
+ * In production, the default null writer uses native android.graphics.pdf.PdfDocument.
+ * In JVM unit tests, a test writer can be supplied to simulate file output without native OS graphics dependencies.
+ */
+fun interface PdfDocumentWriter {
+    fun writePdf(
+        targetFile: File,
+        record: SurveyRecord,
+        mapping: PdfTemplateMapping,
+        valuesMap: Map<String, String>
+    )
+}
+
+class PdfStampingEngine(
+    private val context: Context,
+    private val pdfWriter: PdfDocumentWriter? = null
+) {
 
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US)
     private val fileTimestampFormat = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US)
@@ -65,37 +82,14 @@ class PdfStampingEngine(private val context: Context) {
             else -> loadMappingForType(record.surveyType)
         }
 
-        val pdfDocument = PdfDocument()
-        val pageInfo = PdfDocument.PageInfo.Builder(PAGE_WIDTH_PT, PAGE_HEIGHT_PT, 1).create()
-        val page = pdfDocument.startPage(pageInfo)
-        val canvas = page.canvas
-
-        // 1. Render Official Form Template Layout & Vectors
-        renderOfficialBackgroundTemplate(canvas, record.surveyType, mapping.templateTitleAr)
-
-        // 2. Extract Data Values Map
+        // Extract Data Values Map
         val valuesMap = buildRecordValuesMap(record)
 
-        // 3. Stamp Mapped Fields at Exact (X, Y) Coordinates
-        val textPaint = Paint().apply {
-            isAntiAlias = true
-            color = Color.rgb(15, 23, 42) // Slate 900
+        if (pdfWriter != null) {
+            pdfWriter.writePdf(targetFile, record, mapping, valuesMap)
+        } else {
+            renderNativePdf(targetFile, record, mapping, valuesMap)
         }
-
-        mapping.fields.forEach { field ->
-            val value = valuesMap[field.key] ?: ""
-            if (value.isNotBlank()) {
-                drawFieldOnCanvas(canvas, field, value, textPaint)
-            }
-        }
-
-        pdfDocument.finishPage(page)
-
-        // 4. Save to Offline Internal Storage
-        FileOutputStream(targetFile).use { fos ->
-            pdfDocument.writeTo(fos)
-        }
-        pdfDocument.close()
 
         val formattedDate = dateFormat.format(Date())
 
@@ -110,6 +104,42 @@ class PdfStampingEngine(private val context: Context) {
             generatedAt = formattedDate,
             isOfflineGenerated = true
         )
+    }
+
+    private fun renderNativePdf(
+        targetFile: File,
+        record: SurveyRecord,
+        mapping: PdfTemplateMapping,
+        valuesMap: Map<String, String>
+    ) {
+        val pdfDocument = PdfDocument()
+        val pageInfo = PdfDocument.PageInfo.Builder(PAGE_WIDTH_PT, PAGE_HEIGHT_PT, 1).create()
+        val page = pdfDocument.startPage(pageInfo)
+        val canvas = page.canvas
+
+        // 1. Render Official Form Template Layout & Vectors
+        renderOfficialBackgroundTemplate(canvas, record.surveyType, mapping.templateTitleAr)
+
+        // 2. Stamp Mapped Fields at Exact (X, Y) Coordinates
+        val textPaint = Paint().apply {
+            isAntiAlias = true
+            color = Color.rgb(15, 23, 42) // Slate 900
+        }
+
+        mapping.fields.forEach { field ->
+            val value = valuesMap[field.key] ?: ""
+            if (value.isNotBlank()) {
+                drawFieldOnCanvas(canvas, field, value, textPaint)
+            }
+        }
+
+        pdfDocument.finishPage(page)
+
+        // 3. Save to Offline Internal Storage
+        FileOutputStream(targetFile).use { fos ->
+            pdfDocument.writeTo(fos)
+        }
+        pdfDocument.close()
     }
 
     /**
