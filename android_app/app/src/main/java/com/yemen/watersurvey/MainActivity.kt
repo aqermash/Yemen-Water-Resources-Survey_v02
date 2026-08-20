@@ -9,12 +9,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.yemen.watersurvey.presentation.navigation.ScreenRoute
 import com.yemen.watersurvey.presentation.screens.DashboardScreen
+import com.yemen.watersurvey.presentation.screens.RecordsManagerScreen
+import com.yemen.watersurvey.presentation.screens.SettingsScreen
+import com.yemen.watersurvey.presentation.screens.SurveyFormsScreen
 import com.yemen.watersurvey.presentation.theme.YemenWaterSurveyTheme
 
 /**
  * Single Activity entry point for the Yemen Water Survey application.
- * P2.5 — minimal NavHost hosting Dashboard as the start destination.
- * Full screen wiring is added in subsequent P2.5 prompts.
+ * P2.5 — NavHost hosting Dashboard, SurveyForms, RecordsManager, and Settings.
  */
 class MainActivity : ComponentActivity() {
 
@@ -36,7 +38,39 @@ private fun YemenWaterSurveyNavHost() {
         startDestination = ScreenRoute.Dashboard.route
     ) {
         composable(ScreenRoute.Dashboard.route) {
-            DashboardScreen()
+            DashboardScreen(
+                onNavigateToSurveyForms = {
+                    navController.navigate(ScreenRoute.SurveyForms.route)
+                },
+                onNavigateToRecordsManager = {
+                    navController.navigate(ScreenRoute.RecordsManager.route)
+                },
+                onNavigateToSettings = {
+                    navController.navigate(ScreenRoute.Settings.route)
+                }
+            )
+        }
+        composable(ScreenRoute.SurveyForms.route) {
+            SurveyFormsScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        composable(ScreenRoute.RecordsManager.route) {
+            RecordsManagerScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        composable(ScreenRoute.Settings.route) {
+            SettingsScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
         }
     }
 }
+
