@@ -7,6 +7,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.yemen.watersurvey.presentation.navigation.ScreenRoute
 
 /**
  * P2.5 placeholder — Dashboard screen.
@@ -15,9 +16,7 @@ import androidx.compose.ui.unit.dp
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DashboardScreen(
-    onNavigateToSurveyForms: () -> Unit = {},
-    onNavigateToRecordsManager: () -> Unit = {},
-    onNavigateToSettings: () -> Unit = {}
+    onNavigate: (ScreenRoute) -> Unit = {}
 ) {
     Scaffold(
         topBar = {
@@ -52,24 +51,66 @@ fun DashboardScreen(
             )
             Spacer(modifier = Modifier.height(24.dp))
             Button(
-                onClick = onNavigateToSurveyForms,
+                onClick = { onNavigate(ScreenRoute.SurveyForms) },
                 modifier = Modifier.fillMaxWidth(0.8f)
             ) {
                 Text("استمارات المسح (Survey Forms)")
             }
             Spacer(modifier = Modifier.height(12.dp))
             Button(
-                onClick = onNavigateToRecordsManager,
+                onClick = { onNavigate(ScreenRoute.RecordsManager) },
                 modifier = Modifier.fillMaxWidth(0.8f)
             ) {
                 Text("إدارة السجلات (Records Manager)")
             }
             Spacer(modifier = Modifier.height(12.dp))
             Button(
-                onClick = onNavigateToSettings,
+                onClick = { onNavigate(ScreenRoute.Settings) },
                 modifier = Modifier.fillMaxWidth(0.8f)
             ) {
                 Text("الإعدادات (Settings)")
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = { onNavigate(ScreenRoute.FormManagement) },
+                modifier = Modifier.fillMaxWidth(0.8f)
+            ) {
+                Text("إدارة النماذج (Form Management)")
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = { onNavigate(ScreenRoute.Export) },
+                modifier = Modifier.fillMaxWidth(0.8f)
+            ) {
+                Text("التصدير (Export)")
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = { onNavigate(ScreenRoute.SupervisorSyncDashboard) },
+                modifier = Modifier.fillMaxWidth(0.8f)
+            ) {
+                Text("مزامنة المشرف (Supervisor Sync)")
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = { onNavigate(ScreenRoute.SurveySyncExport) },
+                modifier = Modifier.fillMaxWidth(0.8f)
+            ) {
+                Text("تصدير المسح (Survey Sync Export)")
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = { onNavigate(ScreenRoute.SurveySyncImport) },
+                modifier = Modifier.fillMaxWidth(0.8f)
+            ) {
+                Text("استيراد المسح (Survey Sync Import)")
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            Button(
+                onClick = { onNavigate(ScreenRoute.SurveyMergeReview) },
+                modifier = Modifier.fillMaxWidth(0.8f)
+            ) {
+                Text("مراجعة الدمج (Merge Review)")
             }
         }
     }

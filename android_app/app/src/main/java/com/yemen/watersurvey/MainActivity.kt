@@ -9,9 +9,15 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.yemen.watersurvey.presentation.navigation.ScreenRoute
 import com.yemen.watersurvey.presentation.screens.DashboardScreen
+import com.yemen.watersurvey.presentation.screens.ExportScreen
+import com.yemen.watersurvey.presentation.screens.FormManagementScreen
 import com.yemen.watersurvey.presentation.screens.RecordsManagerScreen
 import com.yemen.watersurvey.presentation.screens.SettingsScreen
+import com.yemen.watersurvey.presentation.screens.SupervisorSyncDashboardScreen
 import com.yemen.watersurvey.presentation.screens.SurveyFormsScreen
+import com.yemen.watersurvey.presentation.screens.SurveyMergeReviewScreen
+import com.yemen.watersurvey.presentation.screens.SurveySyncExportScreen
+import com.yemen.watersurvey.presentation.screens.SurveySyncImportScreen
 import com.yemen.watersurvey.presentation.theme.YemenWaterSurveyTheme
 
 /**
@@ -39,14 +45,8 @@ private fun YemenWaterSurveyNavHost() {
     ) {
         composable(ScreenRoute.Dashboard.route) {
             DashboardScreen(
-                onNavigateToSurveyForms = {
-                    navController.navigate(ScreenRoute.SurveyForms.route)
-                },
-                onNavigateToRecordsManager = {
-                    navController.navigate(ScreenRoute.RecordsManager.route)
-                },
-                onNavigateToSettings = {
-                    navController.navigate(ScreenRoute.Settings.route)
+                onNavigate = {
+                    navController.navigate(it.route)
                 }
             )
         }
@@ -68,6 +68,48 @@ private fun YemenWaterSurveyNavHost() {
             SettingsScreen(
                 onNavigateBack = {
                     navController.popBackStack()
+                }
+            )
+        }
+        composable(ScreenRoute.FormManagement.route) {
+            FormManagementScreen(
+                onNavigate = {
+                    navController.navigate(it.route)
+                }
+            )
+        }
+        composable(ScreenRoute.Export.route) {
+            ExportScreen(
+                onNavigate = {
+                    navController.navigate(it.route)
+                }
+            )
+        }
+        composable(ScreenRoute.SupervisorSyncDashboard.route) {
+            SupervisorSyncDashboardScreen(
+                onNavigate = {
+                    navController.navigate(it.route)
+                }
+            )
+        }
+        composable(ScreenRoute.SurveySyncExport.route) {
+            SurveySyncExportScreen(
+                onNavigate = {
+                    navController.navigate(it.route)
+                }
+            )
+        }
+        composable(ScreenRoute.SurveySyncImport.route) {
+            SurveySyncImportScreen(
+                onNavigate = {
+                    navController.navigate(it.route)
+                }
+            )
+        }
+        composable(ScreenRoute.SurveyMergeReview.route) {
+            SurveyMergeReviewScreen(
+                onNavigate = {
+                    navController.navigate(it.route)
                 }
             )
         }
