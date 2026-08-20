@@ -41,7 +41,8 @@ Every new session (new account, new tool, resumed after any interruption) must, 
 3. If `git status` shows uncommitted changes, or `git log -1` doesn't match the recorded checkpoint hash, explicitly report the discrepancy before proceeding — don't silently assume either the file or the working tree is correct.
 
 ## 5. Last Confirmed Checkpoint
-- **Commit hash:** `8e4f12464116336911990f456e13293e1add543a`
+- **P2 Implementation Commit Hash:** `8e4f12464116336911990f456e13293e1add543a`
+- **Documentation Commit Hash:** `dea502df4e88a406aa17b80d402e163b61a4cb9e`
 - **Date/Session:** `2026-08-20 22:52:00 +0300`
 - **Verified state:** VERIFIED GREEN (Clean rebuild with cache bypassed via `--rerun-tasks`)
 - **Fresh Build & Test Verification Evidence (2026-08-20):**
@@ -59,6 +60,7 @@ Every new session (new account, new tool, resumed after any interruption) must, 
     - `SurveySyncImporterTest`: 5 passed
   - `.\gradlew.bat assembleDebug --rerun-tasks` -> `BUILD SUCCESSFUL in 2m 34s` (36 actionable tasks: 36 executed)
   - **Artifact Output:** `android_app/app/build/outputs/apk/debug/app-debug.apk` verified generated from fresh execution.
+- **P2.5 Status:** Next phase, NOT started. `MainActivity` and runtime entry-point implementation have not started.
 
 **Next action:** Proceed to P2.5 (Entry Point Implementation).
 
