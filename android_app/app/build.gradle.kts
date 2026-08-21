@@ -40,6 +40,23 @@ android {
         }
     }
 
+    flavorDimensions += "role"
+
+    productFlavors {
+        create("enumerator") {
+            dimension = "role"
+            applicationIdSuffix = ".field"
+            versionNameSuffix = "-enumerator"
+            resValue("string", "app_name", "مساح ميداني")
+        }
+        create("supervisor") {
+            dimension = "role"
+            applicationIdSuffix = ".supervisor"
+            versionNameSuffix = "-supervisor"
+            resValue("string", "app_name", "مشرف مياه")
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
