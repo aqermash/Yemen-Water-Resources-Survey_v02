@@ -48,12 +48,14 @@ android {
             applicationIdSuffix = ".field"
             versionNameSuffix = "-enumerator"
             resValue("string", "app_name", "مساح ميداني")
+            buildConfigField("String", "APP_ROLE", "\"enumerator\"")
         }
         create("supervisor") {
             dimension = "role"
             applicationIdSuffix = ".supervisor"
             versionNameSuffix = "-supervisor"
             resValue("string", "app_name", "مشرف مياه")
+            buildConfigField("String", "APP_ROLE", "\"supervisor\"")
         }
     }
 
@@ -68,6 +70,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     composeOptions {

@@ -12,6 +12,7 @@ import com.yemen.watersurvey.presentation.screens.DashboardScreen
 import com.yemen.watersurvey.presentation.screens.ExportScreen
 import com.yemen.watersurvey.presentation.screens.FormManagementScreen
 import com.yemen.watersurvey.presentation.screens.RecordsManagerScreen
+import com.yemen.watersurvey.presentation.screens.AdminReferenceManagementScreen
 import com.yemen.watersurvey.presentation.screens.SettingsScreen
 import com.yemen.watersurvey.presentation.screens.SupervisorSyncDashboardScreen
 import com.yemen.watersurvey.presentation.screens.SurveyFormsScreen
@@ -110,6 +111,13 @@ private fun YemenWaterSurveyNavHost() {
             SurveyMergeReviewScreen(
                 onNavigate = {
                     navController.navigate(it.route)
+                }
+            )
+        }
+        composable(ScreenRoute.AdminReferenceManagement.route) {
+            AdminReferenceManagementScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
                 }
             )
         }

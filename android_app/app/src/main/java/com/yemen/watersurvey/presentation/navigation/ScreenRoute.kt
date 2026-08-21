@@ -10,5 +10,6 @@ sealed class ScreenRoute(val route: String) {
     object SurveySyncImport : ScreenRoute("survey_sync_import")
     object SurveyMergeReview : ScreenRoute("survey_merge_review")
     object SupervisorSyncDashboard : ScreenRoute("supervisor_sync_dashboard")
+    object AdminReferenceManagement : ScreenRoute("admin_reference_management")
     object Settings : ScreenRoute("settings")
 }
