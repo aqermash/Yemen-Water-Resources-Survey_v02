@@ -40,16 +40,19 @@ Every new session (new account, new tool, resumed after any interruption) must, 
 3. If `git status` shows uncommitted changes, or `git log -1` doesn't match the recorded checkpoint hash, explicitly report the discrepancy before proceeding — don't silently assume either the file or the working tree is correct.
 
 ## 5. Last Confirmed Checkpoint
-- **P2 Implementation Commit Hash:** `8e4f12464116336911990f456e13293e1add543a`
-- **P2.5 Implementation Commit Hashes:**
-  - `0547345` — feat(p2.5): minimal MainActivity, theme wrapper, and launch verification
-  - `e93eb5e` — feat(p2.5): add remaining placeholder screens and wire navigation
-  - `f1d2e35` — feat(p2.5): wire 6 existing screens into NavHost and add Dashboard entry points
-  - `77049bc` — docs(state): update PROJECT_STATE.md with P2.5 verification evidence and tool change note
-- **Date/Session:** `2026-08-21 18:59:00 +0300`
+- **P2.6 Implementation Commit Hashes:**
+  - `55bd728` — feat(p2.6): establish enumerator and supervisor product flavors
+  - `1cf8794` — feat(p2.6): implement enumerator application flow
+- **Date/Session:** `2026-08-21 23:15:00 +0300`
 - **Tool:** Trae Agent Mode
 - **Verified state:** VERIFIED GREEN
-- **P2.5 CLOSE VERIFICATION (2026-08-21):**
+- **P2.6 Verification (2026-08-21):**
+  - `.\gradlew.bat test --rerun-tasks` → BUILD SUCCESSFUL (126 tasks executed)
+  - `.\gradlew.bat assembleEnumeratorDebug` → BUILD SUCCESSFUL
+  - `.\gradlew.bat assembleSupervisorDebug` → BUILD SUCCESSFUL
+  - Enumerator APK: Field UI + Survey Sync Export (.ywsync)
+  - Supervisor APK: Full Supervisor workflow + all Enumerator screens
+  - Supervisor buttons (Sync Dashboard, Import, Merge Review, Admin Reference) correctly hidden from Enumerator UI
   - Fresh build verification:
     - `.\gradlew.bat test --rerun-tasks` → BUILD SUCCESSFUL (62 tasks executed)
     - `.\gradlew.bat assembleDebug --rerun-tasks` → BUILD SUCCESSFUL (36 tasks executed)
@@ -69,7 +72,70 @@ Every new session (new account, new tool, resumed after any interruption) must, 
   - **P2.5 Status:** COMPLETE. All 10 routes registered in MainActivity NavHost, build green, navigation verified.
 - **P2.5 Status:** Complete. MainActivity, NavHost, and all 10 routes are implemented and verified.
 
-**Next action:** Enumerator/Supervisor flavor split (NOT started)
+**Next action:** Enumerator/Supervisor flavor split (COMPLETED)
+
+## 7. P2.6 Flavor Architecture (2026-08-21)
+
+### P2.6 Commits
+- `55bd728` — feat(p2.6): establish enumerator and supervisor product flavors
+- `1cf8794` — feat(p2.6): implement enumerator application flow
+
+### Flavor Configuration
+```kotlin
+flavorDimensions += "role"
+
+productFlavors {
+    create("enumerator") {
+        dimension = "role"
+        applicationIdSuffix = ".field"
+        buildConfigField("String", "APP_ROLE", "\"enumerator\"")
+    }
+    create("supervisor") {
+        dimension = "role"
+        applicationIdSuffix = ".supervisor"
+        buildConfigField("String", "APP_ROLE", "\"supervisor\"")
+    }
+}
+```
+
+### Source Set Architecture
+| Source Set | Purpose |
+|-----------|---------|
+| `src/main/` | Shared code (all Kotlin files, domain/data/presentation/core) |
+| `src/enumerator/` | Enumerator flavor markers (comment-only files) |
+| `src/supervisor/` | Supervisor flavor markers (comment-only files) |
+
+### Variant Compilation Model
+| Variant | Source Sets Merged |
+|---------|-------------------|
+| `enumeratorDebug` | `main` + `enumerator` + `debug` |
+| `supervisorDebug` | `main` + `supervisor` + `debug` |
+
+### Role-Based UI Differentiation
+`DashboardScreen` uses `BuildConfig.APP_ROLE` to conditionally render navigation:
+
+**Enumerator APK** (`APP_ROLE = "enumerator"`):
+- Survey Forms, Records Manager, Settings, Form Management, Export
+- Survey Sync Export (.ywsync)
+
+**Supervisor APK** (`APP_ROLE = "supervisor"`):
+- All Enumerator screens PLUS
+- Supervisor Sync Dashboard, Survey Sync Import, Merge Review, Admin Reference Management
+
+### Supervisor Functionality (Already Implemented)
+All Supervisor screens are fully functional with real business logic:
+- `SupervisorSyncDashboardScreen` — Real `SupervisorSyncWorkspaceManager` integration
+- `SurveySyncImportScreen` — Real `SurveySyncImporter` + SHA-256 verification
+- `SurveyMergeReviewScreen` — Real `ConflictDetectionEngine` + `ControlledMergeExecutor`
+
+### P2.6 Verification (2026-08-21)
+- `.\gradlew.bat test --rerun-tasks` → BUILD SUCCESSFUL (126 tasks executed)
+- `.\gradlew.bat assembleEnumeratorDebug` → BUILD SUCCESSFUL
+- `.\gradlew.bat assembleSupervisorDebug` → BUILD SUCCESSFUL
+- No duplicate MainActivity or DashboardScreen conflicts
+
+### Enumerator Protection
+Supervisor-only buttons (Supervisor Sync, Import, Merge Review, Admin Reference) are gated behind `if (!isEnumerator)` in DashboardScreen. These buttons do NOT appear in the Enumerator APK.
 
 ## 6. Change log
 - 2026-08-16: Created mandatory PROJECT_STATE.md continuity protocol, logged fixed project identity fingerprint to ensure context locks on AiStudioApp, com.yemen.watersurvey.
