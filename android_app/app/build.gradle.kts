@@ -110,6 +110,12 @@ dependencies {
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
+    // Security — EncryptedSharedPreferences for PIN storage
+    implementation("androidx.security:security-crypto:1.1.0-alpha06")
+
+    // Location — GPS capture via FusedLocationProviderClient
+    implementation("com.google.android.gms:play-services-location:21.2.0")
+
     // Testing
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")

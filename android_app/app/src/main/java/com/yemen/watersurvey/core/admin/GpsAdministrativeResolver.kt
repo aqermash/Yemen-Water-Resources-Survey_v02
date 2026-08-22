@@ -73,10 +73,10 @@ class GpsAdministrativeResolver(
         val accuracy = accuracyM ?: 15.0f
         val confidence = when {
             admin1Match == null -> ResolutionConfidence.UNRELIABLE
-            accuracy > 30.0f -> ResolutionConfidence.UNRELIABLE
-            accuracy > 15.0f -> ResolutionConfidence.LOW
+            accuracy >= 30.0f -> ResolutionConfidence.UNRELIABLE
+            accuracy >= 15.0f -> ResolutionConfidence.LOW
             isExactMatch && accuracy <= 10.0f -> ResolutionConfidence.HIGH
-            admin1Match != null && admin2Match != null && accuracy <= 15.0f -> ResolutionConfidence.MEDIUM
+            admin1Match != null && admin2Match != null && accuracy < 15.0f -> ResolutionConfidence.MEDIUM
             else -> ResolutionConfidence.LOW
         }
 

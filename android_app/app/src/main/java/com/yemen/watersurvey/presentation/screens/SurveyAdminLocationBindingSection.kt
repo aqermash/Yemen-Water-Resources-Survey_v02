@@ -1,5 +1,8 @@
 package com.yemen.watersurvey.presentation.screens
 
+import android.Manifest
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -14,13 +17,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.runtime.collectAsState
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.yemen.watersurvey.presentation.viewmodel.GpsCaptureViewModel
 import com.yemen.watersurvey.core.admin.AdminCascadingSelector
 import com.yemen.watersurvey.core.admin.GpsAdministrativeResolver
+import com.yemen.watersurvey.core.location.GpsCaptureEvent
+import com.yemen.watersurvey.core.location.GpsCaptureState
 import com.yemen.watersurvey.domain.model.*
 import com.yemen.watersurvey.presentation.theme.*
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -45,11 +55,14 @@ fun SurveyAdminLocationBindingSection(
         isOverride: Boolean,
         overrideReason: String?,
         resolutionStatus: AdminResolutionStatus,
-        resolvedLocation: ResolvedAdministrativeLocation?
+        resolvedLocation: ResolvedAdministrativeLocation?,
+        gpsLocation: GpsLocationResult?
     ) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    viewModel: GpsCaptureViewModel = viewModel()
 ) {
     val coroutineScope = rememberCoroutineScope()
+    val gpsState by viewModel.state.collectAsState()
 
     var admin1List by remember { mutableStateOf<List<Admin1Governorate>>(emptyList()) }
     var admin2List by remember { mutableStateOf<List<Admin2District>>(emptyList()) }
@@ -73,6 +86,30 @@ fun SurveyAdminLocationBindingSection(
     var expandedAdmin2 by remember { mutableStateOf(false) }
     var expandedAdmin3 by remember { mutableStateOf(false) }
     var expandedVillage by remember { mutableStateOf(false) }
+
+    val permissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestMultiplePermissions()
+    ) { permissions ->
+        val granted = permissions[Manifest.permission.ACCESS_FINE_LOCATION] == true
+        viewModel.onPermissionResult(granted)
+    }
+
+    fun doStartGpsCapture() {
+        if (!gpsState.hasPermission) {
+            permissionLauncher.launch(arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ))
+            return
+        }
+        viewModel.onEvent(GpsCaptureEvent.StartCapture)
+    }
+
+    fun stopGpsCapture() {
+        viewModel.onEvent(GpsCaptureEvent.StopCapture)
+    }
+
+    val liveGpsLocation = gpsState.currentLocation
 
     LaunchedEffect(Unit) {
         admin1List = selector.getGovernorates()
@@ -110,13 +147,14 @@ fun SurveyAdminLocationBindingSection(
                 isLocalOverride,
                 if (isLocalOverride) overrideReason else null,
                 status,
-                resolvedGpsLocation
+                resolvedGpsLocation,
+                liveGpsLocation
             )
         }
     }
 
     fun performSpatialVerification() {
-        if (currentGpsLocation == null) {
+        if (liveGpsLocation == null) {
             consistencyResult = Pair(AdminResolutionStatus.NO_GPS, "إحداثيات GPS غير متوفرة حالياً لتنفيذ التحقق المكاني.")
             updateAndEmitBinding()
             return
@@ -126,9 +164,9 @@ fun SurveyAdminLocationBindingSection(
             isResolvingGps = true
             try {
                 val resolved = resolver.resolveAdministrativeLocation(
-                    latitude = currentGpsLocation.latitude,
-                    longitude = currentGpsLocation.longitude,
-                    accuracyM = currentGpsLocation.accuracyM
+                    latitude = liveGpsLocation.latitude,
+                    longitude = liveGpsLocation.longitude,
+                    accuracyM = liveGpsLocation.accuracyM
                 )
                 resolvedGpsLocation = resolved
 
@@ -148,8 +186,8 @@ fun SurveyAdminLocationBindingSection(
         }
     }
 
-    LaunchedEffect(currentGpsLocation, selectedAdmin1, selectedAdmin2, selectedAdmin3) {
-        if (currentGpsLocation != null && selectedAdmin1.isNotBlank()) {
+    LaunchedEffect(liveGpsLocation, selectedAdmin1, selectedAdmin2, selectedAdmin3) {
+        if (liveGpsLocation != null && selectedAdmin1.isNotBlank()) {
             performSpatialVerification()
         }
     }
@@ -176,43 +214,113 @@ fun SurveyAdminLocationBindingSection(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Icon(
-                        imageVector = Icons.Default.LocationOn,
+                        imageVector = Icons.Default.GpsFixed,
                         contentDescription = null,
-                        tint = Emerald400,
+                        tint = when {
+                            gpsState.accuracyEnoughToProceed -> Emerald400
+                            gpsState.isCapturing -> Amber400
+                            else -> Slate400
+                        },
                         modifier = Modifier.size(20.dp)
                     )
                     Column {
                         Text(
-                            text = "المرجع الإداري والتحقق المكاني (OCHA/GIS)",
+                            text = "التقاط GPS وتوثيق الموقع",
                             color = Slate100,
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Bold
                         )
                         Text(
-                            text = "ربط وتوثيق الهوية الإدارية الرسمية مع التحقق من إحداثيات WGS84 GPS",
-                            color = Slate400,
+                            text = gpsState.statusMessage.ifBlank {
+                                if (!gpsState.hasPermission) "الرجاء إعطاء إذن الموقع للمتابعة"
+                                else "اضغط زر التقاط GPS للبدء"
+                            },
+                            color = when {
+                                gpsState.accuracyEnoughToProceed -> Emerald400
+                                gpsState.isCapturing -> Amber400
+                                else -> Slate400
+                            },
                             fontSize = 11.sp
                         )
                     }
                 }
 
-                FilledTonalButton(
-                    onClick = { performSpatialVerification() },
-                    colors = ButtonDefaults.filledTonalButtonColors(
-                        containerColor = Slate800,
-                        contentColor = Emerald400
-                    ),
-                    contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp)
-                ) {
-                    if (isResolvingGps) {
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    gpsState.currentLocation?.let { loc ->
+                        Column(horizontalAlignment = Alignment.End) {
+                            Text(
+                                text = "%.5f°, %.5f°".format(loc.latitude, loc.longitude),
+                                color = Slate300,
+                                fontSize = 10.sp,
+                                fontWeight = FontWeight.Medium
+                            )
+                            Text(
+                                text = "دقة: %.1f م — ${loc.quality.titleAr}".format(loc.accuracyM),
+                                color = when (loc.quality) {
+                                    GpsAccuracyQuality.EXCELLENT, GpsAccuracyQuality.GOOD -> Emerald400
+                                    GpsAccuracyQuality.ACCEPTABLE_WITH_WARNING -> Amber400
+                                    else -> Red400
+                                },
+                                fontSize = 10.sp
+                            )
+                        }
+                    }
+
+                    if (gpsState.isCapturing) {
                         CircularProgressIndicator(
-                            modifier = Modifier.size(14.dp),
-                            color = Emerald400,
+                            modifier = Modifier.size(16.dp),
+                            color = if (gpsState.accuracyEnoughToProceed) Emerald400 else Amber400,
                             strokeWidth = 2.dp
                         )
-                        Spacer(modifier = Modifier.width(6.dp))
                     }
-                    Text(text = "تحقق مكاني", fontSize = 11.sp, fontWeight = FontWeight.Bold)
+
+                    FilledTonalButton(
+                        onClick = {
+                            if (gpsState.isCapturing) stopGpsCapture() else doStartGpsCapture()
+                        },
+                        colors = ButtonDefaults.filledTonalButtonColors(
+                            containerColor = if (gpsState.accuracyEnoughToProceed) Emerald900 else Slate800,
+                            contentColor = if (gpsState.accuracyEnoughToProceed) Emerald400 else Slate300
+                        ),
+                        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp)
+                    ) {
+                        Icon(
+                            imageVector = if (gpsState.isCapturing) Icons.Default.Stop else Icons.Default.MyLocation,
+                            contentDescription = null,
+                            modifier = Modifier.size(14.dp)
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text(
+                            text = if (gpsState.isCapturing) "إيقاف" else "التقاط",
+                            fontSize = 11.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+                }
+            }
+
+            if (!gpsState.accuracyEnoughToProceed && gpsState.currentLocation != null) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(8.dp))
+                        .background(Amber950.copy(alpha = 0.3f))
+                        .border(1.dp, Amber700, RoundedCornerShape(8.dp))
+                        .padding(10.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Warning,
+                        contentDescription = null,
+                        tint = Amber400,
+                        modifier = Modifier.size(16.dp)
+                    )
+                    Text(
+                        text = "الدقة الحالية (${String.format("%.1f", gpsState.currentLocation?.accuracyM ?: 0f)} م) أقل من الحد المطلوب (${GpsCaptureState.ACCURACY_THRESHOLD_METERS.toInt()} م). انتظر حتى تتحسن.",
+                        color = Amber300,
+                        fontSize = 11.sp
+                    )
                 }
             }
 

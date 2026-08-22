@@ -16,7 +16,7 @@
 | Phase | Status | Evidence/Notes |
 |-------|--------|----------------|
 | P0    | done   | Project initialization |
-| P1    | done   | |
+| P1    | done   | Real GPS capture with 15m accuracy gate. Verified via build and tests. |
 | P2    | done   | Compilation/KAPT/Robolectric/Room fixes. `./gradlew test` (46/46 passed) and `./gradlew assembleDebug` verified green. |
 | P2.5  | done   | Entry Point + 6-screen NavHost wiring verified on-device. |
 | P2.6  | done   | Enumerator/Supervisor flavor split with BuildConfig.APP_ROLE. All 4 variants compile, both APKs build green. Supervisor workflow exposed via conditional Dashboard rendering. |
@@ -118,6 +118,38 @@ All Supervisor screens are fully functional with real business logic:
 
 ### Enumerator Protection
 Supervisor-only buttons (Supervisor Sync, Import, Merge Review, Admin Reference) are gated behind `if (!isEnumerator)` in DashboardScreen. These buttons do NOT appear in the Enumerator APK.
+
+## 9. P1 Real GPS Capture with Accuracy Gate (2026-08-22)
+
+### Objective
+Implement real GPS capture using Android Location APIs with a strict accuracy requirement (< 15m) for all survey records.
+
+### Implementation Details
+- **Core Location Logic**: `GpsCaptureManager.kt` uses `FusedLocationProviderClient` with `PRIORITY_HIGH_ACCURACY`.
+- **State Management**: `GpsCaptureViewModel.kt` handles location updates and enforces the `ACCURACY_THRESHOLD_METERS = 15.0f`.
+- **UI Integration**: `SurveyAdminLocationBindingSection.kt` refactored to use the shared ViewModel and provide clear Arabic feedback on GPS status and accuracy.
+- **Workflow Integration**: `SurveyFormsScreen.kt` updated from a placeholder to a functional screen that allows:
+    - Selecting Water Facility Type (Well, Spring, Dam).
+    - Capturing real GPS coordinates.
+    - Strict enforcement: "Save" button disabled if accuracy >= 15m.
+    - Persistence: Survey records saved to `SurveyRecordEntity` in Room database.
+
+### Files Created/Modified
+| File | Action | Purpose |
+|------|--------|---------|
+| `core/location/GpsCaptureManager.kt` | Created | Android FusedLocationProvider integration |
+| `core/location/GpsCaptureState.kt` | Created | GPS state and accuracy threshold definition |
+| `presentation/viewmodel/GpsCaptureViewModel.kt` | Created | GPS state management and flow collection |
+| `presentation/viewmodel/SurveyViewModel.kt` | Created | Survey record creation and persistence logic |
+| `presentation/screens/SurveyAdminLocationBindingSection.kt` | Refactored | UI integration with real GPS data and Arabic feedback |
+| `presentation/screens/SurveyFormsScreen.kt` | Updated | Functional survey entry with accuracy gate enforcement |
+
+### Verification Evidence
+- **Build**: `.\gradlew.bat assembleDebug` -> BUILD SUCCESSFUL
+- **Tests**: `.\gradlew.bat test` -> BUILD SUCCESSFUL (126 tasks, 0 failures)
+- **Gate Enforcement**: Manual verification of logic ensures `SurveyViewModel.saveSurvey()` rejects records without valid/accurate GPS data, and UI button state reflects this.
+
+**Commit:** `04c9e8a` — `feat(p1): implement real GPS capture with 15m accuracy gate`
 
 ## 8. P2.6 PIN Lock Screen Feature (2026-08-22)
 
