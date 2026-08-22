@@ -1,6 +1,7 @@
 package com.yemen.watersurvey.presentation.navigation
 
 sealed class ScreenRoute(val route: String) {
+    object PinLock : ScreenRoute("pin_lock")
     object Dashboard : ScreenRoute("dashboard")
     object SurveyForms : ScreenRoute("survey_forms")
     object FormManagement : ScreenRoute("form_management")

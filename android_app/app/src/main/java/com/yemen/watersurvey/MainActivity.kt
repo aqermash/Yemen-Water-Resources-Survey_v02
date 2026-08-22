@@ -11,6 +11,7 @@ import com.yemen.watersurvey.presentation.navigation.ScreenRoute
 import com.yemen.watersurvey.presentation.screens.DashboardScreen
 import com.yemen.watersurvey.presentation.screens.ExportScreen
 import com.yemen.watersurvey.presentation.screens.FormManagementScreen
+import com.yemen.watersurvey.presentation.screens.PinLockScreen
 import com.yemen.watersurvey.presentation.screens.RecordsManagerScreen
 import com.yemen.watersurvey.presentation.screens.AdminReferenceManagementScreen
 import com.yemen.watersurvey.presentation.screens.SettingsScreen
@@ -40,10 +41,21 @@ class MainActivity : ComponentActivity() {
 @Composable
 private fun YemenWaterSurveyNavHost() {
     val navController = rememberNavController()
+    val isSupervisor = BuildConfig.APP_ROLE == "supervisor"
+    val startDestination = if (isSupervisor) ScreenRoute.PinLock.route else ScreenRoute.Dashboard.route
     NavHost(
         navController = navController,
-        startDestination = ScreenRoute.Dashboard.route
+        startDestination = startDestination
     ) {
+        composable(ScreenRoute.PinLock.route) {
+            PinLockScreen(
+                onPinVerified = {
+                    navController.navigate(ScreenRoute.Dashboard.route) {
+                        popUpTo(ScreenRoute.PinLock.route) { inclusive = true }
+                    }
+                }
+            )
+        }
         composable(ScreenRoute.Dashboard.route) {
             DashboardScreen(
                 onNavigate = {
