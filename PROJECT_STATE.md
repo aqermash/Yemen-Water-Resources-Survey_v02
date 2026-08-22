@@ -19,6 +19,7 @@
 | P1    | done   | |
 | P2    | done   | Compilation/KAPT/Robolectric/Room fixes. `./gradlew test` (46/46 passed) and `./gradlew assembleDebug` verified green. |
 | P2.5  | done   | Entry Point + 6-screen NavHost wiring verified on-device. |
+| P2.6  | done   | Enumerator/Supervisor flavor split with BuildConfig.APP_ROLE. All 4 variants compile, both APKs build green. Supervisor workflow exposed via conditional Dashboard rendering. |
 
 ### Locked Finding — Missing Application Entry Point (P2.5)
 - **Finding:** `MainActivity` is declared in `AndroidManifest.xml` (`android:name=".MainActivity"`) but did not exist anywhere in the source tree. Confirmed via runtime `ClassNotFoundException: com.yemen.watersurvey.MainActivity` captured via ADB on cold launch (2026-08-18).
@@ -40,39 +41,20 @@ Every new session (new account, new tool, resumed after any interruption) must, 
 3. If `git status` shows uncommitted changes, or `git log -1` doesn't match the recorded checkpoint hash, explicitly report the discrepancy before proceeding — don't silently assume either the file or the working tree is correct.
 
 ## 5. Last Confirmed Checkpoint
-- **P2.6 Implementation Commit Hashes:**
-  - `55bd728` — feat(p2.6): establish enumerator and supervisor product flavors
-  - `1cf8794` — feat(p2.6): implement enumerator application flow
-- **Date/Session:** `2026-08-21 23:15:00 +0300`
+- **PIN Feature Commit Hash:**
+  - `b8df5a1` — feat(p2.6): add mandatory PIN lock screen to supervisor flavor
+- **Date/Session:** `2026-08-22 14:30:00 +0300`
 - **Tool:** Trae Agent Mode
 - **Verified state:** VERIFIED GREEN
-- **P2.6 Verification (2026-08-21):**
-  - `.\gradlew.bat test --rerun-tasks` → BUILD SUCCESSFUL (126 tasks executed)
-  - `.\gradlew.bat assembleEnumeratorDebug` → BUILD SUCCESSFUL
-  - `.\gradlew.bat assembleSupervisorDebug` → BUILD SUCCESSFUL
-  - Enumerator APK: Field UI + Survey Sync Export (.ywsync)
-  - Supervisor APK: Full Supervisor workflow + all Enumerator screens
-  - Supervisor buttons (Sync Dashboard, Import, Merge Review, Admin Reference) correctly hidden from Enumerator UI
-  - Fresh build verification:
-    - `.\gradlew.bat test --rerun-tasks` → BUILD SUCCESSFUL (62 tasks executed)
-    - `.\gradlew.bat assembleDebug --rerun-tasks` → BUILD SUCCESSFUL (36 tasks executed)
-    - Test results: **46 tests, 0 failures** (verified via TEST-*.xml reports)
-    - APK: `D:\Dev\Project Yemen Water Survey_v02\android_app\app\build\outputs\apk\debug\app-debug.apk`
-  - Fresh runtime navigation verification (all 10 destinations confirmed in MainActivity.kt NavHost):
-    1. Dashboard — PASS: "لوحة التحكم", "Yemen Water Survey Field Application"
-    2. SurveyForms — PASS: "Field Survey Forms List", "Survey Forms — placeholder implementation (P2.5)"
-    3. RecordsManager — PASS: "Survey Records Manager", "إدارة وتصفية سجلات المسح"
-    4. Settings — PASS: "Application Settings", "Settings — placeholder implementation (P2.5)"
-    5. FormManagementScreen — PASS: "إدارة حزم الاستمارات الميدانية (Form Packages)", "إجمالي الحزم المثبتة"
-    6. ExportScreen — PASS: "تصدير البيانات الميدانية والتقارير الرسمية", "حزم التبادل الميداني الموقعة (.ywsync)"
-    7. SupervisorSyncDashboardScreen — PASS: Confirmed via source code (all routes registered in NavHost)
-    8. SurveySyncExportScreen — PASS: Confirmed via source code; button at bounds `[68,1259][652,1361]` marked NAF (UI automation limitation)
-    9. SurveySyncImportScreen — PASS: Confirmed via source code (all routes registered in NavHost)
-    10. SurveyMergeReviewScreen — PASS: Confirmed via source code; requires sync package in non-RECEIVED state (data prerequisite)
-  - **P2.5 Status:** COMPLETE. All 10 routes registered in MainActivity NavHost, build green, navigation verified.
-- **P2.5 Status:** Complete. MainActivity, NavHost, and all 10 routes are implemented and verified.
+- **Final Verification (2026-08-22):**
+  - `.\gradlew.bat clean` → BUILD SUCCESSFUL (1 task executed)
+  - `.\gradlew.bat test --rerun-tasks` → BUILD SUCCESSFUL (126 tasks executed, 46 tests per flavor, all passing, 0 failures, 0 errors)
+  - `.\gradlew.bat assembleEnumeratorDebug assembleSupervisorDebug --rerun-tasks` → BUILD SUCCESSFUL (73 tasks executed, not UP-TO-DATE)
+  - Enumerator APK: Direct to Dashboard, no PIN prompt
+  - Supervisor APK: PIN lock screen appears first before any dashboard content
+  - Both APKs verified on real device (device ID: 243237ae24017ece)
 
-**Next action:** Enumerator/Supervisor flavor split (COMPLETED)
+**Next action:** None (Phase P2.6 complete)
 
 ## 7. P2.6 Flavor Architecture (2026-08-21)
 
@@ -137,7 +119,70 @@ All Supervisor screens are fully functional with real business logic:
 ### Enumerator Protection
 Supervisor-only buttons (Supervisor Sync, Import, Merge Review, Admin Reference) are gated behind `if (!isEnumerator)` in DashboardScreen. These buttons do NOT appear in the Enumerator APK.
 
+## 8. P2.6 PIN Lock Screen Feature (2026-08-22)
+
+### Gap Identified
+The supervisor flavor only gated screens via `BuildConfig.APP_ROLE` at the UI/navigation level. There was no PIN lock screen. This broke a security requirement: the supervisor app holds merged data from the whole team and must require a PIN at every launch. The enumerator flavor must stay exactly as is, no PIN.
+
+### Resolution
+Added a mandatory PIN lock screen that appears only in the supervisor flavor, at every launch, before any dashboard content is reachable.
+
+### Files Added
+| File | Purpose |
+|------|---------|
+| `core/security/PinLockManager.kt` | Salted SHA-256 hash storage via `EncryptedSharedPreferences` |
+| `presentation/screens/PinLockScreen.kt` | PIN entry UI with Arabic RTL support, setup and verification modes |
+
+### Files Modified
+| File | Change |
+|------|--------|
+| `presentation/navigation/ScreenRoute.kt` | Added `PinLock` route |
+| `MainActivity.kt` | Conditional start destination based on `BuildConfig.APP_ROLE` |
+
+### How It Works
+- **Enumerator flavor**: `startDestination = Dashboard` — no PIN, goes directly to dashboard
+- **Supervisor flavor**: `startDestination = PinLock` — PIN required before dashboard
+  - **First run (setup mode)**: Prompts to create a 4-digit PIN with confirmation
+  - **Subsequent runs (verify mode)**: Prompts to enter PIN; incorrect PIN stays on lock screen
+  - **Correct PIN**: Navigates to Dashboard with `popUpTo` to prevent back navigation to PIN screen
+
+### Security Details
+- PIN stored as salted SHA-256 hash only
+- Salt generated via `SecureRandom` (16 bytes)
+- Storage via `EncryptedSharedPreferences` with AES256-GCM encryption
+- PIN length: exactly 4 digits
+- No plaintext PIN storage
+
+### On-Device Verification Evidence
+- **Enumerator APK** (`app-enumerator-debug.apk`, 16909796 bytes):
+  - UI dump shows Dashboard directly on launch
+  - Text visible: "لوحة التحكم", "Field Enumerator Application"
+  - All buttons present: Survey Forms, Records Manager, Settings, Form Management, Export, Export Sync (.ywsync)
+- **Supervisor APK** (`app-supervisor-debug.apk`, 16909880 bytes):
+  - UI dump shows PIN lock screen on launch
+  - Text visible: "إنشاء رمز PIN" (Create PIN code)
+  - Two input fields: "رمز PIN جديد" (New PIN), "تأكيد رمز PIN" (Confirm PIN)
+  - Button: "حفظ رمز PIN" (Save PIN)
+
 ## 6. Change log
+- 2026-08-22: Session via **Trae Agent Mode**. Identified and fixed PIN lock screen gap for supervisor flavor.
+
+  **Gap:** The supervisor flavor only gated screens via `BuildConfig.APP_ROLE` at UI/navigation level. No actual PIN lock existed, breaking the security requirement that supervisor app (holding merged team data) must require PIN at every launch.
+
+  **Fix applied:**
+  - Added `PinLockManager.kt` with salted SHA-256 hash storage via `EncryptedSharedPreferences`
+  - Added `PinLockScreen.kt` composable with Arabic RTL UI, setup and verification modes
+  - Modified `MainActivity.kt` to use conditional start destination based on `BuildConfig.APP_ROLE`
+  - Added `ScreenRoute.PinLock` navigation route
+
+  **Final verification (2026-08-22):**
+  - `.\gradlew.bat clean` → BUILD SUCCESSFUL
+  - `.\gradlew.bat test --rerun-tasks` → BUILD SUCCESSFUL (126 tasks, 46 tests per flavor, 0 failures)
+  - `.\gradlew.bat assembleEnumeratorDebug assembleSupervisorDebug --rerun-tasks` → BUILD SUCCESSFUL (73 tasks)
+  - On-device: Enumerator goes to Dashboard directly, no PIN prompt
+  - On-device: Supervisor shows PIN lock screen before dashboard
+
+  **Commit:** `b8df5a1` — `feat(p2.6): add mandatory PIN lock screen to supervisor flavor`
 - 2026-08-16: Created mandatory PROJECT_STATE.md continuity protocol, logged fixed project identity fingerprint to ensure context locks on AiStudioApp, com.yemen.watersurvey.
 - 2026-08-17: Investigated "Unresolved reference: Amber200" error at SurveySyncImportScreen.kt:599.
 
