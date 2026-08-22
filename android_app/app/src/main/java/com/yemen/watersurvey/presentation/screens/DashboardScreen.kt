@@ -49,6 +49,16 @@ fun DashboardScreen(
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
             )
             Spacer(modifier = Modifier.height(24.dp))
+            if (isEnumerator) {
+                Button(
+                    onClick = { onNavigate(ScreenRoute.NewWellSurvey) },
+                    modifier = Modifier.fillMaxWidth(0.8f),
+                    colors = ButtonDefaults.buttonColors(containerColor = com.yemen.watersurvey.presentation.theme.Emerald600)
+                ) {
+                    Text("مسح بئر جديد (New Well Survey)")
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+            }
             Button(
                 onClick = { onNavigate(ScreenRoute.SurveyForms) },
                 modifier = Modifier.fillMaxWidth(0.8f)

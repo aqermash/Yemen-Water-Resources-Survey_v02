@@ -13,4 +13,5 @@ sealed class ScreenRoute(val route: String) {
     object SupervisorSyncDashboard : ScreenRoute("supervisor_sync_dashboard")
     object AdminReferenceManagement : ScreenRoute("admin_reference_management")
     object Settings : ScreenRoute("settings")
+    object NewWellSurvey : ScreenRoute("new_well_survey")
 }

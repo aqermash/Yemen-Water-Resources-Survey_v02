@@ -11,6 +11,7 @@ import com.yemen.watersurvey.presentation.navigation.ScreenRoute
 import com.yemen.watersurvey.presentation.screens.DashboardScreen
 import com.yemen.watersurvey.presentation.screens.ExportScreen
 import com.yemen.watersurvey.presentation.screens.FormManagementScreen
+import com.yemen.watersurvey.presentation.screens.NewWellSurveyScreen
 import com.yemen.watersurvey.presentation.screens.PinLockScreen
 import com.yemen.watersurvey.presentation.screens.RecordsManagerScreen
 import com.yemen.watersurvey.presentation.screens.AdminReferenceManagementScreen
@@ -67,6 +68,9 @@ private fun YemenWaterSurveyNavHost() {
             SurveyFormsScreen(
                 onNavigateBack = {
                     navController.popBackStack()
+                },
+                onNavigateToNewWell = {
+                    navController.navigate(ScreenRoute.NewWellSurvey.route)
                 }
             )
         }
@@ -128,6 +132,13 @@ private fun YemenWaterSurveyNavHost() {
         }
         composable(ScreenRoute.AdminReferenceManagement.route) {
             AdminReferenceManagementScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        composable(ScreenRoute.NewWellSurvey.route) {
+            NewWellSurveyScreen(
                 onNavigateBack = {
                     navController.popBackStack()
                 }

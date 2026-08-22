@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.sp
 
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -25,6 +26,7 @@ import com.yemen.watersurvey.presentation.theme.*
 @Composable
 fun SurveyFormsScreen(
     onNavigateBack: () -> Unit = {},
+    onNavigateToNewWell: () -> Unit = {},
     viewModel: SurveyViewModel = viewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -85,6 +87,16 @@ fun SurveyFormsScreen(
                     .padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
+                Button(
+                    onClick = onNavigateToNewWell,
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(containerColor = Emerald600)
+                ) {
+                    Icon(Icons.Default.Add, contentDescription = null)
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text("مسح بئر جديد (New Well Survey)", fontWeight = FontWeight.Bold)
+                }
+
                 Card(
                     colors = CardDefaults.cardColors(containerColor = Slate900),
                     border = CardDefaults.outlinedCardBorder().copy(brush = androidx.compose.ui.graphics.SolidColor(Slate800))

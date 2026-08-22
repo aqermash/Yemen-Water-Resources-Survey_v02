@@ -28,6 +28,13 @@ data class SurveyFormState(
     val resolutionStatus: AdminResolutionStatus = AdminResolutionStatus.NOT_EVALUATED,
     val resolvedLocation: ResolvedAdministrativeLocation? = null,
     val gpsLocation: GpsLocationResult? = null,
+    // Well Details
+    val wellNameAr: String = "",
+    val wellType: String = "",
+    val wellDepthM: String = "",
+    val pumpingMechanism: String = "",
+    val operationalStatus: String = "",
+    
     val isSaving: Boolean = false,
     val saveSuccess: Boolean = false,
     val error: String? = null
@@ -37,9 +44,12 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
 
     private val database = SurveyAppDatabase.getInstance(application)
     private val surveyDao = database.surveyRecordDao()
+    private val sequenceDao = database.deviceSequenceDao()
     
     val selector = AdminCascadingSelector(database)
     val resolver = GpsAdministrativeResolver(database)
+    private val registryCodeGenerator = com.yemen.watersurvey.core.admin.RegistryCodeGenerator(sequenceDao)
+    private val profileManager = com.yemen.watersurvey.core.identity.EnumeratorProfileManager(application)
 
     private val _uiState = MutableStateFlow(SurveyFormState())
     val uiState: StateFlow<SurveyFormState> = _uiState.asStateFlow()
@@ -78,6 +88,26 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
         _uiState.update { it.copy(surveyType = type) }
     }
 
+    fun updateWellName(name: String) {
+        _uiState.update { it.copy(wellNameAr = name) }
+    }
+
+    fun updateWellType(type: String) {
+        _uiState.update { it.copy(wellType = type) }
+    }
+
+    fun updateWellDepth(depth: String) {
+        _uiState.update { it.copy(wellDepthM = depth) }
+    }
+
+    fun updatePumpingMechanism(mechanism: String) {
+        _uiState.update { it.copy(pumpingMechanism = mechanism) }
+    }
+
+    fun updateOperationalStatus(status: String) {
+        _uiState.update { it.copy(operationalStatus = status) }
+    }
+
     fun saveSurvey() {
         val state = _uiState.value
         
@@ -92,6 +122,14 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
             return
         }
 
+        // Validate Well Details if it's a well survey
+        if (state.surveyType == SurveyType.WELL) {
+            if (state.wellNameAr.isBlank() || state.wellType.isBlank() || state.wellDepthM.isBlank()) {
+                _uiState.update { it.copy(error = "يرجى إكمال جميع حقول بيانات البئر الأساسية.") }
+                return
+            }
+        }
+
         viewModelScope.launch {
             _uiState.update { it.copy(isSaving = true, error = null) }
             try {
@@ -99,11 +137,34 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
                 val uuid = UUID.randomUUID().toString()
                 val recordId = "REC-${System.currentTimeMillis()}"
                 
+                val enumeratorCode = profileManager.getOrCreateEnumeratorCode()
+
+                val registryResult = registryCodeGenerator.generateRegistryCode(
+                    admin1Pcode = state.admin1Pcode,
+                    admin2Pcode = state.admin2Pcode,
+                    admin3Pcode = state.admin3Pcode,
+                    surveyType = state.surveyType,
+                    surveyUUID = uuid
+                )
+
+                val wellDetailsJson = if (state.surveyType == SurveyType.WELL) {
+                    val json = org.json.JSONObject()
+                    json.put("wellNameAr", state.wellNameAr)
+                    json.put("wellType", state.wellType)
+                    json.put("wellDepthM", state.wellDepthM.toDoubleOrNull() ?: 0.0)
+                    json.put("pumpingMechanism", state.pumpingMechanism)
+                    json.put("operationalStatus", state.operationalStatus)
+                    json.toString()
+                } else null
+
                 val entity = SurveyRecordEntity(
                     surveyUUID = uuid,
                     recordId = recordId,
-                    enumeratorId = "usr-001", // Placeholder
-                    enumeratorUsername = "enumerator_1", // Placeholder
+                    registryCode = registryResult.registryCode,
+                    isRegistryCodePending = registryResult.isPending,
+                    enumeratorCode = enumeratorCode,
+                    enumeratorId = enumeratorCode, 
+                    enumeratorUsername = enumeratorCode,
                     surveyType = state.surveyType.name,
                     admin1Pcode = state.admin1Pcode,
                     admin2Pcode = state.admin2Pcode,
@@ -131,10 +192,15 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
                     gpsResolvedAdmin2Pcode = state.resolvedLocation?.admin2Pcode,
                     gpsResolvedAdmin3Pcode = state.resolvedLocation?.admin3Pcode,
                     gpsDistanceToNearestVillageM = state.resolvedLocation?.distanceToNearestVillageM,
-                    gpsNearestVillageNameAr = state.resolvedLocation?.nearestVillageNameAr
+                    gpsNearestVillageNameAr = state.resolvedLocation?.nearestVillageNameAr,
+                    wellDetailsJson = wellDetailsJson
                 )
                 
                 surveyDao.insertSurvey(entity)
+                
+                // Debug log as requested for verification evidence
+                android.util.Log.d("SurveySave", "Saved Well Survey: UUID=$uuid, RegistryCode=${registryResult.registryCode}, Type=${state.surveyType}, Lat=${state.gpsLocation.latitude}, Lon=${state.gpsLocation.longitude}, Accuracy=${state.gpsLocation.accuracyM}")
+
                 _uiState.update { it.copy(isSaving = false, saveSuccess = true) }
             } catch (e: Exception) {
                 _uiState.update { it.copy(isSaving = false, error = "فشل حفظ الاستمارة: ${e.message}") }
