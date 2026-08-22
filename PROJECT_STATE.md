@@ -164,6 +164,19 @@ Added a mandatory PIN lock screen that appears only in the supervisor flavor, at
   - Two input fields: "رمز PIN جديد" (New PIN), "تأكيد رمز PIN" (Confirm PIN)
   - Button: "حفظ رمز PIN" (Save PIN)
 
+### Full PIN Verification Cycle — Manually Confirmed by Project Owner (2026-08-22)
+The complete supervisor PIN verification cycle was tested end-to-end by the project owner directly on the physical device. All four states confirmed:
+
+1. **PIN creation works** — First launch of supervisor APK shows "إنشاء رمز PIN" (Create PIN) screen. Entering a 4-digit PIN twice and tapping "حفظ رمز PIN" completes setup and navigates to the supervisor dashboard.
+
+2. **PIN persists across app restarts** — Closing and fully reopening the app shows the PIN entry/verification screen ("أدخل رمز PIN") instead of the PIN creation screen, confirming the salted hash was stored persistently via EncryptedSharedPreferences and is retrieved correctly on next launch.
+
+3. **Incorrect PIN is rejected** — Entering a wrong PIN and tapping "تحقق" shows an error message ("رمز PIN غير صحيح") and remains on the lock screen. The dashboard is NOT reachable with a wrong PIN.
+
+4. **Correct PIN reaches dashboard** — Entering the correct PIN and tapping "تحقق" navigates to the supervisor dashboard. All supervisor-specific features (Supervisor Sync Dashboard, Survey Sync Import, Merge Review, Admin Reference Management) are accessible.
+
+**P2.6 Supervisor PIN Requirement: FULLY CLOSED** — The mandatory PIN lock is implemented, persistent, and verified.
+
 ## 6. Change log
 - 2026-08-22: Session via **Trae Agent Mode**. Identified and fixed PIN lock screen gap for supervisor flavor.
 
