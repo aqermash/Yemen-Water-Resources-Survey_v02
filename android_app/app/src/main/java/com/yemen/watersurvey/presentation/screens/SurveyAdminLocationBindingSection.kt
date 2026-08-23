@@ -39,10 +39,10 @@ fun SurveyAdminLocationBindingSection(
     selector: AdminCascadingSelector,
     resolver: GpsAdministrativeResolver,
     currentGpsLocation: GpsLocationResult?,
-    initialAdmin1Pcode: String = "",
-    initialAdmin2Pcode: String = "",
-    initialAdmin3Pcode: String = "",
-    initialVillageRefId: String? = null,
+    initialAdmin1Pcode: String = "YE11",
+    initialAdmin2Pcode: String = "YE1101",
+    initialAdmin3Pcode: String = "YE110101",
+    initialVillageRefId: String? = "VIL-YE110101-001",
     initialCustomVillageName: String? = null,
     initialIsOverride: Boolean = false,
     initialOverrideReason: String? = null,
@@ -111,19 +111,6 @@ fun SurveyAdminLocationBindingSection(
 
     val liveGpsLocation = gpsState.currentLocation
 
-    LaunchedEffect(Unit) {
-        admin1List = selector.getGovernorates()
-        if (selectedAdmin1.isNotBlank()) {
-            admin2List = selector.getDistrictsForGovernorate(selectedAdmin1)
-        }
-        if (selectedAdmin2.isNotBlank()) {
-            admin3List = selector.getUzlahsForDistrict(selectedAdmin2)
-        }
-        if (selectedAdmin3.isNotBlank()) {
-            villageList = selector.getVillagesForUzlah(selectedAdmin3)
-        }
-    }
-
     fun updateAndEmitBinding() {
         coroutineScope.launch {
             val snapshot = selector.createAdministrativeSnapshot(
@@ -184,6 +171,20 @@ fun SurveyAdminLocationBindingSection(
                 isResolvingGps = false
             }
         }
+    }
+
+    LaunchedEffect(Unit) {
+        admin1List = selector.getGovernorates()
+        if (selectedAdmin1.isNotBlank()) {
+            admin2List = selector.getDistrictsForGovernorate(selectedAdmin1)
+        }
+        if (selectedAdmin2.isNotBlank()) {
+            admin3List = selector.getUzlahsForDistrict(selectedAdmin2)
+        }
+        if (selectedAdmin3.isNotBlank()) {
+            villageList = selector.getVillagesForUzlah(selectedAdmin3)
+        }
+        updateAndEmitBinding()
     }
 
     LaunchedEffect(liveGpsLocation, selectedAdmin1, selectedAdmin2, selectedAdmin3) {
