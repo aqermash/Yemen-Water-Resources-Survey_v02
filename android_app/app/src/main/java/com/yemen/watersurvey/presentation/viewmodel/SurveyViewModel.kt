@@ -34,6 +34,17 @@ data class SurveyFormState(
     val wellDepthM: String = "",
     val pumpingMechanism: String = "",
     val operationalStatus: String = "",
+    // Spring Details
+    val springNameAr: String = "",
+    val flowRateLps: String = "",
+    val waterClarity: String = "",
+    val dischargeSeasonality: String = "",
+    // Dam / Water Harvesting Details
+    val damNameAr: String = "",
+    val structureType: String = "",
+    val storageCapacityM3: String = "",
+    val damHeightM: String = "",
+    val structuralCondition: String = "",
     
     val isSaving: Boolean = false,
     val saveSuccess: Boolean = false,
@@ -88,6 +99,7 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
         _uiState.update { it.copy(surveyType = type) }
     }
 
+    // Well setters
     fun updateWellName(name: String) {
         _uiState.update { it.copy(wellNameAr = name) }
     }
@@ -108,6 +120,44 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
         _uiState.update { it.copy(operationalStatus = status) }
     }
 
+    // Spring setters
+    fun updateSpringName(name: String) {
+        _uiState.update { it.copy(springNameAr = name) }
+    }
+
+    fun updateFlowRate(rate: String) {
+        _uiState.update { it.copy(flowRateLps = rate) }
+    }
+
+    fun updateWaterClarity(clarity: String) {
+        _uiState.update { it.copy(waterClarity = clarity) }
+    }
+
+    fun updateDischargeSeasonality(seasonality: String) {
+        _uiState.update { it.copy(dischargeSeasonality = seasonality) }
+    }
+
+    // Dam setters
+    fun updateDamName(name: String) {
+        _uiState.update { it.copy(damNameAr = name) }
+    }
+
+    fun updateStructureType(type: String) {
+        _uiState.update { it.copy(structureType = type) }
+    }
+
+    fun updateStorageCapacity(capacity: String) {
+        _uiState.update { it.copy(storageCapacityM3 = capacity) }
+    }
+
+    fun updateDamHeight(height: String) {
+        _uiState.update { it.copy(damHeightM = height) }
+    }
+
+    fun updateStructuralCondition(condition: String) {
+        _uiState.update { it.copy(structuralCondition = condition) }
+    }
+
     fun saveSurvey() {
         val state = _uiState.value
         
@@ -122,11 +172,25 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
             return
         }
 
-        // Validate Well Details if it's a well survey
-        if (state.surveyType == SurveyType.WELL) {
-            if (state.wellNameAr.isBlank() || state.wellType.isBlank() || state.wellDepthM.isBlank()) {
-                _uiState.update { it.copy(error = "يرجى إكمال جميع حقول بيانات البئر الأساسية.") }
-                return
+        // Validate Specific Details
+        when (state.surveyType) {
+            SurveyType.WELL -> {
+                if (state.wellNameAr.isBlank() || state.wellType.isBlank() || state.wellDepthM.isBlank()) {
+                    _uiState.update { it.copy(error = "يرجى إكمال جميع حقول بيانات البئر الأساسية.") }
+                    return
+                }
+            }
+            SurveyType.SPRING -> {
+                if (state.springNameAr.isBlank() || state.flowRateLps.isBlank()) {
+                    _uiState.update { it.copy(error = "يرجى إكمال اسم العين ومعدل التدفق.") }
+                    return
+                }
+            }
+            SurveyType.DAM -> {
+                if (state.damNameAr.isBlank() || state.structureType.isBlank()) {
+                    _uiState.update { it.copy(error = "يرجى إكمال اسم السد/الحاجز ونوع المنشأة.") }
+                    return
+                }
             }
         }
 
@@ -154,6 +218,25 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
                     json.put("wellDepthM", state.wellDepthM.toDoubleOrNull() ?: 0.0)
                     json.put("pumpingMechanism", state.pumpingMechanism)
                     json.put("operationalStatus", state.operationalStatus)
+                    json.toString()
+                } else null
+
+                val springDetailsJson = if (state.surveyType == SurveyType.SPRING) {
+                    val json = org.json.JSONObject()
+                    json.put("springNameAr", state.springNameAr)
+                    json.put("flowRateLps", state.flowRateLps.toDoubleOrNull() ?: 0.0)
+                    json.put("waterClarity", state.waterClarity)
+                    json.put("dischargeSeasonality", state.dischargeSeasonality)
+                    json.toString()
+                } else null
+
+                val damDetailsJson = if (state.surveyType == SurveyType.DAM) {
+                    val json = org.json.JSONObject()
+                    json.put("damNameAr", state.damNameAr)
+                    json.put("structureType", state.structureType)
+                    json.put("storageCapacityM3", state.storageCapacityM3.toDoubleOrNull() ?: 0.0)
+                    json.put("damHeightM", state.damHeightM.toDoubleOrNull() ?: 0.0)
+                    json.put("structuralCondition", state.structuralCondition)
                     json.toString()
                 } else null
 
@@ -193,13 +276,15 @@ class SurveyViewModel(application: Application) : AndroidViewModel(application) 
                     gpsResolvedAdmin3Pcode = state.resolvedLocation?.admin3Pcode,
                     gpsDistanceToNearestVillageM = state.resolvedLocation?.distanceToNearestVillageM,
                     gpsNearestVillageNameAr = state.resolvedLocation?.nearestVillageNameAr,
-                    wellDetailsJson = wellDetailsJson
+                    wellDetailsJson = wellDetailsJson,
+                    springDetailsJson = springDetailsJson,
+                    damDetailsJson = damDetailsJson
                 )
                 
                 surveyDao.insertSurvey(entity)
                 
                 // Debug log as requested for verification evidence
-                android.util.Log.d("SurveySave", "Saved Well Survey: UUID=$uuid, RegistryCode=${registryResult.registryCode}, Type=${state.surveyType}, Lat=${state.gpsLocation.latitude}, Lon=${state.gpsLocation.longitude}, Accuracy=${state.gpsLocation.accuracyM}")
+                android.util.Log.d("SurveySave", "Saved Survey: UUID=$uuid, RegistryCode=${registryResult.registryCode}, Type=${state.surveyType}, Lat=${state.gpsLocation.latitude}, Lon=${state.gpsLocation.longitude}, Accuracy=${state.gpsLocation.accuracyM}")
 
                 _uiState.update { it.copy(isSaving = false, saveSuccess = true) }
             } catch (e: Exception) {

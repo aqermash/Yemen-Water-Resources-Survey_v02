@@ -27,6 +27,7 @@ import com.yemen.watersurvey.presentation.theme.*
 fun SurveyFormsScreen(
     onNavigateBack: () -> Unit = {},
     onNavigateToNewWell: () -> Unit = {},
+    onNavigateToNewSpring: () -> Unit = {},
     viewModel: SurveyViewModel = viewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -37,7 +38,7 @@ fun SurveyFormsScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = "إضافة مسح جديد",
+                        text = "استمارات المسح الميداني",
                         fontWeight = FontWeight.Bold
                     )
                 },
@@ -95,6 +96,16 @@ fun SurveyFormsScreen(
                     Icon(Icons.Default.Add, contentDescription = null)
                     Spacer(modifier = Modifier.width(8.dp))
                     Text("مسح بئر جديد (New Well Survey)", fontWeight = FontWeight.Bold)
+                }
+
+                Button(
+                    onClick = onNavigateToNewSpring,
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(containerColor = Cyan500)
+                ) {
+                    Icon(Icons.Default.Add, contentDescription = null, tint = Slate950)
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text("مسح عين / ينبوع جديد (New Spring Survey)", color = Slate950, fontWeight = FontWeight.Bold)
                 }
 
                 Card(

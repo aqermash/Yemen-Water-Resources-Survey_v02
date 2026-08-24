@@ -87,6 +87,35 @@ data class SurveyRecordEntity(
             }
         }
 
+        val springDetails = springDetailsJson?.let { jsonStr ->
+            try {
+                val json = org.json.JSONObject(jsonStr)
+                com.yemen.watersurvey.domain.model.SpringDetails(
+                    springNameAr = json.optString("springNameAr", ""),
+                    flowRateLps = json.optDouble("flowRateLps", 0.0),
+                    waterClarity = json.optString("waterClarity", ""),
+                    dischargeSeasonality = json.optString("dischargeSeasonality", "")
+                )
+            } catch (e: Exception) {
+                null
+            }
+        }
+
+        val damDetails = damDetailsJson?.let { jsonStr ->
+            try {
+                val json = org.json.JSONObject(jsonStr)
+                com.yemen.watersurvey.domain.model.DamDetails(
+                    damNameAr = json.optString("damNameAr", ""),
+                    structureType = json.optString("structureType", ""),
+                    storageCapacityM3 = json.optDouble("storageCapacityM3", 0.0),
+                    damHeightM = json.optDouble("damHeightM", 0.0),
+                    structuralCondition = json.optString("structuralCondition", "")
+                )
+            } catch (e: Exception) {
+                null
+            }
+        }
+
         val gpsLocation = if (latitude != null && longitude != null) {
             com.yemen.watersurvey.domain.model.GpsLocationResult(
                 latitude = latitude,
@@ -149,8 +178,8 @@ data class SurveyRecordEntity(
             gpsDistanceToNearestVillageM = gpsDistanceToNearestVillageM,
             gpsNearestVillageNameAr = gpsNearestVillageNameAr,
             wellDetails = wellDetails,
-            springDetails = null,
-            damDetails = null,
+            springDetails = springDetails,
+            damDetails = damDetails,
             attachments = emptyList(),
             adminRefVersionTag = adminRefVersionTag
         )
