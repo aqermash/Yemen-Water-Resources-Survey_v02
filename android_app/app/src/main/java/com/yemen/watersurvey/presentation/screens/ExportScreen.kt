@@ -28,6 +28,12 @@ import com.yemen.watersurvey.domain.model.*
 import com.yemen.watersurvey.presentation.navigation.ScreenRoute
 import com.yemen.watersurvey.presentation.theme.*
 
+import com.yemen.watersurvey.data.database.SurveyAppDatabase
+import com.yemen.watersurvey.data.entity.SurveyRecordEntity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
 /**
  * Native Export Screen Composable for exporting offline survey datasets into genuine Multi-Sheet OOXML (.xlsx) Excel workbooks and Official Printable PDFs.
  */
@@ -37,109 +43,13 @@ fun ExportScreen(
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
+    val coroutineScope = rememberCoroutineScope()
+    val database = remember { SurveyAppDatabase.getInstance(context) }
+    val surveyDao = remember { database.surveyRecordDao() }
+
     var isExportingExcel by remember { mutableStateOf(false) }
     var isExportingPdf by remember { mutableStateOf(false) }
     var exportSuccessMessage by remember { mutableStateOf<String?>(null) }
-
-    val sampleRecords = listOf(
-        SurveyRecord(
-            recordId = "rec-301",
-            surveyType = SurveyType.WELL,
-            admin1Pcode = "YE30",
-            admin2Pcode = "YE3002",
-            admin3Pcode = "YE300201",
-            villageReferenceId = "YE30020101",
-            enumeratorId = "usr-001",
-            enumeratorUsername = "ahmed_enum",
-            workflowStatus = "APPROVED",
-            revisionCount = 2,
-            createdAt = "2026-08-13 09:30:00",
-            updatedAt = "2026-08-13 10:15:00",
-            gpsPoint = GpsLocationResult(
-                latitude = 16.9421,
-                longitude = 43.7612,
-                altitudeM = 1820.0,
-                accuracyM = 4.2f,
-                quality = GpsAccuracyQuality.EXCELLENT,
-                capturedAt = "2026-08-13 09:31:00"
-            ),
-            wellDetails = WellDetails(
-                wellNameAr = "بئر المقاش الارتوازي",
-                wellType = "ارتوازي حفر عميق",
-                wellDepthM = 240.0,
-                pumpingMechanism = "مضخة غاطسة بالكهرباء",
-                operationalStatus = "شغال بنشاط"
-            ),
-            attachments = listOf(
-                AttachmentInfo(
-                    attachmentId = "att-101",
-                    surveyId = "rec-301",
-                    attachmentType = "PHOTO",
-                    filePath = "attachments/IMG_20260813_093100_a1b2c3.jpg",
-                    fileName = "IMG_20260813_093100_a1b2c3.jpg",
-                    fileSize = 285000L,
-                    timestamp = "2026-08-13 09:31:05"
-                )
-            )
-        ),
-        SurveyRecord(
-            recordId = "rec-302",
-            surveyType = SurveyType.SPRING,
-            admin1Pcode = "YE30",
-            admin2Pcode = "YE3001",
-            admin3Pcode = "YE300101",
-            villageReferenceId = "YE30010101",
-            enumeratorId = "usr-001",
-            enumeratorUsername = "ahmed_enum",
-            workflowStatus = "COMPLETED",
-            revisionCount = 1,
-            createdAt = "2026-08-13 11:00:00",
-            updatedAt = "2026-08-13 11:00:00",
-            gpsPoint = GpsLocationResult(
-                latitude = 16.8123,
-                longitude = 43.2411,
-                altitudeM = 2100.0,
-                accuracyM = 8.5f,
-                quality = GpsAccuracyQuality.GOOD,
-                capturedAt = "2026-08-13 11:01:00"
-            ),
-            springDetails = SpringDetails(
-                springNameAr = "عين النظير الجارية",
-                flowRateLps = 12.5,
-                waterClarity = "عذبة ونقية جداً",
-                dischargeSeasonality = "دائم التدفق طوال العام"
-            )
-        ),
-        SurveyRecord(
-            recordId = "rec-303",
-            surveyType = SurveyType.DAM,
-            admin1Pcode = "YE13",
-            admin2Pcode = "YE1305",
-            admin3Pcode = "YE130501",
-            villageReferenceId = "YE13050101",
-            enumeratorId = "usr-002",
-            enumeratorUsername = "super_district",
-            workflowStatus = "UNDER_REVIEW",
-            revisionCount = 3,
-            createdAt = "2026-08-13 12:00:00",
-            updatedAt = "2026-08-13 12:30:00",
-            gpsPoint = GpsLocationResult(
-                latitude = 15.3421,
-                longitude = 44.1822,
-                altitudeM = 2300.0,
-                accuracyM = 12.0f,
-                quality = GpsAccuracyQuality.ACCEPTABLE_WITH_WARNING,
-                capturedAt = "2026-08-13 12:01:00"
-            ),
-            damDetails = DamDetails(
-                damNameAr = "سد متنة التحويلي",
-                structureType = "سد تحويلي خرساني",
-                storageCapacityM3 = 450000.0,
-                damHeightM = 18.5,
-                structuralCondition = "جيدة جداً"
-            )
-        )
-    )
 
     Column(
         modifier = modifier
@@ -161,7 +71,7 @@ fun ExportScreen(
             fontSize = 11.sp
         )
 
-        Divider(color = Slate800)
+        HorizontalDivider(color = Slate800)
 
         // Option 1: Multi-Sheet Genuine OOXML Excel Workbook
         Card(
@@ -197,11 +107,24 @@ fun ExportScreen(
 
                 Button(
                     onClick = {
-                        isExportingExcel = true
-                        val exporter = ExcelExporter(context)
-                        val res = exporter.exportSurveysToExcel(sampleRecords, "ahmed_enum")
-                        exportSuccessMessage = "تم تصدير ملف OOXML .xlsx بنجاح (4 صفحات): ${res.fileName}"
-                        isExportingExcel = false
+                        coroutineScope.launch {
+                            isExportingExcel = true
+                            try {
+                                val realEntities = withContext(Dispatchers.IO) {
+                                    surveyDao.getAllSurveysSync()
+                                }
+                                val domainRecords = realEntities.map { it.toDomainModel() }
+                                val exporter = ExcelExporter(context)
+                                val res = withContext(Dispatchers.IO) {
+                                    exporter.exportSurveysToExcel(domainRecords, "field_enumerator")
+                                }
+                                exportSuccessMessage = "تم تصدير ملف OOXML .xlsx بنجاح (${res.recordsCount} سجلات - 4 صفحات): ${res.fileName}"
+                            } catch (e: Exception) {
+                                exportSuccessMessage = "خطأ أثناء التصدير: ${e.message}"
+                            } finally {
+                                isExportingExcel = false
+                            }
+                        }
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = Emerald500),
                     shape = RoundedCornerShape(10.dp),
@@ -253,13 +176,29 @@ fun ExportScreen(
 
                 Button(
                     onClick = {
-                        isExportingPdf = true
-                        val engine = PdfStampingEngine(context)
-                        // Stamp first record
-                        val sampleRecord = sampleRecords.first()
-                        val res = engine.stampSurveyToPdf(sampleRecord)
-                        exportSuccessMessage = "تم توليد وختم الاستمارة الرسمية PDF بنجاح: ${res.fileName}"
-                        isExportingPdf = false
+                        coroutineScope.launch {
+                            isExportingPdf = true
+                            try {
+                                val realEntities = withContext(Dispatchers.IO) {
+                                    surveyDao.getAllSurveysSync()
+                                }
+                                if (realEntities.isEmpty()) {
+                                    exportSuccessMessage = "لا توجد سجلات مسح محفوظة لتوليد استمارة PDF."
+                                } else {
+                                    val domainRecords = realEntities.map { it.toDomainModel() }
+                                    val engine = PdfStampingEngine(context)
+                                    val targetRecord = domainRecords.firstOrNull { it.surveyType == SurveyType.WELL } ?: domainRecords.first()
+                                    val res = withContext(Dispatchers.IO) {
+                                        engine.stampSurveyToPdf(targetRecord)
+                                    }
+                                    exportSuccessMessage = "تم توليد وختم الاستمارة الرسمية PDF بنجاح: ${res.fileName}"
+                                }
+                            } catch (e: Exception) {
+                                exportSuccessMessage = "خطأ أثناء توليد PDF: ${e.message}"
+                            } finally {
+                                isExportingPdf = false
+                            }
+                        }
                     },
                     colors = ButtonDefaults.buttonColors(containerColor = Sky500),
                     shape = RoundedCornerShape(10.dp),

@@ -70,4 +70,89 @@ data class SurveyRecordEntity(
     val lastModifiedBy: String? = null,
     val lastSourcePackageId: String? = null,
     val adminRefVersionTag: String = "OCHA_YEM_2024_V1"
-)
+) {
+    fun toDomainModel(): com.yemen.watersurvey.domain.model.SurveyRecord {
+        val wellDetails = wellDetailsJson?.let { jsonStr ->
+            try {
+                val json = org.json.JSONObject(jsonStr)
+                com.yemen.watersurvey.domain.model.WellDetails(
+                    wellNameAr = json.optString("wellNameAr", ""),
+                    wellType = json.optString("wellType", ""),
+                    wellDepthM = json.optDouble("wellDepthM", 0.0),
+                    pumpingMechanism = json.optString("pumpingMechanism", ""),
+                    operationalStatus = json.optString("operationalStatus", "")
+                )
+            } catch (e: Exception) {
+                null
+            }
+        }
+
+        val gpsLocation = if (latitude != null && longitude != null) {
+            com.yemen.watersurvey.domain.model.GpsLocationResult(
+                latitude = latitude,
+                longitude = longitude,
+                altitudeM = altitudeM ?: 0.0,
+                accuracyM = accuracyM ?: 0.0f,
+                quality = try {
+                    com.yemen.watersurvey.domain.model.GpsAccuracyQuality.valueOf(gpsQuality ?: "GOOD")
+                } catch (e: Exception) {
+                    com.yemen.watersurvey.domain.model.GpsAccuracyQuality.GOOD
+                },
+                provider = gpsProvider ?: "gps",
+                capturedAt = gpsCapturedAt ?: createdAt
+            )
+        } else null
+
+        val type = try {
+            com.yemen.watersurvey.domain.model.SurveyType.valueOf(surveyType)
+        } catch (e: Exception) {
+            com.yemen.watersurvey.domain.model.SurveyType.WELL
+        }
+
+        val resStatus = try {
+            com.yemen.watersurvey.domain.model.AdminResolutionStatus.valueOf(gpsResolutionStatus)
+        } catch (e: Exception) {
+            com.yemen.watersurvey.domain.model.AdminResolutionStatus.NOT_EVALUATED
+        }
+
+        return com.yemen.watersurvey.domain.model.SurveyRecord(
+            recordId = recordId,
+            surveyUUID = surveyUUID,
+            formId = formId,
+            formVersion = formVersion,
+            surveyType = type,
+            admin1Pcode = admin1Pcode,
+            admin2Pcode = admin2Pcode,
+            admin3Pcode = admin3Pcode,
+            villageReferenceId = villageReferenceId,
+            governorateCode = governorateCode,
+            districtCode = districtCode,
+            uzlahCode = uzlahCode,
+            villageCode = villageCode,
+            governorateNameSnapshotAr = governorateNameSnapshotAr,
+            districtNameSnapshotAr = districtNameSnapshotAr,
+            subDistrictNameSnapshotAr = subDistrictNameSnapshotAr,
+            villageNameSnapshotAr = villageNameSnapshotAr,
+            isLocalNameOverride = isLocalNameOverride,
+            localOverrideId = localOverrideId,
+            enumeratorId = enumeratorId,
+            enumeratorUsername = enumeratorUsername,
+            workflowStatus = workflowStatus,
+            revisionCount = revisionCount,
+            createdAt = createdAt,
+            updatedAt = updatedAt,
+            gpsPoint = gpsLocation,
+            gpsResolutionStatus = resStatus,
+            gpsResolvedAdmin1Pcode = gpsResolvedAdmin1Pcode,
+            gpsResolvedAdmin2Pcode = gpsResolvedAdmin2Pcode,
+            gpsResolvedAdmin3Pcode = gpsResolvedAdmin3Pcode,
+            gpsDistanceToNearestVillageM = gpsDistanceToNearestVillageM,
+            gpsNearestVillageNameAr = gpsNearestVillageNameAr,
+            wellDetails = wellDetails,
+            springDetails = null,
+            damDetails = null,
+            attachments = emptyList(),
+            adminRefVersionTag = adminRefVersionTag
+        )
+    }
+}
