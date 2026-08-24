@@ -20,6 +20,7 @@
 | P2    | done   | Compilation/KAPT/Robolectric/Room fixes. `./gradlew test` (46/46 passed) and `./gradlew assembleDebug` verified green. |
 | P2.5  | done   | Entry Point + 6-screen NavHost wiring verified on-device. |
 | P2.6  | done   | Enumerator/Supervisor flavor split with BuildConfig.APP_ROLE. All 4 variants compile, both APKs build green. Supervisor workflow exposed via conditional Dashboard rendering. |
+| P2.7  | done   | Wells MVP End-to-End: real GPS capture, admin hierarchy binding, Room DB persistence, Records Manager Flow collector, and genuine multi-sheet OOXML Excel export verified on physical hardware (243237ae24017ece). Commits: ceac5de, ecf00d6. |
 
 ### Locked Finding — Missing Application Entry Point (P2.5)
 - **Finding:** `MainActivity` is declared in `AndroidManifest.xml` (`android:name=".MainActivity"`) but did not exist anywhere in the source tree. Confirmed via runtime `ClassNotFoundException: com.yemen.watersurvey.MainActivity` captured via ADB on cold launch (2026-08-18).
@@ -41,20 +42,23 @@ Every new session (new account, new tool, resumed after any interruption) must, 
 3. If `git status` shows uncommitted changes, or `git log -1` doesn't match the recorded checkpoint hash, explicitly report the discrepancy before proceeding — don't silently assume either the file or the working tree is correct.
 
 ## 5. Last Confirmed Checkpoint
-- **PIN Feature Commit Hash:**
-  - `b8df5a1` — feat(p2.6): add mandatory PIN lock screen to supervisor flavor
-- **Date/Session:** `2026-08-22 14:30:00 +0300`
-- **Tool:** Trae Agent Mode
-- **Verified state:** VERIFIED GREEN
-- **Final Verification (2026-08-22):**
-  - `.\gradlew.bat clean` → BUILD SUCCESSFUL (1 task executed)
-  - `.\gradlew.bat test --rerun-tasks` → BUILD SUCCESSFUL (126 tasks executed, 46 tests per flavor, all passing, 0 failures, 0 errors)
-  - `.\gradlew.bat assembleEnumeratorDebug assembleSupervisorDebug --rerun-tasks` → BUILD SUCCESSFUL (73 tasks executed, not UP-TO-DATE)
-  - Enumerator APK: Direct to Dashboard, no PIN prompt
-  - Supervisor APK: PIN lock screen appears first before any dashboard content
-  - Both APKs verified on real device (device ID: 243237ae24017ece)
+- **P2.7 Wells MVP End-to-End Commit Hash:**
+  - `ecf00d6` — feat: wire records manager and export to real saved survey data
+  - `ceac5de` — fix(p2): bind initial admin hierarchy and emit initial snapshot on composition
+  - `b112fc0` — feat: add wells survey entry screen wired to real GPS and database save
+- **Date/Session:** `2026-08-24 18:15:00 +0300`
+- **Tool:** Google Antigravity
+- **Verified state:** VERIFIED GREEN (Physical Device E2E Tested)
+- **Final Verification (2026-08-24):**
+  - Real hardware GPS fix (< 15.0m accuracy gate) captured on device (ID: `243237ae24017ece`)
+  - Real administrative hierarchy binding (`Governorate -> District -> Sub-District -> Village`)
+  - Real SQLite/Room database record persistence (`survey_records` table)
+  - Records Manager live Flow collection displaying real saved records with badges
+  - Multi-sheet OOXML Excel export generated and verified with 0 fake/sample records
+- **Note on Registry Code PENDING State:**
+  - `registryCode` displaying `PENDING` (e.g. `YE110101-WL-PENDING-edd845b6`) is **expected and correct behavior** when offline until a real `sequence_pool.json` sequence range is provisioned/imported, not a bug.
 
-**Next action:** None (Phase P2.6 complete)
+**Next action:** Phase P2.8 (Extend real end-to-end flow to Springs and Water Harvesting / Dams)
 
 ## 7. P2.6 Flavor Architecture (2026-08-21)
 
