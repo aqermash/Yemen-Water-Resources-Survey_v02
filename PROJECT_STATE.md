@@ -21,6 +21,8 @@
 | P2.5  | done   | Entry Point + 6-screen NavHost wiring verified on-device. |
 | P2.6  | done   | Enumerator/Supervisor flavor split with BuildConfig.APP_ROLE. All 4 variants compile, both APKs build green. Supervisor workflow exposed via conditional Dashboard rendering. |
 | P2.7  | done   | Wells MVP End-to-End: real GPS capture, admin hierarchy binding, Room DB persistence, Records Manager Flow collector, and genuine multi-sheet OOXML Excel export verified on physical hardware (243237ae24017ece). Commits: ceac5de, ecf00d6. |
+| P2.8  | done   | Springs MVP End-to-End: NewSpringSurveyScreen with real GPS (<15m gate), cascading admin selector, SpringDetails fields (springNameAr, flowRateLps, waterClarity, dischargeSeasonality), SurveyType.SPRING / facility code SP, real Room save, Records Manager (badge: عين مياه/Spring), Excel Sheet 2 (العيون والينابيع). Commit: 45b1a9b. |
+| P2.9  | done   | Dams/Water Harvesting MVP End-to-End: NewDamSurveyScreen with real GPS (<15m gate), cascading admin selector, DamDetails fields (damNameAr, structureType, storageCapacityM3, damHeightM, structuralCondition), SurveyType.DAM / facility code WH, real Room save, Records Manager (badge: سد/حاجز/Dam), Excel Sheet 3 (السدود والحواجز). Commit: 0cc6d48. |
 
 ### Locked Finding — Missing Application Entry Point (P2.5)
 - **Finding:** `MainActivity` is declared in `AndroidManifest.xml` (`android:name=".MainActivity"`) but did not exist anywhere in the source tree. Confirmed via runtime `ClassNotFoundException: com.yemen.watersurvey.MainActivity` captured via ADB on cold launch (2026-08-18).
@@ -42,19 +44,20 @@ Every new session (new account, new tool, resumed after any interruption) must, 
 3. If `git status` shows uncommitted changes, or `git log -1` doesn't match the recorded checkpoint hash, explicitly report the discrepancy before proceeding — don't silently assume either the file or the working tree is correct.
 
 ## 5. Last Confirmed Checkpoint
-- **P2.7 Wells MVP End-to-End Commit Hash:**
+- **P2.9 Dams/Water Harvesting MVP Commit Hash:**
+  - `0cc6d48` — feat: add water harvesting survey entry screen wired to real GPS and database save
+  - `45b1a9b` — feat: add springs survey entry screen wired to real GPS and database save
+  - `390d046` — docs(state): document P2.7 Wells MVP End-to-End phase and PENDING registryCode clarification
   - `ecf00d6` — feat: wire records manager and export to real saved survey data
-  - `ceac5de` — fix(p2): bind initial admin hierarchy and emit initial snapshot on composition
-  - `b112fc0` — feat: add wells survey entry screen wired to real GPS and database save
-- **Date/Session:** `2026-08-24 18:15:00 +0300`
+- **Date/Session:** `2026-08-25 17:20:00 +0300`
 - **Tool:** Google Antigravity
-- **Verified state:** VERIFIED GREEN (Physical Device E2E Tested)
-- **Final Verification (2026-08-24):**
-  - Real hardware GPS fix (< 15.0m accuracy gate) captured on device (ID: `243237ae24017ece`)
-  - Real administrative hierarchy binding (`Governorate -> District -> Sub-District -> Village`)
-  - Real SQLite/Room database record persistence (`survey_records` table)
-  - Records Manager live Flow collection displaying real saved records with badges
-  - Multi-sheet OOXML Excel export generated and verified with 0 fake/sample records
+- **Verified state:** VERIFIED GREEN (Physical Device E2E Tested — all 3 survey types)
+- **Final Verification (2026-08-25) — All Three Survey Types:**
+  - **Wells (WL):** Real GPS fix, admin hierarchy, Room DB, Records Manager, Excel Sheet 1. (P2.7)
+  - **Springs (SP):** Real GPS fix (≤15m gate), admin hierarchy, Room DB (surveyType=SPRING), Records Manager badge عين مياه, Excel Sheet 2. (P2.8)
+  - **Dams/Water Harvesting (WH):** Real GPS fix 10.5m (≤15m gate), admin hierarchy, Room DB (surveyType=DAM), Records Manager badge سد/حاجز, Excel Sheet 3 with SaddAlTalh | EarthDam | 5000m³ | 8.5m. (P2.9)
+  - All 5 records in Records Manager — zero fake/sample data
+  - Multi-sheet Excel export (5 worksheets: Wells×3, Springs×1, Dams×1, Survey Log×5) verified
 - **Note on Registry Code PENDING State:**
   - `registryCode` displaying `PENDING` (e.g. `YE110101-WL-PENDING-edd845b6`) is **expected and correct behavior** when offline until a real `sequence_pool.json` sequence range is provisioned/imported, not a bug.
 
