@@ -58,10 +58,12 @@ Every new session (new account, new tool, resumed after any interruption) must, 
   - **Dams/Water Harvesting (WH):** Real GPS fix 10.5m (≤15m gate), admin hierarchy, Room DB (surveyType=DAM), Records Manager badge سد/حاجز, Excel Sheet 3 with SaddAlTalh | EarthDam | 5000m³ | 8.5m. (P2.9)
   - All 5 records in Records Manager — zero fake/sample data
   - Multi-sheet Excel export (5 worksheets: Wells×3, Springs×1, Dams×1, Survey Log×5) verified
+- **Note on Structural Condition Field Reliability (P2.9):**
+  - Confirmed as a test automation timing artifact on first run; `structuralCondition` field state is properly held in `SurveyViewModel._uiState`, correctly survives keyboard dismissal, and successfully persists to Room DB (`damDetailsJson.structuralCondition`). Verified with live on-device test (`GoodCondition` persisted).
 - **Note on Registry Code PENDING State:**
   - `registryCode` displaying `PENDING` (e.g. `YE110101-WL-PENDING-edd845b6`) is **expected and correct behavior** when offline until a real `sequence_pool.json` sequence range is provisioned/imported, not a bug.
 
-**Next action:** Phase P2.8 (Extend real end-to-end flow to Springs and Water Harvesting / Dams)
+**Next action:** Awaiting user instruction.
 
 ## 7. P2.6 Flavor Architecture (2026-08-21)
 
