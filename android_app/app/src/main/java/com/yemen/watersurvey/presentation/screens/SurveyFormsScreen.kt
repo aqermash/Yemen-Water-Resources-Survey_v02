@@ -28,6 +28,7 @@ fun SurveyFormsScreen(
     onNavigateBack: () -> Unit = {},
     onNavigateToNewWell: () -> Unit = {},
     onNavigateToNewSpring: () -> Unit = {},
+    onNavigateToNewDam: () -> Unit = {},
     viewModel: SurveyViewModel = viewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -106,6 +107,16 @@ fun SurveyFormsScreen(
                     Icon(Icons.Default.Add, contentDescription = null, tint = Slate950)
                     Spacer(modifier = Modifier.width(8.dp))
                     Text("مسح عين / ينبوع جديد (New Spring Survey)", color = Slate950, fontWeight = FontWeight.Bold)
+                }
+
+                Button(
+                    onClick = onNavigateToNewDam,
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(containerColor = Amber600)
+                ) {
+                    Icon(Icons.Default.Add, contentDescription = null)
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text("مسح سد / حاجز مائي جديد (New Dam Survey)", fontWeight = FontWeight.Bold)
                 }
 
                 Card(

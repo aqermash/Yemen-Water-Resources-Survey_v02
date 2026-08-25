@@ -13,6 +13,7 @@ import com.yemen.watersurvey.presentation.screens.ExportScreen
 import com.yemen.watersurvey.presentation.screens.FormManagementScreen
 import com.yemen.watersurvey.presentation.screens.NewWellSurveyScreen
 import com.yemen.watersurvey.presentation.screens.NewSpringSurveyScreen
+import com.yemen.watersurvey.presentation.screens.NewDamSurveyScreen
 import com.yemen.watersurvey.presentation.screens.PinLockScreen
 import com.yemen.watersurvey.presentation.screens.RecordsManagerScreen
 import com.yemen.watersurvey.presentation.screens.AdminReferenceManagementScreen
@@ -75,6 +76,9 @@ private fun YemenWaterSurveyNavHost() {
                 },
                 onNavigateToNewSpring = {
                     navController.navigate(ScreenRoute.NewSpringSurvey.route)
+                },
+                onNavigateToNewDam = {
+                    navController.navigate(ScreenRoute.NewDamSurvey.route)
                 }
             )
         }
@@ -150,6 +154,13 @@ private fun YemenWaterSurveyNavHost() {
         }
         composable(ScreenRoute.NewSpringSurvey.route) {
             NewSpringSurveyScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        composable(ScreenRoute.NewDamSurvey.route) {
+            NewDamSurveyScreen(
                 onNavigateBack = {
                     navController.popBackStack()
                 }
