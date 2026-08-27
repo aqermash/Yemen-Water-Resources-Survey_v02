@@ -120,7 +120,11 @@ class FormPackageManager(
 
             // Check if any active version exists for this formId
             val existingActive = formPackageDao.getActivePackageForForm(meta.formId)
-            val shouldBeActive = existingActive == null
+            val shouldBeActive = if (existingActive != null) {
+                existingActive.version == meta.version // Preserve active state if re-importing the active version
+            } else {
+                true // Activate if no active package exists for this formId
+            }
 
             val formPackage = FormPackage(
                 formId = meta.formId,
@@ -523,28 +527,32 @@ class FormPackageManager(
             File(tempFolder, OPTIONAL_PDF_MAPPING).writeText(pdfMappingJson.toString(2))
 
             // 5. sequence_pool.json
+            // Real offline sequence pool for the currently active administrative area
+            // (admin1=YE11, admin2=YE1101, admin3=YE110101 -> bucket "YE110101").
+            // Ranges 1-100 per facility type resolve real sequential registry codes
+            // (e.g. YE110101-WL-0001) instead of the PENDING offline fallback.
             val sequencePoolJson = JSONObject().apply {
                 val pools = JSONArray().apply {
                     put(JSONObject().apply {
-                        put("adminBucketKey", "YE221501")
+                        put("adminBucketKey", "YE110101")
                         put("facilityType", "WL")
-                        put("rangeStart", 1001)
-                        put("rangeEnd", 1100)
-                        put("currentNext", 1001)
+                        put("rangeStart", 1)
+                        put("rangeEnd", 100)
+                        put("currentNext", 1)
                     })
                     put(JSONObject().apply {
-                        put("adminBucketKey", "YE221501")
+                        put("adminBucketKey", "YE110101")
                         put("facilityType", "SP")
-                        put("rangeStart", 1001)
-                        put("rangeEnd", 1100)
-                        put("currentNext", 1001)
+                        put("rangeStart", 1)
+                        put("rangeEnd", 100)
+                        put("currentNext", 1)
                     })
                     put(JSONObject().apply {
-                        put("adminBucketKey", "YE221501")
+                        put("adminBucketKey", "YE110101")
                         put("facilityType", "WH")
-                        put("rangeStart", 1001)
-                        put("rangeEnd", 1100)
-                        put("currentNext", 1001)
+                        put("rangeStart", 1)
+                        put("rangeEnd", 100)
+                        put("currentNext", 1)
                     })
                 }
                 put("provisionedPools", pools)

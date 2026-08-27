@@ -82,7 +82,7 @@ fun FormManagementScreen(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Column {
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = "إدارة حزم الاستمارات الميدانية (Form Packages)",
                     color = Slate100,
@@ -96,6 +96,8 @@ fun FormManagementScreen(
                 )
             }
 
+            Spacer(modifier = Modifier.width(8.dp))
+
             Button(
                 onClick = { showImportDialog = true },
                 colors = ButtonDefaults.buttonColors(containerColor = Emerald500),
@@ -104,7 +106,7 @@ fun FormManagementScreen(
             ) {
                 Icon(Icons.Default.AddCircleOutline, contentDescription = null, tint = Slate950, modifier = Modifier.size(16.dp))
                 Spacer(modifier = Modifier.width(6.dp))
-                Text("استيراد حزمة", color = Slate950, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                Text("استيراد حزمة استمارة", color = Slate950, fontSize = 12.sp, fontWeight = FontWeight.Bold)
             }
         }
 
@@ -362,7 +364,8 @@ fun PackageCard(
             ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.weight(1f)
                 ) {
                     Box(
                         modifier = Modifier
@@ -379,28 +382,43 @@ fun PackageCard(
                         )
                     }
 
+                    // Package Type Badge (WELL vs SPRING vs DAM)
+                    val (typeBadgeText, typeBadgeColor, typeBadgeBg) = when {
+                        formPackage.formId.contains("well", ignoreCase = true) -> Triple("WELL / آبار", Sky300, Sky950)
+                        formPackage.formId.contains("spring", ignoreCase = true) -> Triple("SPRING / عيون", Emerald300, Emerald950)
+                        formPackage.formId.contains("dam", ignoreCase = true) -> Triple("DAM / سدود", Amber300, Slate900)
+                        else -> Triple("مجهول", Slate300, Slate800)
+                    }
                     Box(
                         modifier = Modifier
                             .clip(RoundedCornerShape(6.dp))
-                            .background(Sky950)
-                            .border(1.dp, Sky500.copy(alpha = 0.4f), RoundedCornerShape(6.dp))
+                            .background(typeBadgeBg)
+                            .border(1.dp, typeBadgeColor.copy(alpha = 0.4f), RoundedCornerShape(6.dp))
+                            .padding(horizontal = 8.dp, vertical = 2.dp)
+                    ) {
+                        Text(
+                            text = typeBadgeText,
+                            color = typeBadgeColor,
+                            fontSize = 9.5.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(6.dp))
+                            .background(Slate800)
+                            .border(1.dp, Slate700.copy(alpha = 0.4f), RoundedCornerShape(6.dp))
                             .padding(horizontal = 8.dp, vertical = 2.dp)
                     ) {
                         Text(
                             text = "الإصدار ${formPackage.version}",
-                            color = Sky300,
+                            color = Slate300,
                             fontSize = 9.5.sp,
                             fontWeight = FontWeight.Bold
                         )
                     }
                 }
-
-                Text(
-                    text = formPackage.formId,
-                    color = Slate500,
-                    fontSize = 10.sp,
-                    fontFamily = FontFamily.Monospace
-                )
             }
 
             // Form Name and Description
@@ -438,9 +456,11 @@ fun PackageCard(
             }
 
             // Component files indicators
-            Row(
+            @OptIn(ExperimentalLayoutApi::class)
+            FlowRow(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(6.dp)
+                horizontalArrangement = Arrangement.spacedBy(6.dp),
+                verticalArrangement = Arrangement.spacedBy(6.dp)
             ) {
                 FileIndicatorPill("definition.json", formPackage.hasFormDefinition)
                 FileIndicatorPill("choices.json", formPackage.hasChoices)
@@ -451,12 +471,13 @@ fun PackageCard(
             Divider(color = Slate800)
 
             // Actions Row
-            Row(
+            @OptIn(ExperimentalLayoutApi::class)
+            FlowRow(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
                     OutlinedButton(
                         onClick = onViewDetails,
                         colors = ButtonDefaults.outlinedButtonColors(contentColor = Slate300),
