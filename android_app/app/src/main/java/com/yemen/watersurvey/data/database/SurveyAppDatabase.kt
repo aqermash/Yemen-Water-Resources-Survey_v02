@@ -30,7 +30,7 @@ import com.yemen.watersurvey.data.entity.*
         AdminReferencePackageEntity::class,
         DeviceSequencePoolEntity::class
     ],
-    version = 6,
+    version = 7,
     exportSchema = false
 )
 abstract class SurveyAppDatabase : RoomDatabase() {
@@ -73,6 +73,24 @@ abstract class SurveyAppDatabase : RoomDatabase() {
             }
         }
 
+        /**
+         * P2.10: Bootstrap sequence pool for admin bucket YE110101 (YE11/YE1101/YE110101).
+         * INSERT OR IGNORE preserves any pools already provisioned via FormPackageManager.
+         * Ranges 1-100 match the values embedded in FormPackageManager.createSamplePackageZip.
+         */
+        val MIGRATION_6_7 = object : androidx.room.migration.Migration(6, 7) {
+            override fun migrate(db: androidx.sqlite.db.SupportSQLiteDatabase) {
+                val now = System.currentTimeMillis()
+                listOf("WL", "SP", "WH").forEach { facilityType ->
+                    db.execSQL(
+                        "INSERT OR IGNORE INTO device_sequence_pools " +
+                        "(adminBucketKey, facilityType, rangeStart, rangeEnd, currentNext, lastAllocatedTimestamp) " +
+                        "VALUES ('YE110101', '$facilityType', 1, 100, 1, $now)"
+                    )
+                }
+            }
+        }
+
         fun getInstance(context: Context): SurveyAppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -80,7 +98,7 @@ abstract class SurveyAppDatabase : RoomDatabase() {
                     SurveyAppDatabase::class.java,
                     "yemen_water_survey_db"
                 )
-                    .addMigrations(MIGRATION_5_6)
+                    .addMigrations(MIGRATION_5_6, MIGRATION_6_7)
                     .build()
                 INSTANCE = instance
                 instance
