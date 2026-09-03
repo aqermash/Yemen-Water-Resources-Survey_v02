@@ -24,4 +24,7 @@ interface SurveyAttachmentDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAttachments(attachments: List<SurveyAttachmentEntity>)
+
+    @Query("DELETE FROM survey_attachments WHERE attachmentId = :attachmentId")
+    suspend fun deleteAttachmentById(attachmentId: String)
 }

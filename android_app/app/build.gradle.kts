@@ -116,6 +116,15 @@ dependencies {
     // Location — GPS capture via FusedLocationProviderClient
     implementation("com.google.android.gms:play-services-location:21.2.0")
 
+    // CameraX — Phase 10A: photo capture pipeline
+    val cameraxVersion = "1.3.1"
+    implementation("androidx.camera:camera-core:$cameraxVersion")
+    implementation("androidx.camera:camera-camera2:$cameraxVersion")
+    implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
+    implementation("androidx.camera:camera-view:$cameraxVersion")
+    // ExifInterface — EXIF rotation correction for CameraX captured photos
+    implementation("androidx.exifinterface:exifinterface:1.3.7")
+
     // Testing
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
