@@ -26,6 +26,12 @@
 | P2.7  | done   | Wells MVP End-to-End: real GPS capture, admin hierarchy binding, Room DB persistence, Records Manager Flow collector, and genuine multi-sheet OOXML Excel export verified on physical hardware (243237ae24017ece). Commits: ceac5de, ecf00d6. |
 | P2.8  | done   | Springs MVP End-to-End: NewSpringSurveyScreen with real GPS (<15m gate), cascading admin selector, SpringDetails fields (springNameAr, flowRateLps, waterClarity, dischargeSeasonality), SurveyType.SPRING / facility code SP, real Room save, Records Manager (badge: عين مياه/Spring), Excel Sheet 2 (العيون والينابيع). Commit: 45b1a9b. |
 | P2.9  | done   | Dams/Water Harvesting MVP End-to-End: NewDamSurveyScreen with real GPS (<15m gate), cascading admin selector, DamDetails fields (damNameAr, structureType, storageCapacityM3, damHeightM, structuralCondition), SurveyType.DAM / facility code WH, real Room save, Records Manager (badge: سد/حاجز/Dam), Excel Sheet 3 (السدود والحواجز). Commit: 0cc6d48. |
+| P10A  | VERIFIED | CameraX photo capture & attachment pipeline. Commit: 3c88e34. Fresh test (testEnumeratorDebugUnitTest) passed 13/13 tests (0 failures) on 2026-09-03. |
+| P12A  | CLOSED   | Form Package Parser & Validator: v6 JSON parsing, metadata validation, choice list loading, admin dataset separation. 11/11 parser tests PASS. |
+| P12B  | CLOSED   | Dynamic Compose Form Renderer: DynamicFormState, QuestionInputComposables, DynamicFormRenderer, Arabic UI, element-level rendering. 17/17 tests PASS. |
+| P13   | CLOSED   | Core Expression Engine: Shunting-Yard parser, evaluator for references, arithmetic, comparisons, logic, XLSForm functions (`selected`, `count-selected`, `if`, `concat`, `regex`). |
+| P13A  | CLOSED   | Architectural Decoupling: Core expression evaluator decoupled from Presentation via `ExpressionEvaluationContext` contract and `RuntimeValue` adapter. 10/10 tests PASS. |
+| P14   | VERIFIED | Dynamic Form Runtime Integration: Form Package identity resolution, dynamic answers persistence to Room (`wellDetailsJson`, `springDetailsJson`, `damDetailsJson`), in-memory calculation evaluation, relevance pruning on save, completion gates (<15m GPS, constraint validation), legacy fallback contract (`formId = WATER_SURVEY_V1`, `formVersion = 1.0`). Enumerator 133/133 PASS, Supervisor 133/133 PASS, both Debug builds PASS. |
 
 ### Locked Finding — Missing Application Entry Point (P2.5)
 
@@ -51,6 +57,50 @@ Every new session (new account, new tool, resumed after any interruption) must, 
 3. If `git status` shows uncommitted changes, or `git log -1` doesn't match the recorded checkpoint hash, explicitly report the discrepancy before proceeding — don't silently assume either the file or the working tree is correct.
 
 ## 5. Last Confirmed Checkpoint
+
+- **P14 Dynamic Form Runtime Integration (Grouped Subsystem Commit):**
+  - **Phases Included:** Phase 12A, Phase 12B, Phase 13, Phase 13A, Phase 14
+- **Date/Session:** `2026-09-06 16:30:00 UTC`
+- **Tool:** Google Antigravity
+- **Verified state:** VERIFIED GREEN (Both Enumerator and Supervisor Flavors Verified)
+- **Fresh Verification — testEnumeratorDebugUnitTest --rerun-tasks:**
+  - `32 actionable tasks: 32 executed`
+  - Total tests: 133 passed, 0 failures, 0 ignored (100% success rate)
+- **Fresh Verification — testSupervisorDebugUnitTest --rerun-tasks:**
+  - `32 actionable tasks: 32 executed`
+  - Total tests: 133 passed, 0 failures, 0 ignored (100% success rate)
+- **Build Verification:**
+  - `.\gradlew.bat assembleEnumeratorDebug` -> BUILD SUCCESSFUL (59s)
+  - `.\gradlew.bat assembleSupervisorDebug` -> BUILD SUCCESSFUL (45s)
+- **Key Architectural Contracts Confirmed:**
+  - Dynamic Form Package Resolution & Lifecycle: Active package binding by survey type, preservation of historical form version on edits.
+  - Legacy Fallback Contract: Unsupervised / legacy survey paths fall back safely to `formId = "WATER_SURVEY_V1"` and `formVersion = "1.0"` when no active package exists.
+  - Expression Engine & Decoupling: Evaluates in-memory calculations and relevance across Strongly-Typed `RuntimeValue` / `ExpressionEvaluationContext` boundary.
+  - Persistence & Gates: Pruning irrelevant answers before Room DB serialization into type JSON columns; strict enforcement of `<15m` GPS gate and constraints on completion, bypassed on draft.
+
+**Next action:** Awaiting user instruction.
+
+---
+
+### Previous Checkpoint (P10A — superseded)
+
+- **P10A CameraX Photo Capture & Attachment Pipeline Commit Hash:**
+  - `3c88e34` — feat(p10a): CameraX photo capture pipeline with attachment persistence
+- **Date/Session:** `2026-09-03 17:15:25 UTC`
+- **Tool:** GitHub Copilot (Kiro/auto)
+- **Verified state:** VERIFIED GREEN (fresh unit test execution — enumeratorDebug variant)
+- **Fresh Verification (2026-09-03) — testEnumeratorDebugUnitTest --rerun-tasks:**
+  - `32 actionable tasks: 32 executed` — no UP-TO-DATE cache; all tasks freshly run
+  - **PhotoCaptureManagerTest:** 8 tests passed, 0 failures, 0 skipped
+  - **AttachmentRepositoryTest:** 2 tests passed, 0 failures, 0 skipped
+  - **PhotoAttachmentViewModelTest:** 3 tests passed, 0 failures, 0 skipped
+  - Total P10A tests: 13 passed, 0 failed, 0 skipped
+  - Fresh XML reports generated at `app/build/test-results/testEnumeratorDebugUnitTest/` timestamp `2026-09-03T17:15:25Z`
+- **Note:** P2.9 and all earlier phases remain verified as previously recorded. The P10A fresh verification covers the enumeratorDebug unit test variant only; no additional physical-device or supervisor-flavor verification was performed for P10A in this session.
+
+---
+
+### Previous Checkpoint (P2.9 — superseded)
 
 - **P2.9 Dams/Water Harvesting MVP Commit Hash:**
   - `0cc6d48` — feat: add water harvesting survey entry screen wired to real GPS and database save

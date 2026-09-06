@@ -77,9 +77,9 @@ data class SurveyRecord(
     val formId: String = "WATER_SURVEY_V1",
     val formVersion: String = "1.0",
     val surveyType: SurveyType,
-    val admin1Pcode: String = "YE11",
-    val admin2Pcode: String = "YE1101",
-    val admin3Pcode: String = "YE110101",
+    val admin1Pcode: String = "",
+    val admin2Pcode: String = "",
+    val admin3Pcode: String = "",
     val villageReferenceId: String? = null,
     val governorateCode: String = admin1Pcode,
     val districtCode: String = admin2Pcode,
@@ -108,5 +108,6 @@ data class SurveyRecord(
     val springDetails: SpringDetails? = null,
     val damDetails: DamDetails? = null,
     val attachments: List<AttachmentInfo> = emptyList(),
-    val adminRefVersionTag: String = "OCHA_YEM_2024_V1"
+    val adminRefVersionTag: String = "OCHA_YEM_2024_V1",
+    val registryCode: String = ""
 )

@@ -3,6 +3,7 @@ package com.yemen.watersurvey.core.form
 import android.content.Context
 import com.yemen.watersurvey.data.dao.DeviceSequenceDao
 import com.yemen.watersurvey.data.dao.FormPackageDao
+import com.yemen.watersurvey.data.dao.SurveyRecordDao
 import com.yemen.watersurvey.data.database.SurveyAppDatabase
 import com.yemen.watersurvey.data.entity.FormPackageEntity
 import com.yemen.watersurvey.domain.model.FormPackage
@@ -25,7 +26,8 @@ import java.util.zip.ZipOutputStream
  * Responsibilities:
  * - Import versioned survey form packages from local storage / zip archive.
  * - Validate required files (metadata.json, form_definition.json, choices.json)
- *   and optional files (official_template.pdf, pdf_mapping.json).
+ *   and optional files (official_template.pdf, pdf_mapping.json, sequence_pool.json).
+ * - Structural validation, element uniqueness, and DAG cycle detection (Phase 12A).
  * - Extract and securely store packages in internal sandboxed storage.
  * - Manage version activation & state persistence in Room database.
  * - 100% offline, zero network or cloud dependency.
@@ -33,7 +35,10 @@ import java.util.zip.ZipOutputStream
 class FormPackageManager(
     private val context: Context,
     private val formPackageDao: FormPackageDao = SurveyAppDatabase.getInstance(context).formPackageDao(),
-    private val deviceSequenceDao: DeviceSequenceDao = SurveyAppDatabase.getInstance(context).deviceSequenceDao()
+    private val deviceSequenceDao: DeviceSequenceDao = SurveyAppDatabase.getInstance(context).deviceSequenceDao(),
+    private val surveyRecordDao: SurveyRecordDao = SurveyAppDatabase.getInstance(context).surveyRecordDao(),
+    private val parser: FormDefinitionParser = FormDefinitionParser(),
+    private val validator: FormPackageValidator = FormPackageValidator(parser)
 ) {
 
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US)
@@ -115,9 +120,6 @@ class FormPackageManager(
                 calculateDirectoryChecksum(targetVersionDir)
             }
 
-            val hasPdfTemplate = File(targetVersionDir, OPTIONAL_TEMPLATE_PDF).exists()
-            val hasPdfMapping = File(targetVersionDir, OPTIONAL_PDF_MAPPING).exists()
-
             // Check if any active version exists for this formId
             val existingActive = formPackageDao.getActivePackageForForm(meta.formId)
             val shouldBeActive = if (existingActive != null) {
@@ -126,21 +128,12 @@ class FormPackageManager(
                 true // Activate if no active package exists for this formId
             }
 
-            val formPackage = FormPackage(
-                formId = meta.formId,
-                version = meta.version,
-                name = meta.name,
-                description = meta.description,
-                publisher = meta.publisher,
-                checksum = checksum,
-                installationDate = nowStr,
+            // Hydrate complete domain model
+            val formPackage = parser.hydratePackageFromDirectory(
+                packageDir = targetVersionDir,
                 isActive = shouldBeActive,
-                packagePath = targetVersionDir.absolutePath,
-                hasFormDefinition = true,
-                hasChoices = true,
-                hasPdfTemplate = hasPdfTemplate,
-                hasPdfMapping = hasPdfMapping,
-                metadataExtra = meta.extraProperties
+                installationDate = nowStr,
+                checksum = checksum
             )
 
             // Persist to Room
@@ -155,25 +148,18 @@ class FormPackageManager(
             val sequencePoolFile = File(targetVersionDir, OPTIONAL_SEQUENCE_POOL)
             if (sequencePoolFile.exists()) {
                 try {
-                    val json = JSONObject(sequencePoolFile.readText())
-                    if (json.has("provisionedPools")) {
-                        val array = json.getJSONArray("provisionedPools")
-                        val pools = mutableListOf<com.yemen.watersurvey.data.entity.DeviceSequencePoolEntity>()
-                        for (i in 0 until array.length()) {
-                            val obj = array.getJSONObject(i)
-                            pools.add(
-                                com.yemen.watersurvey.data.entity.DeviceSequencePoolEntity(
-                                    adminBucketKey = obj.getString("adminBucketKey"),
-                                    facilityType = obj.getString("facilityType"),
-                                    rangeStart = obj.getInt("rangeStart"),
-                                    rangeEnd = obj.getInt("rangeEnd"),
-                                    currentNext = obj.optInt("currentNext", obj.getInt("rangeStart"))
-                                )
+                    val ranges = parser.parseSequencePool(sequencePoolFile.readText())
+                    if (ranges.isNotEmpty()) {
+                        val pools = ranges.map { r ->
+                            com.yemen.watersurvey.data.entity.DeviceSequencePoolEntity(
+                                adminBucketKey = r.adminBucketKey,
+                                facilityType = r.facilityType,
+                                rangeStart = r.rangeStart,
+                                rangeEnd = r.rangeEnd,
+                                currentNext = r.currentNext
                             )
                         }
-                        if (pools.isNotEmpty()) {
-                            deviceSequenceDao.insertOrUpdatePools(pools)
-                        }
+                        deviceSequenceDao.insertOrUpdatePools(pools)
                     }
                 } catch (e: Exception) {
                     // Non-fatal parse warning
@@ -197,140 +183,7 @@ class FormPackageManager(
      * Validates package structure and JSON contents against specification.
      */
     fun validatePackage(packageDir: File): PackageValidationResult {
-        val errors = mutableListOf<String>()
-        val warnings = mutableListOf<String>()
-        val checkedFiles = mutableListOf<String>()
-
-        if (!packageDir.exists() || !packageDir.isDirectory) {
-            return PackageValidationResult(
-                isValid = false,
-                errors = listOf("المجلد المحدد للحزمة غير موجود أو غير صالح: ${packageDir.absolutePath}")
-            )
-        }
-
-        // 1. Validate Required: metadata.json
-        val metadataFile = File(packageDir, REQUIRED_METADATA_FILE)
-        var parsedMetadata: PackageMetadata? = null
-
-        if (!metadataFile.exists()) {
-            errors.add("الملف الإلزامي مفقود: $REQUIRED_METADATA_FILE (بيانات وصف الحزمة)")
-        } else {
-            checkedFiles.add(REQUIRED_METADATA_FILE)
-            try {
-                val json = JSONObject(metadataFile.readText())
-                val formId = json.optString("formId", "").trim()
-                val version = json.optString("version", "").trim()
-                val name = json.optString("name", "").trim()
-                val description = json.optString("description", "").trim()
-                val publisher = json.optString("publisher", "").trim()
-
-                if (formId.isEmpty()) errors.add("حقل 'formId' فارغ أو غير موجود في $REQUIRED_METADATA_FILE")
-                if (version.isEmpty()) errors.add("حقل 'version' فارغ أو غير موجود في $REQUIRED_METADATA_FILE")
-                if (name.isEmpty()) errors.add("حقل 'name' فارغ أو غير موجود في $REQUIRED_METADATA_FILE")
-
-                val extra = mutableMapOf<String, String>()
-                val keys = json.keys()
-                while (keys.hasNext()) {
-                    val k = keys.next()
-                    if (k !in setOf("formId", "version", "name", "description", "publisher")) {
-                        extra[k] = json.optString(k, "")
-                    }
-                }
-
-                if (errors.isEmpty()) {
-                    parsedMetadata = PackageMetadata(
-                        formId = formId,
-                        version = version,
-                        name = name,
-                        description = description,
-                        publisher = publisher.ifBlank { "وزارة المياه والبيئة - اليمن" },
-                        surveyType = json.optString("surveyType", "WELL"),
-                        minAppVersion = json.optString("minAppVersion", "1.0.0"),
-                        targetMinistry = json.optString("targetMinistry", "وزارة المياه والبيئة - الجمهورية اليمنية"),
-                        extraProperties = extra
-                    )
-                }
-            } catch (e: Exception) {
-                errors.add("تنسيق JSON غير صالح في $REQUIRED_METADATA_FILE: ${e.message}")
-            }
-        }
-
-        // 2. Validate Required: form_definition.json
-        val formDefFile = File(packageDir, REQUIRED_FORM_DEF_FILE)
-        if (!formDefFile.exists()) {
-            errors.add("الملف الإلزامي مفقود: $REQUIRED_FORM_DEF_FILE (تعريف أسئلة وحقول الاستمارة)")
-        } else {
-            checkedFiles.add(REQUIRED_FORM_DEF_FILE)
-            try {
-                val content = formDefFile.readText().trim()
-                if (content.startsWith("{")) {
-                    val json = JSONObject(content)
-                    if (!json.has("questions") && !json.has("fields") && !json.has("elements")) {
-                        warnings.add("ملف $REQUIRED_FORM_DEF_FILE لا يحتوي على مصفوفة أسئلة قياسية ('questions')")
-                    }
-                } else if (content.startsWith("[")) {
-                    JSONArray(content)
-                } else {
-                    errors.add("ملف $REQUIRED_FORM_DEF_FILE لا يحتوي على كائن أو مصفوفة JSON صالحة")
-                }
-            } catch (e: Exception) {
-                errors.add("تنسيق JSON غير صالح في $REQUIRED_FORM_DEF_FILE: ${e.message}")
-            }
-        }
-
-        // 3. Validate Required: choices.json
-        val choicesFile = File(packageDir, REQUIRED_CHOICES_FILE)
-        if (!choicesFile.exists()) {
-            errors.add("الملف الإلزامي مفقود: $REQUIRED_CHOICES_FILE (خيارات القوائم المنسدلة والتصنيفات)")
-        } else {
-            checkedFiles.add(REQUIRED_CHOICES_FILE)
-            try {
-                val content = choicesFile.readText().trim()
-                if (content.startsWith("{")) {
-                    JSONObject(content)
-                } else if (content.startsWith("[")) {
-                    JSONArray(content)
-                } else {
-                    errors.add("ملف $REQUIRED_CHOICES_FILE لا يحتوي على كائن أو مصفوفة JSON صالحة")
-                }
-            } catch (e: Exception) {
-                errors.add("تنسيق JSON غير صالح في $REQUIRED_CHOICES_FILE: ${e.message}")
-            }
-        }
-
-        // 4. Validate Optional: official_template.pdf
-        val templatePdf = File(packageDir, OPTIONAL_TEMPLATE_PDF)
-        if (templatePdf.exists()) {
-            checkedFiles.add(OPTIONAL_TEMPLATE_PDF)
-            if (templatePdf.length() == 0L) {
-                warnings.add("ملف $OPTIONAL_TEMPLATE_PDF فارغ (0 بايت)")
-            }
-        }
-
-        // 5. Validate Optional: pdf_mapping.json
-        val pdfMappingFile = File(packageDir, OPTIONAL_PDF_MAPPING)
-        if (pdfMappingFile.exists()) {
-            checkedFiles.add(OPTIONAL_PDF_MAPPING)
-            try {
-                val json = JSONObject(pdfMappingFile.readText())
-                if (!json.has("fields")) {
-                    warnings.add("ملف $OPTIONAL_PDF_MAPPING لا يحتوي على مصفوفة حقول الإحداثيات 'fields'")
-                }
-            } catch (e: Exception) {
-                warnings.add("تنبيه: تنسيق JSON غير قياسي في $OPTIONAL_PDF_MAPPING: ${e.message}")
-            }
-        }
-
-        val checksum = if (errors.isEmpty()) calculateDirectoryChecksum(packageDir) else ""
-
-        return PackageValidationResult(
-            isValid = errors.isEmpty() && parsedMetadata != null,
-            metadata = parsedMetadata,
-            errors = errors,
-            warnings = warnings,
-            checkedFiles = checkedFiles,
-            calculatedChecksum = checksum
-        )
+        return validator.validatePackage(packageDir)
     }
 
     /**
@@ -351,16 +204,118 @@ class FormPackageManager(
     }
 
     /**
-     * Retrieves active package for a given formId.
+     * Retrieves active package for a given formId, fully hydrated from disk.
      */
     suspend fun getActivePackage(formId: String): FormPackage? {
-        return formPackageDao.getActivePackageForForm(formId)?.toDomainModel()
+        val entity = formPackageDao.getActivePackageForForm(formId) ?: return null
+        return hydratePackageEntity(entity)
     }
 
     /**
-     * Deletes a package version from disk and Room database.
+     * Retrieves a specific version of a form package (historical or active), fully hydrated from disk.
+     */
+    suspend fun getPackage(formId: String, version: String): FormPackage? {
+        val entity = formPackageDao.getPackageByVersion(formId, version) ?: return null
+        return hydratePackageEntity(entity)
+    }
+
+    /**
+     * Resolves the active FormPackage for a given SurveyType.
+     *
+     * Contract: prefer the canonical, approved package IDs for the active system package, but also
+     * accept legacy and test packages whose form IDs are normalized to the same facility type.
+     * This keeps the Phase 14 package-aware flow intact while preserving the legacy no-package fallback.
+     */
+    suspend fun getActivePackageForSurveyType(surveyType: com.yemen.watersurvey.domain.model.SurveyType): FormPackage? {
+        val canonicalCandidates = when (surveyType) {
+            com.yemen.watersurvey.domain.model.SurveyType.WELL -> listOf(
+                "yem_water_wells_saadah",
+                "form-well-standard",
+                "well",
+                "water_well"
+            )
+            com.yemen.watersurvey.domain.model.SurveyType.SPRING -> listOf(
+                "yem_water_springs_saadah",
+                "form-spring-standard",
+                "spring",
+                "water_spring"
+            )
+            com.yemen.watersurvey.domain.model.SurveyType.DAM -> listOf(
+                "yem_water_harvesting_saadah",
+                "form-dam-standard",
+                "dam",
+                "water_harvesting"
+            )
+        }
+
+        for (candidate in canonicalCandidates) {
+            val candidateActive = formPackageDao.getActivePackageForForm(candidate)
+            if (candidateActive != null) {
+                return hydratePackageEntity(candidateActive)
+            }
+        }
+
+        val allActive = formPackageDao.getActivePackages()
+        for (pkgEntity in allActive) {
+            val hydrated = hydratePackageEntity(pkgEntity)
+            val matches = when (surveyType) {
+                com.yemen.watersurvey.domain.model.SurveyType.WELL ->
+                    hydrated.formId.contains("well", ignoreCase = true) ||
+                    hydrated.formId.contains("water_well", ignoreCase = true) ||
+                    hydrated.targetFacilityType.equals("WELL", ignoreCase = true) ||
+                    hydrated.targetFacilityType.equals("WL", ignoreCase = true)
+                com.yemen.watersurvey.domain.model.SurveyType.SPRING ->
+                    hydrated.formId.contains("spring", ignoreCase = true) ||
+                    hydrated.formId.contains("water_spring", ignoreCase = true) ||
+                    hydrated.targetFacilityType.equals("SPRING", ignoreCase = true) ||
+                    hydrated.targetFacilityType.equals("SP", ignoreCase = true)
+                com.yemen.watersurvey.domain.model.SurveyType.DAM ->
+                    hydrated.formId.contains("dam", ignoreCase = true) ||
+                    hydrated.formId.contains("harvesting", ignoreCase = true) ||
+                    hydrated.targetFacilityType.equals("DAM", ignoreCase = true) ||
+                    hydrated.targetFacilityType.equals("WATER_HARVESTING", ignoreCase = true) ||
+                    hydrated.targetFacilityType.equals("WH", ignoreCase = true)
+            }
+            if (matches) {
+                return hydrated
+            }
+        }
+        return null
+    }
+
+    private fun hydratePackageEntity(entity: FormPackageEntity): FormPackage {
+        val pkgDir = File(entity.packagePath)
+        return if (pkgDir.exists() && pkgDir.isDirectory) {
+            try {
+                parser.hydratePackageFromDirectory(
+                    packageDir = pkgDir,
+                    isActive = entity.isActive,
+                    installationDate = entity.installationDate,
+                    checksum = entity.checksum
+                )
+            } catch (e: Exception) {
+                entity.toDomainModel()
+            }
+        } else {
+            entity.toDomainModel()
+        }
+    }
+
+    /**
+     * Checks if a form package version is referenced by any existing survey records.
+     */
+    suspend fun isPackageReferencedBySurveys(formId: String, version: String): Boolean {
+        return surveyRecordDao.countSurveysWithFormPackage(formId, version) > 0
+    }
+
+    /**
+     * Deletes a package version from disk and Room database only if it is NOT referenced by any survey records.
+     * Returns false if the package is referenced by existing surveys or does not exist.
      */
     suspend fun deletePackage(formId: String, version: String): Boolean {
+        if (isPackageReferencedBySurveys(formId, version)) {
+            return false
+        }
         val target = formPackageDao.getPackageByVersion(formId, version) ?: return false
         val pkgDir = File(target.packagePath)
         if (pkgDir.exists()) {
@@ -374,27 +329,7 @@ class FormPackageManager(
      * Calculates SHA-256 checksum across all files in a package directory deterministically.
      */
     fun calculateDirectoryChecksum(directory: File): String {
-        if (!directory.exists() || !directory.isDirectory) return ""
-        val digest = MessageDigest.getInstance("SHA-256")
-
-        val files = directory.walkTopDown()
-            .filter { it.isFile }
-            .sortedBy { it.relativeTo(directory).path }
-            .toList()
-
-        for (file in files) {
-            val relativePath = file.relativeTo(directory).path.toByteArray(Charsets.UTF_8)
-            digest.update(relativePath)
-            file.inputStream().use { input ->
-                val buffer = ByteArray(8192)
-                var bytesRead: Int
-                while (input.read(buffer).also { bytesRead = it } != -1) {
-                    digest.update(buffer, 0, bytesRead)
-                }
-            }
-        }
-
-        return digest.digest().joinToString("") { "%02x".format(it) }
+        return validator.calculateDirectoryChecksum(directory)
     }
 
     /**
@@ -458,11 +393,28 @@ class FormPackageManager(
             }
             File(tempFolder, REQUIRED_METADATA_FILE).writeText(metaJson.toString(2))
 
-            // 2. form_definition.json
+            // 2. choices.json
+            val choicesJson = JSONObject().apply {
+                val wellTypes = JSONArray().apply {
+                    put(JSONObject().apply { put("name", "artesian"); put("labelAr", "ارتوازي حفر آلي عميق") })
+                    put(JSONObject().apply { put("name", "dug"); put("labelAr", "بئر يدوي سطحي مفتوح") })
+                    put(JSONObject().apply { put("name", "hybrid"); put("labelAr", "يدوي مطور بمضخة") })
+                }
+                val opStatus = JSONArray().apply {
+                    put(JSONObject().apply { put("name", "active"); put("labelAr", "شغال بنشاط") })
+                    put(JSONObject().apply { put("name", "stopped"); put("labelAr", "متوقف مؤقتاً") })
+                    put(JSONObject().apply { put("name", "abandoned"); put("labelAr", "مهجور / غير صالح") })
+                }
+                put("well_types", wellTypes)
+                put("op_status", opStatus)
+            }
+            File(tempFolder, REQUIRED_CHOICES_FILE).writeText(choicesJson.toString(2))
+
+            // 3. form_definition.json
             val formDefJson = JSONObject().apply {
                 put("formId", formId)
                 put("title", nameAr)
-                val questions = JSONArray().apply {
+                val elements = JSONArray().apply {
                     put(JSONObject().apply {
                         put("name", "well_name")
                         put("type", "text")
@@ -490,26 +442,10 @@ class FormPackageManager(
                         put("required", true)
                     })
                 }
-                put("questions", questions)
+                put("elements", elements)
+                put("questions", elements)
             }
             File(tempFolder, REQUIRED_FORM_DEF_FILE).writeText(formDefJson.toString(2))
-
-            // 3. choices.json
-            val choicesJson = JSONObject().apply {
-                val wellTypes = JSONArray().apply {
-                    put(JSONObject().apply { put("name", "artesian"); put("labelAr", "ارتوازي حفر آلي عميق") })
-                    put(JSONObject().apply { put("name", "dug"); put("labelAr", "بئر يدوي سطحي مفتوح") })
-                    put(JSONObject().apply { put("name", "hybrid"); put("labelAr", "يدوي مطور بمضخة") })
-                }
-                val opStatus = JSONArray().apply {
-                    put(JSONObject().apply { put("name", "active"); put("labelAr", "شغال بنشاط") })
-                    put(JSONObject().apply { put("name", "stopped"); put("labelAr", "متوقف مؤقتاً") })
-                    put(JSONObject().apply { put("name", "abandoned"); put("labelAr", "مهجور / غير صالح") })
-                }
-                put("well_types", wellTypes)
-                put("op_status", opStatus)
-            }
-            File(tempFolder, REQUIRED_CHOICES_FILE).writeText(choicesJson.toString(2))
 
             // 4. pdf_mapping.json
             val pdfMappingJson = JSONObject().apply {
@@ -527,10 +463,6 @@ class FormPackageManager(
             File(tempFolder, OPTIONAL_PDF_MAPPING).writeText(pdfMappingJson.toString(2))
 
             // 5. sequence_pool.json
-            // Real offline sequence pool for the currently active administrative area
-            // (admin1=YE11, admin2=YE1101, admin3=YE110101 -> bucket "YE110101").
-            // Ranges 1-100 per facility type resolve real sequential registry codes
-            // (e.g. YE110101-WL-0001) instead of the PENDING offline fallback.
             val sequencePoolJson = JSONObject().apply {
                 val pools = JSONArray().apply {
                     put(JSONObject().apply {
