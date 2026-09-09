@@ -12,6 +12,9 @@ local.properties
 .externalNativeBuild/
 .cxx/
 
+# Room schema JSONs are tracked for migration validation (do not ignore)
+!**/schemas/
+
 # Environment / secrets
 .env*
 !.env.example

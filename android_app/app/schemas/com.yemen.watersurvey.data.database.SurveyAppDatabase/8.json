@@ -1,0 +1,2352 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 8,
+    "identityHash": "6e6368516b0b3aa5bf6076c904a64280",
+    "entities": [
+      {
+        "tableName": "form_packages",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`package_uid` TEXT NOT NULL, `form_id` TEXT NOT NULL, `version` TEXT NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `publisher` TEXT NOT NULL, `package_path` TEXT NOT NULL, `checksum` TEXT NOT NULL, `is_active` INTEGER NOT NULL, `has_form_definition` INTEGER NOT NULL, `has_choices` INTEGER NOT NULL, `has_pdf_template` INTEGER NOT NULL, `has_pdf_mapping` INTEGER NOT NULL, `installation_date` TEXT NOT NULL, `updated_at` TEXT NOT NULL, PRIMARY KEY(`package_uid`))",
+        "fields": [
+          {
+            "fieldPath": "packageUid",
+            "columnName": "package_uid",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "formId",
+            "columnName": "form_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "version",
+            "columnName": "version",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "publisher",
+            "columnName": "publisher",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "packagePath",
+            "columnName": "package_path",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "checksum",
+            "columnName": "checksum",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isActive",
+            "columnName": "is_active",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hasFormDefinition",
+            "columnName": "has_form_definition",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hasChoices",
+            "columnName": "has_choices",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hasPdfTemplate",
+            "columnName": "has_pdf_template",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hasPdfMapping",
+            "columnName": "has_pdf_mapping",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "installationDate",
+            "columnName": "installation_date",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updated_at",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "package_uid"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_form_packages_form_id_version",
+            "unique": true,
+            "columnNames": [
+              "form_id",
+              "version"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_form_packages_form_id_version` ON `${TABLE_NAME}` (`form_id`, `version`)"
+          },
+          {
+            "name": "index_form_packages_form_id_is_active",
+            "unique": false,
+            "columnNames": [
+              "form_id",
+              "is_active"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_form_packages_form_id_is_active` ON `${TABLE_NAME}` (`form_id`, `is_active`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "survey_records",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`surveyUUID` TEXT NOT NULL, `recordId` TEXT NOT NULL, `registryCode` TEXT NOT NULL, `isRegistryCodePending` INTEGER NOT NULL, `enumeratorCode` TEXT NOT NULL, `formId` TEXT NOT NULL, `formVersion` TEXT NOT NULL, `surveyType` TEXT NOT NULL, `admin1Pcode` TEXT NOT NULL, `admin2Pcode` TEXT NOT NULL, `admin3Pcode` TEXT NOT NULL, `villageReferenceId` TEXT, `governorateCode` TEXT NOT NULL, `districtCode` TEXT NOT NULL, `uzlahCode` TEXT NOT NULL, `villageCode` TEXT NOT NULL, `governorateNameSnapshotAr` TEXT NOT NULL, `districtNameSnapshotAr` TEXT NOT NULL, `subDistrictNameSnapshotAr` TEXT NOT NULL, `villageNameSnapshotAr` TEXT, `isLocalNameOverride` INTEGER NOT NULL, `localOverrideId` TEXT, `enumeratorId` TEXT NOT NULL, `enumeratorUsername` TEXT NOT NULL, `workflowStatus` TEXT NOT NULL, `revisionCount` INTEGER NOT NULL, `createdAt` TEXT NOT NULL, `updatedAt` TEXT NOT NULL, `latitude` REAL, `longitude` REAL, `altitudeM` REAL, `accuracyM` REAL, `gpsQuality` TEXT, `gpsCapturedAt` TEXT, `gpsProvider` TEXT, `gpsResolutionStatus` TEXT NOT NULL, `gpsResolvedAdmin1Pcode` TEXT, `gpsResolvedAdmin2Pcode` TEXT, `gpsResolvedAdmin3Pcode` TEXT, `gpsDistanceToNearestVillageM` REAL, `gpsNearestVillageNameAr` TEXT, `wellDetailsJson` TEXT, `springDetailsJson` TEXT, `damDetailsJson` TEXT, `attachmentsJson` TEXT, `lastModifiedBy` TEXT, `lastSourcePackageId` TEXT, `adminRefVersionTag` TEXT NOT NULL, PRIMARY KEY(`surveyUUID`))",
+        "fields": [
+          {
+            "fieldPath": "surveyUUID",
+            "columnName": "surveyUUID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recordId",
+            "columnName": "recordId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "registryCode",
+            "columnName": "registryCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isRegistryCodePending",
+            "columnName": "isRegistryCodePending",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enumeratorCode",
+            "columnName": "enumeratorCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "formId",
+            "columnName": "formId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "formVersion",
+            "columnName": "formVersion",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "surveyType",
+            "columnName": "surveyType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "admin1Pcode",
+            "columnName": "admin1Pcode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "admin2Pcode",
+            "columnName": "admin2Pcode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "admin3Pcode",
+            "columnName": "admin3Pcode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "villageReferenceId",
+            "columnName": "villageReferenceId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "governorateCode",
+            "columnName": "governorateCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "districtCode",
+            "columnName": "districtCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "uzlahCode",
+            "columnName": "uzlahCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "villageCode",
+            "columnName": "villageCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "governorateNameSnapshotAr",
+            "columnName": "governorateNameSnapshotAr",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "districtNameSnapshotAr",
+            "columnName": "districtNameSnapshotAr",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "subDistrictNameSnapshotAr",
+            "columnName": "subDistrictNameSnapshotAr",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "villageNameSnapshotAr",
+            "columnName": "villageNameSnapshotAr",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isLocalNameOverride",
+            "columnName": "isLocalNameOverride",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "localOverrideId",
+            "columnName": "localOverrideId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "enumeratorId",
+            "columnName": "enumeratorId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enumeratorUsername",
+            "columnName": "enumeratorUsername",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "workflowStatus",
+            "columnName": "workflowStatus",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "revisionCount",
+            "columnName": "revisionCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatedAt",
+            "columnName": "updatedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "latitude",
+            "columnName": "latitude",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "longitude",
+            "columnName": "longitude",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "altitudeM",
+            "columnName": "altitudeM",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "accuracyM",
+            "columnName": "accuracyM",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "gpsQuality",
+            "columnName": "gpsQuality",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "gpsCapturedAt",
+            "columnName": "gpsCapturedAt",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "gpsProvider",
+            "columnName": "gpsProvider",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "gpsResolutionStatus",
+            "columnName": "gpsResolutionStatus",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gpsResolvedAdmin1Pcode",
+            "columnName": "gpsResolvedAdmin1Pcode",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "gpsResolvedAdmin2Pcode",
+            "columnName": "gpsResolvedAdmin2Pcode",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "gpsResolvedAdmin3Pcode",
+            "columnName": "gpsResolvedAdmin3Pcode",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "gpsDistanceToNearestVillageM",
+            "columnName": "gpsDistanceToNearestVillageM",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "gpsNearestVillageNameAr",
+            "columnName": "gpsNearestVillageNameAr",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "wellDetailsJson",
+            "columnName": "wellDetailsJson",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "springDetailsJson",
+            "columnName": "springDetailsJson",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "damDetailsJson",
+            "columnName": "damDetailsJson",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "attachmentsJson",
+            "columnName": "attachmentsJson",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "lastModifiedBy",
+            "columnName": "lastModifiedBy",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "lastSourcePackageId",
+            "columnName": "lastSourcePackageId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "adminRefVersionTag",
+            "columnName": "adminRefVersionTag",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "surveyUUID"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_survey_records_surveyUUID",
+            "unique": true,
+            "columnNames": [
+              "surveyUUID"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_survey_records_surveyUUID` ON `${TABLE_NAME}` (`surveyUUID`)"
+          },
+          {
+            "name": "index_survey_records_recordId",
+            "unique": false,
+            "columnNames": [
+              "recordId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_survey_records_recordId` ON `${TABLE_NAME}` (`recordId`)"
+          },
+          {
+            "name": "index_survey_records_surveyType",
+            "unique": false,
+            "columnNames": [
+              "surveyType"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_survey_records_surveyType` ON `${TABLE_NAME}` (`surveyType`)"
+          },
+          {
+            "name": "index_survey_records_admin1Pcode_admin2Pcode",
+            "unique": false,
+            "columnNames": [
+              "admin1Pcode",
+              "admin2Pcode"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_survey_records_admin1Pcode_admin2Pcode` ON `${TABLE_NAME}` (`admin1Pcode`, `admin2Pcode`)"
+          },
+          {
+            "name": "index_survey_records_governorateCode_districtCode",
+            "unique": false,
+            "columnNames": [
+              "governorateCode",
+              "districtCode"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_survey_records_governorateCode_districtCode` ON `${TABLE_NAME}` (`governorateCode`, `districtCode`)"
+          },
+          {
+            "name": "index_survey_records_workflowStatus",
+            "unique": false,
+            "columnNames": [
+              "workflowStatus"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_survey_records_workflowStatus` ON `${TABLE_NAME}` (`workflowStatus`)"
+          },
+          {
+            "name": "index_survey_records_gpsResolutionStatus",
+            "unique": false,
+            "columnNames": [
+              "gpsResolutionStatus"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_survey_records_gpsResolutionStatus` ON `${TABLE_NAME}` (`gpsResolutionStatus`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "survey_revisions",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`revisionId` TEXT NOT NULL, `surveyUUID` TEXT NOT NULL, `recordId` TEXT NOT NULL, `revisionNumber` INTEGER NOT NULL, `modifiedBy` TEXT NOT NULL, `modifiedAt` TEXT NOT NULL, `reasonForChange` TEXT NOT NULL, `previousStatus` TEXT NOT NULL, `newStatus` TEXT NOT NULL, `changedFieldsJson` TEXT NOT NULL, `snapshotDataJson` TEXT NOT NULL, `sourcePackageId` TEXT, PRIMARY KEY(`revisionId`))",
+        "fields": [
+          {
+            "fieldPath": "revisionId",
+            "columnName": "revisionId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "surveyUUID",
+            "columnName": "surveyUUID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recordId",
+            "columnName": "recordId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "revisionNumber",
+            "columnName": "revisionNumber",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "modifiedBy",
+            "columnName": "modifiedBy",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "modifiedAt",
+            "columnName": "modifiedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "reasonForChange",
+            "columnName": "reasonForChange",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "previousStatus",
+            "columnName": "previousStatus",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "newStatus",
+            "columnName": "newStatus",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "changedFieldsJson",
+            "columnName": "changedFieldsJson",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "snapshotDataJson",
+            "columnName": "snapshotDataJson",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sourcePackageId",
+            "columnName": "sourcePackageId",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "revisionId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_survey_revisions_surveyUUID",
+            "unique": false,
+            "columnNames": [
+              "surveyUUID"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_survey_revisions_surveyUUID` ON `${TABLE_NAME}` (`surveyUUID`)"
+          },
+          {
+            "name": "index_survey_revisions_recordId",
+            "unique": false,
+            "columnNames": [
+              "recordId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_survey_revisions_recordId` ON `${TABLE_NAME}` (`recordId`)"
+          },
+          {
+            "name": "index_survey_revisions_modifiedAt",
+            "unique": false,
+            "columnNames": [
+              "modifiedAt"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_survey_revisions_modifiedAt` ON `${TABLE_NAME}` (`modifiedAt`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "audit_logs",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`logId` TEXT NOT NULL, `surveyUUID` TEXT NOT NULL, `recordId` TEXT NOT NULL, `actionType` TEXT NOT NULL, `actorId` TEXT NOT NULL, `actorRole` TEXT NOT NULL, `timestamp` TEXT NOT NULL, `decisionReason` TEXT NOT NULL, `detailsJson` TEXT NOT NULL, `packageId` TEXT NOT NULL, PRIMARY KEY(`logId`))",
+        "fields": [
+          {
+            "fieldPath": "logId",
+            "columnName": "logId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "surveyUUID",
+            "columnName": "surveyUUID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recordId",
+            "columnName": "recordId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "actionType",
+            "columnName": "actionType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "actorId",
+            "columnName": "actorId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "actorRole",
+            "columnName": "actorRole",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timestamp",
+            "columnName": "timestamp",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "decisionReason",
+            "columnName": "decisionReason",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "detailsJson",
+            "columnName": "detailsJson",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "packageId",
+            "columnName": "packageId",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "logId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_audit_logs_surveyUUID",
+            "unique": false,
+            "columnNames": [
+              "surveyUUID"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_audit_logs_surveyUUID` ON `${TABLE_NAME}` (`surveyUUID`)"
+          },
+          {
+            "name": "index_audit_logs_recordId",
+            "unique": false,
+            "columnNames": [
+              "recordId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_audit_logs_recordId` ON `${TABLE_NAME}` (`recordId`)"
+          },
+          {
+            "name": "index_audit_logs_actionType",
+            "unique": false,
+            "columnNames": [
+              "actionType"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_audit_logs_actionType` ON `${TABLE_NAME}` (`actionType`)"
+          },
+          {
+            "name": "index_audit_logs_timestamp",
+            "unique": false,
+            "columnNames": [
+              "timestamp"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_audit_logs_timestamp` ON `${TABLE_NAME}` (`timestamp`)"
+          },
+          {
+            "name": "index_audit_logs_packageId",
+            "unique": false,
+            "columnNames": [
+              "packageId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_audit_logs_packageId` ON `${TABLE_NAME}` (`packageId`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "survey_attachments",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`attachmentId` TEXT NOT NULL, `surveyUUID` TEXT NOT NULL, `recordId` TEXT NOT NULL, `attachmentType` TEXT NOT NULL, `localFilePath` TEXT NOT NULL, `fileName` TEXT NOT NULL, `fileSizeBytes` INTEGER NOT NULL, `fileSha256` TEXT NOT NULL, `capturedAt` TEXT NOT NULL, `sourcePackageId` TEXT NOT NULL, PRIMARY KEY(`attachmentId`))",
+        "fields": [
+          {
+            "fieldPath": "attachmentId",
+            "columnName": "attachmentId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "surveyUUID",
+            "columnName": "surveyUUID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recordId",
+            "columnName": "recordId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "attachmentType",
+            "columnName": "attachmentType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "localFilePath",
+            "columnName": "localFilePath",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fileName",
+            "columnName": "fileName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fileSizeBytes",
+            "columnName": "fileSizeBytes",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fileSha256",
+            "columnName": "fileSha256",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "capturedAt",
+            "columnName": "capturedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sourcePackageId",
+            "columnName": "sourcePackageId",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "attachmentId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_survey_attachments_surveyUUID",
+            "unique": false,
+            "columnNames": [
+              "surveyUUID"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_survey_attachments_surveyUUID` ON `${TABLE_NAME}` (`surveyUUID`)"
+          },
+          {
+            "name": "index_survey_attachments_recordId",
+            "unique": false,
+            "columnNames": [
+              "recordId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_survey_attachments_recordId` ON `${TABLE_NAME}` (`recordId`)"
+          },
+          {
+            "name": "index_survey_attachments_fileSha256",
+            "unique": false,
+            "columnNames": [
+              "fileSha256"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_survey_attachments_fileSha256` ON `${TABLE_NAME}` (`fileSha256`)"
+          },
+          {
+            "name": "index_survey_attachments_fileName",
+            "unique": false,
+            "columnNames": [
+              "fileName"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_survey_attachments_fileName` ON `${TABLE_NAME}` (`fileName`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "sync_packages",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`packageId` TEXT NOT NULL, `originalFileName` TEXT NOT NULL, `packageFilePath` TEXT NOT NULL, `extractedDirPath` TEXT, `packageSha256` TEXT NOT NULL, `sourceDeviceId` TEXT NOT NULL, `senderUsername` TEXT NOT NULL, `senderRole` TEXT NOT NULL, `governorate` TEXT NOT NULL, `district` TEXT NOT NULL, `exportTimestamp` TEXT NOT NULL, `receivedTimestamp` TEXT NOT NULL, `surveyCount` INTEGER NOT NULL, `attachmentCount` INTEGER NOT NULL, `totalAttachmentSizeBytes` INTEGER NOT NULL, `packageSizeBytes` INTEGER NOT NULL, `state` TEXT NOT NULL, `validationStatus` TEXT NOT NULL, `validationErrorsJson` TEXT NOT NULL, `validationWarningsJson` TEXT NOT NULL, `newRecordsCount` INTEGER NOT NULL, `updatesCount` INTEGER NOT NULL, `conflictsCount` INTEGER NOT NULL, `duplicatesCount` INTEGER NOT NULL, `mergedRecordsCount` INTEGER NOT NULL, `lastReviewedAt` TEXT, `reviewedBy` TEXT, `decisionReason` TEXT, `isArchived` INTEGER NOT NULL, `notes` TEXT, PRIMARY KEY(`packageId`))",
+        "fields": [
+          {
+            "fieldPath": "packageId",
+            "columnName": "packageId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "originalFileName",
+            "columnName": "originalFileName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "packageFilePath",
+            "columnName": "packageFilePath",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "extractedDirPath",
+            "columnName": "extractedDirPath",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "packageSha256",
+            "columnName": "packageSha256",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sourceDeviceId",
+            "columnName": "sourceDeviceId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "senderUsername",
+            "columnName": "senderUsername",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "senderRole",
+            "columnName": "senderRole",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "governorate",
+            "columnName": "governorate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "district",
+            "columnName": "district",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "exportTimestamp",
+            "columnName": "exportTimestamp",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "receivedTimestamp",
+            "columnName": "receivedTimestamp",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "surveyCount",
+            "columnName": "surveyCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "attachmentCount",
+            "columnName": "attachmentCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalAttachmentSizeBytes",
+            "columnName": "totalAttachmentSizeBytes",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "packageSizeBytes",
+            "columnName": "packageSizeBytes",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "state",
+            "columnName": "state",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "validationStatus",
+            "columnName": "validationStatus",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "validationErrorsJson",
+            "columnName": "validationErrorsJson",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "validationWarningsJson",
+            "columnName": "validationWarningsJson",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "newRecordsCount",
+            "columnName": "newRecordsCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updatesCount",
+            "columnName": "updatesCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "conflictsCount",
+            "columnName": "conflictsCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "duplicatesCount",
+            "columnName": "duplicatesCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mergedRecordsCount",
+            "columnName": "mergedRecordsCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastReviewedAt",
+            "columnName": "lastReviewedAt",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "reviewedBy",
+            "columnName": "reviewedBy",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "decisionReason",
+            "columnName": "decisionReason",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isArchived",
+            "columnName": "isArchived",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "packageId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_sync_packages_packageId",
+            "unique": true,
+            "columnNames": [
+              "packageId"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_sync_packages_packageId` ON `${TABLE_NAME}` (`packageId`)"
+          },
+          {
+            "name": "index_sync_packages_packageSha256",
+            "unique": false,
+            "columnNames": [
+              "packageSha256"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_sync_packages_packageSha256` ON `${TABLE_NAME}` (`packageSha256`)"
+          },
+          {
+            "name": "index_sync_packages_state",
+            "unique": false,
+            "columnNames": [
+              "state"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_sync_packages_state` ON `${TABLE_NAME}` (`state`)"
+          },
+          {
+            "name": "index_sync_packages_governorate_district",
+            "unique": false,
+            "columnNames": [
+              "governorate",
+              "district"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_sync_packages_governorate_district` ON `${TABLE_NAME}` (`governorate`, `district`)"
+          },
+          {
+            "name": "index_sync_packages_isArchived",
+            "unique": false,
+            "columnNames": [
+              "isArchived"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_sync_packages_isArchived` ON `${TABLE_NAME}` (`isArchived`)"
+          },
+          {
+            "name": "index_sync_packages_receivedTimestamp",
+            "unique": false,
+            "columnNames": [
+              "receivedTimestamp"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_sync_packages_receivedTimestamp` ON `${TABLE_NAME}` (`receivedTimestamp`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "sync_package_history",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`historyId` TEXT NOT NULL, `packageId` TEXT NOT NULL, `fromState` TEXT NOT NULL, `toState` TEXT NOT NULL, `actorId` TEXT NOT NULL, `actorRole` TEXT NOT NULL, `timestamp` TEXT NOT NULL, `actionDescription` TEXT NOT NULL, `detailsJson` TEXT NOT NULL, PRIMARY KEY(`historyId`))",
+        "fields": [
+          {
+            "fieldPath": "historyId",
+            "columnName": "historyId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "packageId",
+            "columnName": "packageId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fromState",
+            "columnName": "fromState",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "toState",
+            "columnName": "toState",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "actorId",
+            "columnName": "actorId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "actorRole",
+            "columnName": "actorRole",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timestamp",
+            "columnName": "timestamp",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "actionDescription",
+            "columnName": "actionDescription",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "detailsJson",
+            "columnName": "detailsJson",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "historyId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_sync_package_history_packageId",
+            "unique": false,
+            "columnNames": [
+              "packageId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_sync_package_history_packageId` ON `${TABLE_NAME}` (`packageId`)"
+          },
+          {
+            "name": "index_sync_package_history_timestamp",
+            "unique": false,
+            "columnNames": [
+              "timestamp"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_sync_package_history_timestamp` ON `${TABLE_NAME}` (`timestamp`)"
+          },
+          {
+            "name": "index_sync_package_history_toState",
+            "unique": false,
+            "columnNames": [
+              "toState"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_sync_package_history_toState` ON `${TABLE_NAME}` (`toState`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "admin1_governorates",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`admin1Pcode` TEXT NOT NULL, `nameAr` TEXT NOT NULL, `nameEn` TEXT NOT NULL, `nameArTashkeel` TEXT NOT NULL, `source` TEXT NOT NULL, `isActive` INTEGER NOT NULL, `versionTag` TEXT NOT NULL, PRIMARY KEY(`admin1Pcode`))",
+        "fields": [
+          {
+            "fieldPath": "admin1Pcode",
+            "columnName": "admin1Pcode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameAr",
+            "columnName": "nameAr",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameEn",
+            "columnName": "nameEn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameArTashkeel",
+            "columnName": "nameArTashkeel",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "source",
+            "columnName": "source",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isActive",
+            "columnName": "isActive",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "versionTag",
+            "columnName": "versionTag",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "admin1Pcode"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_admin1_governorates_admin1Pcode",
+            "unique": true,
+            "columnNames": [
+              "admin1Pcode"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_admin1_governorates_admin1Pcode` ON `${TABLE_NAME}` (`admin1Pcode`)"
+          },
+          {
+            "name": "index_admin1_governorates_nameAr",
+            "unique": false,
+            "columnNames": [
+              "nameAr"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin1_governorates_nameAr` ON `${TABLE_NAME}` (`nameAr`)"
+          },
+          {
+            "name": "index_admin1_governorates_nameEn",
+            "unique": false,
+            "columnNames": [
+              "nameEn"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin1_governorates_nameEn` ON `${TABLE_NAME}` (`nameEn`)"
+          },
+          {
+            "name": "index_admin1_governorates_isActive",
+            "unique": false,
+            "columnNames": [
+              "isActive"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin1_governorates_isActive` ON `${TABLE_NAME}` (`isActive`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "admin2_districts",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`admin2Pcode` TEXT NOT NULL, `admin1Pcode` TEXT NOT NULL, `nameAr` TEXT NOT NULL, `nameEn` TEXT NOT NULL, `nameArTashkeel` TEXT NOT NULL, `source` TEXT NOT NULL, `isActive` INTEGER NOT NULL, `versionTag` TEXT NOT NULL, PRIMARY KEY(`admin2Pcode`), FOREIGN KEY(`admin1Pcode`) REFERENCES `admin1_governorates`(`admin1Pcode`) ON UPDATE NO ACTION ON DELETE RESTRICT )",
+        "fields": [
+          {
+            "fieldPath": "admin2Pcode",
+            "columnName": "admin2Pcode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "admin1Pcode",
+            "columnName": "admin1Pcode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameAr",
+            "columnName": "nameAr",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameEn",
+            "columnName": "nameEn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameArTashkeel",
+            "columnName": "nameArTashkeel",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "source",
+            "columnName": "source",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isActive",
+            "columnName": "isActive",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "versionTag",
+            "columnName": "versionTag",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "admin2Pcode"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_admin2_districts_admin2Pcode",
+            "unique": true,
+            "columnNames": [
+              "admin2Pcode"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_admin2_districts_admin2Pcode` ON `${TABLE_NAME}` (`admin2Pcode`)"
+          },
+          {
+            "name": "index_admin2_districts_admin1Pcode",
+            "unique": false,
+            "columnNames": [
+              "admin1Pcode"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin2_districts_admin1Pcode` ON `${TABLE_NAME}` (`admin1Pcode`)"
+          },
+          {
+            "name": "index_admin2_districts_nameAr",
+            "unique": false,
+            "columnNames": [
+              "nameAr"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin2_districts_nameAr` ON `${TABLE_NAME}` (`nameAr`)"
+          },
+          {
+            "name": "index_admin2_districts_nameEn",
+            "unique": false,
+            "columnNames": [
+              "nameEn"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin2_districts_nameEn` ON `${TABLE_NAME}` (`nameEn`)"
+          },
+          {
+            "name": "index_admin2_districts_isActive",
+            "unique": false,
+            "columnNames": [
+              "isActive"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin2_districts_isActive` ON `${TABLE_NAME}` (`isActive`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "admin1_governorates",
+            "onDelete": "RESTRICT",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "admin1Pcode"
+            ],
+            "referencedColumns": [
+              "admin1Pcode"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "admin3_uzlahs",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`admin3Pcode` TEXT NOT NULL, `admin2Pcode` TEXT NOT NULL, `admin1Pcode` TEXT NOT NULL, `nameAr` TEXT NOT NULL, `nameEn` TEXT NOT NULL, `nameArTashkeel` TEXT NOT NULL, `source` TEXT NOT NULL, `isActive` INTEGER NOT NULL, `versionTag` TEXT NOT NULL, PRIMARY KEY(`admin3Pcode`), FOREIGN KEY(`admin2Pcode`) REFERENCES `admin2_districts`(`admin2Pcode`) ON UPDATE NO ACTION ON DELETE RESTRICT )",
+        "fields": [
+          {
+            "fieldPath": "admin3Pcode",
+            "columnName": "admin3Pcode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "admin2Pcode",
+            "columnName": "admin2Pcode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "admin1Pcode",
+            "columnName": "admin1Pcode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameAr",
+            "columnName": "nameAr",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameEn",
+            "columnName": "nameEn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameArTashkeel",
+            "columnName": "nameArTashkeel",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "source",
+            "columnName": "source",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isActive",
+            "columnName": "isActive",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "versionTag",
+            "columnName": "versionTag",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "admin3Pcode"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_admin3_uzlahs_admin3Pcode",
+            "unique": true,
+            "columnNames": [
+              "admin3Pcode"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_admin3_uzlahs_admin3Pcode` ON `${TABLE_NAME}` (`admin3Pcode`)"
+          },
+          {
+            "name": "index_admin3_uzlahs_admin2Pcode",
+            "unique": false,
+            "columnNames": [
+              "admin2Pcode"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin3_uzlahs_admin2Pcode` ON `${TABLE_NAME}` (`admin2Pcode`)"
+          },
+          {
+            "name": "index_admin3_uzlahs_admin1Pcode",
+            "unique": false,
+            "columnNames": [
+              "admin1Pcode"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin3_uzlahs_admin1Pcode` ON `${TABLE_NAME}` (`admin1Pcode`)"
+          },
+          {
+            "name": "index_admin3_uzlahs_nameAr",
+            "unique": false,
+            "columnNames": [
+              "nameAr"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin3_uzlahs_nameAr` ON `${TABLE_NAME}` (`nameAr`)"
+          },
+          {
+            "name": "index_admin3_uzlahs_nameEn",
+            "unique": false,
+            "columnNames": [
+              "nameEn"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin3_uzlahs_nameEn` ON `${TABLE_NAME}` (`nameEn`)"
+          },
+          {
+            "name": "index_admin3_uzlahs_isActive",
+            "unique": false,
+            "columnNames": [
+              "isActive"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin3_uzlahs_isActive` ON `${TABLE_NAME}` (`isActive`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "admin2_districts",
+            "onDelete": "RESTRICT",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "admin2Pcode"
+            ],
+            "referencedColumns": [
+              "admin2Pcode"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "admin_villages",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`villageId` TEXT NOT NULL, `admin3Pcode` TEXT, `admin2Pcode` TEXT, `admin1Pcode` TEXT, `nameAr` TEXT NOT NULL, `nameEn` TEXT NOT NULL, `nameArTashkeel` TEXT NOT NULL, `latitude` REAL, `longitude` REAL, `source` TEXT NOT NULL, `mappingStatus` TEXT NOT NULL, `versionTag` TEXT NOT NULL, PRIMARY KEY(`villageId`))",
+        "fields": [
+          {
+            "fieldPath": "villageId",
+            "columnName": "villageId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "admin3Pcode",
+            "columnName": "admin3Pcode",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "admin2Pcode",
+            "columnName": "admin2Pcode",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "admin1Pcode",
+            "columnName": "admin1Pcode",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nameAr",
+            "columnName": "nameAr",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameEn",
+            "columnName": "nameEn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameArTashkeel",
+            "columnName": "nameArTashkeel",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "latitude",
+            "columnName": "latitude",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "longitude",
+            "columnName": "longitude",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "source",
+            "columnName": "source",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mappingStatus",
+            "columnName": "mappingStatus",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "versionTag",
+            "columnName": "versionTag",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "villageId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_admin_villages_villageId",
+            "unique": true,
+            "columnNames": [
+              "villageId"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_admin_villages_villageId` ON `${TABLE_NAME}` (`villageId`)"
+          },
+          {
+            "name": "index_admin_villages_admin3Pcode",
+            "unique": false,
+            "columnNames": [
+              "admin3Pcode"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin_villages_admin3Pcode` ON `${TABLE_NAME}` (`admin3Pcode`)"
+          },
+          {
+            "name": "index_admin_villages_admin2Pcode",
+            "unique": false,
+            "columnNames": [
+              "admin2Pcode"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin_villages_admin2Pcode` ON `${TABLE_NAME}` (`admin2Pcode`)"
+          },
+          {
+            "name": "index_admin_villages_admin1Pcode",
+            "unique": false,
+            "columnNames": [
+              "admin1Pcode"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin_villages_admin1Pcode` ON `${TABLE_NAME}` (`admin1Pcode`)"
+          },
+          {
+            "name": "index_admin_villages_nameAr",
+            "unique": false,
+            "columnNames": [
+              "nameAr"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin_villages_nameAr` ON `${TABLE_NAME}` (`nameAr`)"
+          },
+          {
+            "name": "index_admin_villages_nameEn",
+            "unique": false,
+            "columnNames": [
+              "nameEn"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin_villages_nameEn` ON `${TABLE_NAME}` (`nameEn`)"
+          },
+          {
+            "name": "index_admin_villages_mappingStatus",
+            "unique": false,
+            "columnNames": [
+              "mappingStatus"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin_villages_mappingStatus` ON `${TABLE_NAME}` (`mappingStatus`)"
+          },
+          {
+            "name": "index_admin_villages_latitude_longitude",
+            "unique": false,
+            "columnNames": [
+              "latitude",
+              "longitude"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin_villages_latitude_longitude` ON `${TABLE_NAME}` (`latitude`, `longitude`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "admin_geometry",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`pcode` TEXT NOT NULL, `adminLevel` TEXT NOT NULL, `nameAr` TEXT NOT NULL, `nameEn` TEXT NOT NULL, `minLat` REAL NOT NULL, `maxLat` REAL NOT NULL, `minLon` REAL NOT NULL, `maxLon` REAL NOT NULL, `centroidLat` REAL, `centroidLon` REAL, `geometryJson` TEXT NOT NULL, `source` TEXT NOT NULL, `versionTag` TEXT NOT NULL, PRIMARY KEY(`pcode`))",
+        "fields": [
+          {
+            "fieldPath": "pcode",
+            "columnName": "pcode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "adminLevel",
+            "columnName": "adminLevel",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameAr",
+            "columnName": "nameAr",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nameEn",
+            "columnName": "nameEn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "minLat",
+            "columnName": "minLat",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "maxLat",
+            "columnName": "maxLat",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "minLon",
+            "columnName": "minLon",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "maxLon",
+            "columnName": "maxLon",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "centroidLat",
+            "columnName": "centroidLat",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "centroidLon",
+            "columnName": "centroidLon",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "geometryJson",
+            "columnName": "geometryJson",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "source",
+            "columnName": "source",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "versionTag",
+            "columnName": "versionTag",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "pcode"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_admin_geometry_pcode",
+            "unique": true,
+            "columnNames": [
+              "pcode"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_admin_geometry_pcode` ON `${TABLE_NAME}` (`pcode`)"
+          },
+          {
+            "name": "index_admin_geometry_adminLevel",
+            "unique": false,
+            "columnNames": [
+              "adminLevel"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin_geometry_adminLevel` ON `${TABLE_NAME}` (`adminLevel`)"
+          },
+          {
+            "name": "index_admin_geometry_minLat_maxLat_minLon_maxLon",
+            "unique": false,
+            "columnNames": [
+              "minLat",
+              "maxLat",
+              "minLon",
+              "maxLon"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin_geometry_minLat_maxLat_minLon_maxLon` ON `${TABLE_NAME}` (`minLat`, `maxLat`, `minLon`, `maxLon`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "admin_overrides",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`overrideId` TEXT NOT NULL, `administrativeLevel` TEXT NOT NULL, `officialPcodeOrId` TEXT NOT NULL, `officialNameAr` TEXT NOT NULL, `officialNameEn` TEXT NOT NULL, `localNameAr` TEXT NOT NULL, `localNameEn` TEXT NOT NULL, `changeType` TEXT NOT NULL, `reason` TEXT NOT NULL, `sourceReference` TEXT NOT NULL, `createdBy` TEXT NOT NULL, `createdAt` TEXT NOT NULL, `isApproved` INTEGER NOT NULL, `approvedBy` TEXT, `approvedAt` TEXT, `isActive` INTEGER NOT NULL, PRIMARY KEY(`overrideId`))",
+        "fields": [
+          {
+            "fieldPath": "overrideId",
+            "columnName": "overrideId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "administrativeLevel",
+            "columnName": "administrativeLevel",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "officialPcodeOrId",
+            "columnName": "officialPcodeOrId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "officialNameAr",
+            "columnName": "officialNameAr",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "officialNameEn",
+            "columnName": "officialNameEn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "localNameAr",
+            "columnName": "localNameAr",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "localNameEn",
+            "columnName": "localNameEn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "changeType",
+            "columnName": "changeType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "reason",
+            "columnName": "reason",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sourceReference",
+            "columnName": "sourceReference",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdBy",
+            "columnName": "createdBy",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isApproved",
+            "columnName": "isApproved",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "approvedBy",
+            "columnName": "approvedBy",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "approvedAt",
+            "columnName": "approvedAt",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isActive",
+            "columnName": "isActive",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "overrideId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_admin_overrides_overrideId",
+            "unique": true,
+            "columnNames": [
+              "overrideId"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_admin_overrides_overrideId` ON `${TABLE_NAME}` (`overrideId`)"
+          },
+          {
+            "name": "index_admin_overrides_officialPcodeOrId",
+            "unique": false,
+            "columnNames": [
+              "officialPcodeOrId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin_overrides_officialPcodeOrId` ON `${TABLE_NAME}` (`officialPcodeOrId`)"
+          },
+          {
+            "name": "index_admin_overrides_administrativeLevel",
+            "unique": false,
+            "columnNames": [
+              "administrativeLevel"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin_overrides_administrativeLevel` ON `${TABLE_NAME}` (`administrativeLevel`)"
+          },
+          {
+            "name": "index_admin_overrides_isApproved",
+            "unique": false,
+            "columnNames": [
+              "isApproved"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin_overrides_isApproved` ON `${TABLE_NAME}` (`isApproved`)"
+          },
+          {
+            "name": "index_admin_overrides_isActive",
+            "unique": false,
+            "columnNames": [
+              "isActive"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin_overrides_isActive` ON `${TABLE_NAME}` (`isActive`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "admin_reference_packages",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`packageId` TEXT NOT NULL, `versionTag` TEXT NOT NULL, `releaseDate` TEXT NOT NULL, `authoritativeSource` TEXT NOT NULL, `enrichmentSource` TEXT NOT NULL, `geometrySource` TEXT NOT NULL, `admin1Count` INTEGER NOT NULL, `admin2Count` INTEGER NOT NULL, `admin3Count` INTEGER NOT NULL, `villageCount` INTEGER NOT NULL, `geometryCount` INTEGER NOT NULL, `packageSha256` TEXT NOT NULL, `isActive` INTEGER NOT NULL, `installedAt` TEXT NOT NULL, `installedBy` TEXT NOT NULL, PRIMARY KEY(`packageId`))",
+        "fields": [
+          {
+            "fieldPath": "packageId",
+            "columnName": "packageId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "versionTag",
+            "columnName": "versionTag",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "releaseDate",
+            "columnName": "releaseDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "authoritativeSource",
+            "columnName": "authoritativeSource",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enrichmentSource",
+            "columnName": "enrichmentSource",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "geometrySource",
+            "columnName": "geometrySource",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "admin1Count",
+            "columnName": "admin1Count",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "admin2Count",
+            "columnName": "admin2Count",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "admin3Count",
+            "columnName": "admin3Count",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "villageCount",
+            "columnName": "villageCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "geometryCount",
+            "columnName": "geometryCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "packageSha256",
+            "columnName": "packageSha256",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isActive",
+            "columnName": "isActive",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "installedAt",
+            "columnName": "installedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "installedBy",
+            "columnName": "installedBy",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "packageId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_admin_reference_packages_packageId",
+            "unique": true,
+            "columnNames": [
+              "packageId"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_admin_reference_packages_packageId` ON `${TABLE_NAME}` (`packageId`)"
+          },
+          {
+            "name": "index_admin_reference_packages_versionTag",
+            "unique": false,
+            "columnNames": [
+              "versionTag"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin_reference_packages_versionTag` ON `${TABLE_NAME}` (`versionTag`)"
+          },
+          {
+            "name": "index_admin_reference_packages_isActive",
+            "unique": false,
+            "columnNames": [
+              "isActive"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_admin_reference_packages_isActive` ON `${TABLE_NAME}` (`isActive`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "device_sequence_pools",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`adminBucketKey` TEXT NOT NULL, `facilityType` TEXT NOT NULL, `rangeStart` INTEGER NOT NULL, `rangeEnd` INTEGER NOT NULL, `currentNext` INTEGER NOT NULL, `lastAllocatedTimestamp` INTEGER NOT NULL, PRIMARY KEY(`adminBucketKey`, `facilityType`))",
+        "fields": [
+          {
+            "fieldPath": "adminBucketKey",
+            "columnName": "adminBucketKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "facilityType",
+            "columnName": "facilityType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rangeStart",
+            "columnName": "rangeStart",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rangeEnd",
+            "columnName": "rangeEnd",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currentNext",
+            "columnName": "currentNext",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastAllocatedTimestamp",
+            "columnName": "lastAllocatedTimestamp",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "adminBucketKey",
+            "facilityType"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_device_sequence_pools_adminBucketKey",
+            "unique": false,
+            "columnNames": [
+              "adminBucketKey"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_device_sequence_pools_adminBucketKey` ON `${TABLE_NAME}` (`adminBucketKey`)"
+          },
+          {
+            "name": "index_device_sequence_pools_facilityType",
+            "unique": false,
+            "columnNames": [
+              "facilityType"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_device_sequence_pools_facilityType` ON `${TABLE_NAME}` (`facilityType`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "users",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userId` TEXT NOT NULL, `username` TEXT NOT NULL, `fullNameAr` TEXT NOT NULL, `fullNameEn` TEXT NOT NULL, `role` TEXT NOT NULL, `pinSalt` TEXT NOT NULL, `pinSaltedHash` TEXT NOT NULL, `governorateCode` TEXT, `districtCode` TEXT, `assignedDeviceId` TEXT, `publicKeyBase64` TEXT, `isActive` INTEGER NOT NULL, `provisionedBy` TEXT NOT NULL, `provisionedAt` TEXT NOT NULL, `lastLoginAt` TEXT, `metadataExtraJson` TEXT NOT NULL, PRIMARY KEY(`userId`))",
+        "fields": [
+          {
+            "fieldPath": "userId",
+            "columnName": "userId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "username",
+            "columnName": "username",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fullNameAr",
+            "columnName": "fullNameAr",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fullNameEn",
+            "columnName": "fullNameEn",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "role",
+            "columnName": "role",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pinSalt",
+            "columnName": "pinSalt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pinSaltedHash",
+            "columnName": "pinSaltedHash",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "governorateCode",
+            "columnName": "governorateCode",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "districtCode",
+            "columnName": "districtCode",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "assignedDeviceId",
+            "columnName": "assignedDeviceId",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "publicKeyBase64",
+            "columnName": "publicKeyBase64",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isActive",
+            "columnName": "isActive",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "provisionedBy",
+            "columnName": "provisionedBy",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "provisionedAt",
+            "columnName": "provisionedAt",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastLoginAt",
+            "columnName": "lastLoginAt",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "metadataExtraJson",
+            "columnName": "metadataExtraJson",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "userId"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_users_username",
+            "unique": true,
+            "columnNames": [
+              "username"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_users_username` ON `${TABLE_NAME}` (`username`)"
+          },
+          {
+            "name": "index_users_role",
+            "unique": false,
+            "columnNames": [
+              "role"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_users_role` ON `${TABLE_NAME}` (`role`)"
+          },
+          {
+            "name": "index_users_governorateCode",
+            "unique": false,
+            "columnNames": [
+              "governorateCode"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_users_governorateCode` ON `${TABLE_NAME}` (`governorateCode`)"
+          },
+          {
+            "name": "index_users_districtCode",
+            "unique": false,
+            "columnNames": [
+              "districtCode"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_users_districtCode` ON `${TABLE_NAME}` (`districtCode`)"
+          },
+          {
+            "name": "index_users_isActive",
+            "unique": false,
+            "columnNames": [
+              "isActive"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_users_isActive` ON `${TABLE_NAME}` (`isActive`)"
+          },
+          {
+            "name": "index_users_assignedDeviceId",
+            "unique": false,
+            "columnNames": [
+              "assignedDeviceId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_users_assignedDeviceId` ON `${TABLE_NAME}` (`assignedDeviceId`)"
+          }
+        ],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6e6368516b0b3aa5bf6076c904a64280')"
+    ]
+  }
+}

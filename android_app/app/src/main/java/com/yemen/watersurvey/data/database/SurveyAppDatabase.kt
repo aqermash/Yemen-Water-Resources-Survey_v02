@@ -28,10 +28,11 @@ import com.yemen.watersurvey.data.entity.*
         AdminGeometryEntity::class,
         AdministrativeOverrideEntity::class,
         AdminReferencePackageEntity::class,
-        DeviceSequencePoolEntity::class
+        DeviceSequencePoolEntity::class,
+        UserEntity::class
     ],
-    version = 7,
-    exportSchema = false
+    version = 8,
+    exportSchema = true
 )
 abstract class SurveyAppDatabase : RoomDatabase() {
 
@@ -46,6 +47,7 @@ abstract class SurveyAppDatabase : RoomDatabase() {
     abstract fun administrativeOverrideDao(): AdministrativeOverrideDao
     abstract fun adminReferencePackageDao(): AdminReferencePackageDao
     abstract fun deviceSequenceDao(): DeviceSequenceDao
+    abstract fun userDao(): UserDao
 
     companion object {
         @Volatile
@@ -91,6 +93,42 @@ abstract class SurveyAppDatabase : RoomDatabase() {
             }
         }
 
+        val MIGRATION_7_8 = object : androidx.room.migration.Migration(7, 8) {
+            override fun migrate(db: androidx.sqlite.db.SupportSQLiteDatabase) {
+                db.execSQL("""
+                    CREATE TABLE IF NOT EXISTS `users` (
+                        `userId` TEXT NOT NULL,
+                        `username` TEXT NOT NULL,
+                        `fullNameAr` TEXT NOT NULL,
+                        `fullNameEn` TEXT NOT NULL,
+                        `role` TEXT NOT NULL,
+                        `pinSalt` TEXT NOT NULL,
+                        `pinSaltedHash` TEXT NOT NULL,
+                        `governorateCode` TEXT,
+                        `districtCode` TEXT,
+                        `assignedDeviceId` TEXT,
+                        `publicKeyBase64` TEXT,
+                        `isActive` INTEGER NOT NULL,
+                        `provisionedBy` TEXT NOT NULL,
+                        `provisionedAt` TEXT NOT NULL,
+                        `lastLoginAt` TEXT,
+                        `metadataExtraJson` TEXT NOT NULL,
+                        PRIMARY KEY(`userId`)
+                    )
+                """.trimIndent())
+
+                // Create unique index on login username (case-insensitive in SQLite queries)
+                db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS `index_users_username` ON `users` (`username`)")
+
+                // Create query lookup indices
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_users_role` ON `users` (`role`)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_users_governorateCode` ON `users` (`governorateCode`)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_users_districtCode` ON `users` (`districtCode`)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_users_isActive` ON `users` (`isActive`)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_users_assignedDeviceId` ON `users` (`assignedDeviceId`)")
+            }
+        }
+
         fun getInstance(context: Context): SurveyAppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -98,7 +136,7 @@ abstract class SurveyAppDatabase : RoomDatabase() {
                     SurveyAppDatabase::class.java,
                     "yemen_water_survey_db"
                 )
-                    .addMigrations(MIGRATION_5_6, MIGRATION_6_7)
+                    .addMigrations(MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8)
                     .build()
                 INSTANCE = instance
                 instance
