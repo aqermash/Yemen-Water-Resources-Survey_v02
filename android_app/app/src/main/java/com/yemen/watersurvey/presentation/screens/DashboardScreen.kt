@@ -58,6 +58,22 @@ fun DashboardScreen(
                     Text("مسح بئر جديد (New Well Survey)")
                 }
                 Spacer(modifier = Modifier.height(12.dp))
+                Button(
+                    onClick = { onNavigate(ScreenRoute.NewSpringSurvey) },
+                    modifier = Modifier.fillMaxWidth(0.8f),
+                    colors = ButtonDefaults.buttonColors(containerColor = com.yemen.watersurvey.presentation.theme.Cyan500)
+                ) {
+                    Text("مسح عين / ينبوع جديد (New Spring Survey)", color = com.yemen.watersurvey.presentation.theme.Slate950, fontWeight = FontWeight.Bold)
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+                Button(
+                    onClick = { onNavigate(ScreenRoute.NewDamSurvey) },
+                    modifier = Modifier.fillMaxWidth(0.8f),
+                    colors = ButtonDefaults.buttonColors(containerColor = com.yemen.watersurvey.presentation.theme.Amber600)
+                ) {
+                    Text("مسح سد / حاجز مائي جديد (New Dam Survey)")
+                }
+                Spacer(modifier = Modifier.height(12.dp))
             }
             Button(
                 onClick = { onNavigate(ScreenRoute.SurveyForms) },

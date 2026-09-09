@@ -54,6 +54,7 @@ class SurveySyncExporterTest {
                 enumeratorUsername = "ahmed_enum",
                 workflowStatus = "APPROVED",
                 revisionCount = 2,
+                registryCode = "YE-30-02-01-WL-001",
                 createdAt = "2026-08-14 09:00:00",
                 updatedAt = "2026-08-14 10:00:00",
                 gpsPoint = GpsLocationResult(
@@ -262,6 +263,7 @@ class SurveySyncExporterTest {
             assertEquals("WELL-YE-30-001", firstSurvey.getString("recordId"))
             assertEquals("WELL", firstSurvey.getString("surveyType"))
             assertEquals("APPROVED", firstSurvey.getString("workflowStatus"))
+            assertEquals("YE-30-02-01-WL-001", firstSurvey.getString("registryCode"))
             assertEquals("بئر المقاش الارتوازي", firstSurvey.getJSONObject("wellDetails").getString("wellNameAr"))
 
             // 4. Check revisions.json

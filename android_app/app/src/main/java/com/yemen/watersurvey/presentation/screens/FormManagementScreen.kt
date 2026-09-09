@@ -50,6 +50,7 @@ fun FormManagementScreen(
     var showImportDialog by remember { mutableStateOf(false) }
     var selectedPackageForDetails by remember { mutableStateOf<FormPackage?>(null) }
     var selectedPackageValidation by remember { mutableStateOf<PackageValidationResult?>(null) }
+    var packagePendingDelete by remember { mutableStateOf<FormPackage?>(null) }
 
     fun refreshPackages() {
         coroutineScope.launch {
@@ -268,14 +269,9 @@ fun FormManagementScreen(
                             val pkgDir = File(pkg.packagePath)
                             selectedPackageValidation = packageManager.validatePackage(pkgDir)
                         },
-                        onDelete = {
-                            coroutineScope.launch {
-                                val ok = packageManager.deletePackage(pkg.formId, pkg.version)
-                                if (ok) {
-                                    statusMessage = "تم حذف الحزمة بنجاح"
-                                    isErrorMessage = false
-                                    refreshPackages()
-                                }
+                        onRequestDelete = {
+                            if (!pkg.isActive) {
+                                packagePendingDelete = pkg
                             }
                         }
                     )
@@ -330,6 +326,74 @@ fun FormManagementScreen(
             }
         )
     }
+
+    // C1: Safe delete confirmation — delete only after explicit confirm; active packages blocked
+    packagePendingDelete?.let { pkg ->
+        AlertDialog(
+            onDismissRequest = { packagePendingDelete = null },
+            containerColor = Slate900,
+            shape = RoundedCornerShape(16.dp),
+            title = {
+                Text(
+                    text = "تأكيد حذف الحزمة",
+                    color = Slate100,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            },
+            text = {
+                Text(
+                    text = "هل تريد حذف الحزمة «${pkg.name}» الإصدار ${pkg.version}؟ لا يمكن التراجع عن هذا الإجراء.",
+                    color = Slate300,
+                    fontSize = 12.sp
+                )
+            },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        val target = packagePendingDelete
+                        packagePendingDelete = null
+                        if (target == null || target.isActive) {
+                            if (target?.isActive == true) {
+                                statusMessage = "لا يمكن حذف الإصدار النشط"
+                                isErrorMessage = true
+                            }
+                            return@Button
+                        }
+                        coroutineScope.launch {
+                            if (packageManager.isPackageReferencedBySurveys(target.formId, target.version)) {
+                                statusMessage = "لا يمكن حذف الحزمة: توجد استمارات مسح ميداني محفوظة مرتبطة بهذا الإصدار"
+                                isErrorMessage = true
+                                return@launch
+                            }
+                            val ok = packageManager.deletePackage(target.formId, target.version)
+                            if (ok) {
+                                statusMessage = "تم حذف الحزمة بنجاح"
+                                isErrorMessage = false
+                                refreshPackages()
+                            } else {
+                                statusMessage = "فشل في حذف الحزمة"
+                                isErrorMessage = true
+                            }
+                        }
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = Rose400),
+                    shape = RoundedCornerShape(8.dp)
+                ) {
+                    Text("حذف", color = Slate950, fontWeight = FontWeight.Bold)
+                }
+            },
+            dismissButton = {
+                OutlinedButton(
+                    onClick = { packagePendingDelete = null },
+                    colors = ButtonDefaults.outlinedButtonColors(contentColor = Slate300),
+                    shape = RoundedCornerShape(8.dp)
+                ) {
+                    Text("إلغاء")
+                }
+            }
+        )
+    }
 }
 
 @Composable
@@ -337,7 +401,7 @@ fun PackageCard(
     formPackage: FormPackage,
     onActivate: () -> Unit,
     onViewDetails: () -> Unit,
-    onDelete: () -> Unit
+    onRequestDelete: () -> Unit
 ) {
     Card(
         colors = CardDefaults.cardColors(containerColor = Slate900),
@@ -492,7 +556,7 @@ fun PackageCard(
 
                     if (!formPackage.isActive) {
                         IconButton(
-                            onClick = onDelete,
+                            onClick = onRequestDelete,
                             modifier = Modifier.size(32.dp)
                         ) {
                             Icon(Icons.Default.DeleteOutline, contentDescription = "Delete", tint = Rose400, modifier = Modifier.size(18.dp))

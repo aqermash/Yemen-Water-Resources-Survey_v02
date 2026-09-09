@@ -455,6 +455,7 @@ class SurveySyncExporter(
             put("gpsDistanceToNearestVillageM", record.gpsDistanceToNearestVillageM ?: JSONObject.NULL)
             put("gpsNearestVillageNameAr", record.gpsNearestVillageNameAr ?: JSONObject.NULL)
             put("adminRefVersionTag", record.adminRefVersionTag)
+            put("registryCode", record.registryCode.ifBlank { JSONObject.NULL })
 
             record.gpsPoint?.let { gps ->
                 put("gpsPoint", JSONObject().apply {

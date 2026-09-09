@@ -1,3 +1,18 @@
 {
-    "opencui.opencodeConfigMode": "isolated"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "claudeCode.useCtrlEnterToSend": true,
+    "chat.tools.terminal.autoApprove": {
+        "Test-Path": true,
+        ".\\gradlew.bat": true,
+        "/^python -c \"\nimport zipfile, os\n\nz = zipfile\\.ZipFile\\(r'd:\\\\Dev\\\\Project Yemen Water Survey_v02\\\\yem_water_SurveyFormsX_v5_final\\.zip'\\)\nout = r'd:\\\\Dev\\\\Project Yemen Water Survey_v02\\\\_c5_inspection'\nos\\.makedirs\\(out, exist_ok=True\\)\nz\\.extractall\\(out\\)\nprint\\('Extracted to:', out\\)\n\" 2>&1$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^python -c \"\nimport openpyxl, os\n\nbase = r'd:\\\\Dev\\\\Project Yemen Water Survey_v02\\\\_c5_inspection\\\\yem_water_SurveyFormsX_v6_final'\nfiles = \\{\n  'wells': 'yem_water_wells_refined_saadah_v6\\.xlsx',\n  'springs': 'yem_water_springs_refined_saadah_v6\\.xlsx',\n  'harvesting': 'yem_water_harvesting_refined_saadah_v6\\.xlsx',\n\\}\n\nfor key, fname in files\\.items\\(\\):\n    fpath = os\\.path\\.join\\(base, fname\\)\n    print\\('='\\*80\\)\n    print\\(f'FILE: \\{fname\\}'\\)\n    wb = openpyxl\\.load_workbook\\(fpath, data_only=True\\)\n    print\\(f'Sheets: \\{wb\\.sheetnames\\}'\\)\n    \n    # Survey sheet - print header \\+ all data rows\n    if 'survey' in wb\\.sheetnames:\n        ws = wb\\['survey'\\]\n        print\\(f'--- SURVEY SHEET \\(\\{ws\\.max_row\\} rows x \\{ws\\.max_column\\} cols\\) ---'\\)\n        for i, row in enumerate\\(ws\\.iter_rows\\(values_only=True\\)\\):\n            if i == 0:\n                print\\('HEADERS:', list\\(row\\)\\)\n            print\\(f'ROW\\{i\\+1\\}:', list\\(row\\)\\)\n            if i >= 200:\n                print\\('\\.\\.\\. \\(truncated\\)'\\)\n                break\n    print\\(\\)\n    \n    # Choices sheet\n    if 'choices' in wb\\.sheetnames:\n        ws = wb\\['choices'\\]\n        print\\(f'--- CHOICES SHEET \\(\\{ws\\.max_row\\} rows\\) ---'\\)\n        for i, row in enumerate\\(ws\\.iter_rows\\(values_only=True\\)\\):\n            print\\(f'ROW\\{i\\+1\\}:', list\\(row\\)\\)\n    print\\(\\)\n    \n    # Settings sheet\n    if 'settings' in wb\\.sheetnames:\n        ws = wb\\['settings'\\]\n        print\\(f'--- SETTINGS SHEET ---'\\)\n        for i, row in enumerate\\(ws\\.iter_rows\\(values_only=True\\)\\):\n            print\\(f'ROW\\{i\\+1\\}:', list\\(row\\)\\)\n    print\\(\\)\n    \n    wb\\.close\\(\\)\n\" 2>&1$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "ForEach-Object": true,
+        "Get-FileHash": true
+    }
 }

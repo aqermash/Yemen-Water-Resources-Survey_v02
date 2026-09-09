@@ -145,6 +145,43 @@
   4. **Production Reference Packaging:** Administrative reference packages are versioned (`versionTag`), verified using SHA-256 integrity checksums, and distributed offline via portable files without cloud or network requirements.
 - **Consequences:** Eliminates administrative ambiguity, preserves interoperability with national water cluster standards, accurately reflects field reality via separate override layers, and ensures zero risk of data corruption from unverified administrative claims.
 
+---
+
+## Decision 016: Dynamic XLSForm Engine Integration, Legacy Screen Role, and Expression Engine Baseline
+
+**Date:** 2026-09-07  
+**Status:** Approved  
+**Supersedes:** None  
+**Related Decisions:** Decision 002 (Dynamic XLSForm Form Engine Architecture), Decision 014 (Survey Screen Architecture)
+
+### Context
+Commit `ca51b0e` integrated the dynamic XLSForm-driven form engine (`DynamicSurveyScreen`, `DynamicFormRenderer`, `FormPackageManager`, `ExpressionEvaluatorEngine`) into the application navigation flow (`MainActivity.kt`), routing all survey creation and editing to the dynamic runtime.
+
+Following this integration, an architectural and diagnostic audit was conducted to clarify:
+1. The role of the three legacy hardcoded survey screens (`NewWellSurveyScreen.kt`, `NewSpringSurveyScreen.kt`, `NewDamSurveyScreen.kt`).
+2. The runtime status of the expression evaluator engine and its function support across form schema versions.
+3. The validation state of the dynamic form runtime commit (`ca51b0e`) on top of Database schema v7 (`e7e0778`).
+
+### Decision
+1. **Architectural Target Reaffirmed:** Decision 002 remains the confirmed end-state architecture. The survey workflow is driven by the dynamic XLSForm-driven form engine.
+
+2. **Legacy Screen Role:** The three hardcoded survey screens (`NewWellSurveyScreen.kt`, `NewSpringSurveyScreen.kt`, `NewDamSurveyScreen.kt`) are retained strictly as **transitional reference implementations** and fallback comparisons. They are not active in `MainActivity.kt` navigation.
+
+3. **Authoritative Form Set & Expression Support:**
+   - The authoritative survey definitions are the v7 XLSX forms:
+     - `forms/yem_water_wells_v7.xlsx`
+     - `forms/yem_water_springs_v7.xlsx`
+     - `forms/yem_water_harvesting_v7.xlsx`
+   - The expression evaluator engine (`ExpressionEvaluatorEngine.kt`) supports core arithmetic, comparison, logical operators, variable substitution, and string functions including `concat()`.
+   - String concatenation (`concat()`), which was utilized in historical v6 calculations, is not used in the authoritative v7 forms, but support is retained in the engine.
+
+4. **Validation Status:** Commit `ca51b0e` successfully wires the dynamic form engine to the navigation graph and database layer. Comprehensive field validation, full multi-page widget rendering tests, and supervisor end-to-end operational workflows remain in progress.
+
+### Consequences
+- **Positive:** Clear architectural boundaries between legacy reference code and active dynamic runtime; authoritative form schemas verified at v7; no ambiguity regarding expression engine capabilities.
+- **Negative / Debt:** Unused legacy survey screens remain in the codebase as reference debt until formal deprecation/removal in a future cleanup phase.
+
+
 
 
 

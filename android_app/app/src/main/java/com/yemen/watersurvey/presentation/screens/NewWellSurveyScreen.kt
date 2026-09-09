@@ -6,8 +6,11 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Save
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -23,18 +26,27 @@ import com.yemen.watersurvey.presentation.viewmodel.SurveyViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NewWellSurveyScreen(
+    surveyUUID: String? = null,
     onNavigateBack: () -> Unit = {},
     viewModel: SurveyViewModel = viewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val scrollState = rememberScrollState()
 
+    LaunchedEffect(surveyUUID) {
+        if (surveyUUID != null) {
+            viewModel.loadRecordForEdit(surveyUUID)
+        } else {
+            viewModel.updateSurveyType(SurveyType.WELL)
+        }
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Text(
-                        text = "مسح بئر مياه جديد",
+                        text = if (surveyUUID != null) "تعديل مسح بئر مياه" else "مسح بئر مياه جديد",
                         fontWeight = FontWeight.Bold
                     )
                 },
@@ -55,7 +67,8 @@ fun NewWellSurveyScreen(
         },
         containerColor = Slate950
     ) { paddingValues ->
-        if (uiState.saveSuccess) {
+        if (uiState.saveSuccess || uiState.draftSaveSuccess) {
+            val successText = if (uiState.draftSaveSuccess) "تم حفظ مسودة البئر بنجاح!" else "تم حفظ مسح البئر بنجاح!"
             Box(
                 modifier = Modifier.fillMaxSize().padding(paddingValues),
                 contentAlignment = Alignment.Center
@@ -64,17 +77,17 @@ fun NewWellSurveyScreen(
                     Icon(
                         Icons.Default.Check,
                         contentDescription = null,
-                        tint = Emerald400,
+                        tint = if (uiState.draftSaveSuccess) Amber400 else Emerald400,
                         modifier = Modifier.size(64.dp)
                     )
                     Spacer(modifier = Modifier.height(16.dp))
-                    Text("تم حفظ مسح البئر بنجاح!", color = Slate100, fontSize = 20.sp)
+                    Text(successText, color = Slate100, fontSize = 20.sp, fontWeight = FontWeight.Bold)
                     Spacer(modifier = Modifier.height(24.dp))
                     Button(
                         onClick = onNavigateBack,
-                        colors = ButtonDefaults.buttonColors(containerColor = Emerald600)
+                        colors = ButtonDefaults.buttonColors(containerColor = if (uiState.draftSaveSuccess) Amber600 else Emerald600)
                     ) {
-                        Text("العودة للوحة التحكم")
+                        Text("العودة إلى إدارة السجلات")
                     }
                 }
             }
@@ -92,6 +105,14 @@ fun NewWellSurveyScreen(
                     selector = viewModel.selector,
                     resolver = viewModel.resolver,
                     currentGpsLocation = uiState.gpsLocation,
+                    initialAdmin1Pcode = uiState.admin1Pcode,
+                    initialAdmin2Pcode = uiState.admin2Pcode,
+                    initialAdmin3Pcode = uiState.admin3Pcode,
+                    initialVillageRefId = uiState.villageRefId,
+                    initialSnapshot = uiState.snapshot,
+                    initialCustomVillageName = uiState.snapshot?.villageNameAr,
+                    initialIsOverride = uiState.isLocalOverride,
+                    initialOverrideReason = uiState.overrideReason,
                     onAdministrativeIdentityChanged = { a1, a2, a3, v, snap, over, reason, status, res, gps ->
                         viewModel.updateAdminLocation(a1, a2, a3, v, snap, over, reason, status, res, gps)
                     }
@@ -99,6 +120,8 @@ fun NewWellSurveyScreen(
 
                 // 2. Well Specific Details
                 Card(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp),
                     colors = CardDefaults.cardColors(containerColor = Slate900),
                     border = CardDefaults.outlinedCardBorder().copy(brush = androidx.compose.ui.graphics.SolidColor(Slate800))
                 ) {
@@ -107,7 +130,7 @@ fun NewWellSurveyScreen(
                         verticalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
                         Text(
-                            text = "بيانات البئر الفنية",
+                            text = "البيانات الفنية للبئر",
                             color = Slate100,
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold
@@ -116,7 +139,7 @@ fun NewWellSurveyScreen(
                         OutlinedTextField(
                             value = uiState.wellNameAr,
                             onValueChange = { viewModel.updateWellName(it) },
-                            label = { Text("اسم البئر (بالعربية) *") },
+                            label = { Text("اسم البئر (محلياً)") },
                             modifier = Modifier.fillMaxWidth(),
                             colors = OutlinedTextFieldDefaults.colors(
                                 focusedBorderColor = Emerald500,
@@ -129,7 +152,7 @@ fun NewWellSurveyScreen(
                         OutlinedTextField(
                             value = uiState.wellType,
                             onValueChange = { viewModel.updateWellType(it) },
-                            label = { Text("نوع البئر (يدوي، ارتوازي...) *") },
+                            label = { Text("نوع البئر (ارتوازي، يدوي...)") },
                             modifier = Modifier.fillMaxWidth(),
                             colors = OutlinedTextFieldDefaults.colors(
                                 focusedBorderColor = Emerald500,
@@ -142,7 +165,7 @@ fun NewWellSurveyScreen(
                         OutlinedTextField(
                             value = uiState.wellDepthM,
                             onValueChange = { if (it.isEmpty() || it.toDoubleOrNull() != null) viewModel.updateWellDepth(it) },
-                            label = { Text("عمق البئر (متر) *") },
+                            label = { Text("عمق البئر التقريبي (متر)") },
                             modifier = Modifier.fillMaxWidth(),
                             colors = OutlinedTextFieldDefaults.colors(
                                 focusedBorderColor = Emerald500,
@@ -180,6 +203,14 @@ fun NewWellSurveyScreen(
                     }
                 }
 
+                // 2.5. Photo Attachments
+                PhotoAttachmentSection(
+                    surveyUUID = uiState.surveyUUID,
+                    recordId = uiState.recordId,
+                    viewModel = androidx.lifecycle.viewmodel.compose.viewModel(),
+                    isRecordLoading = uiState.isLoadingRecord
+                )
+
                 if (uiState.error != null) {
                     Text(
                         text = uiState.error!!,
@@ -189,20 +220,45 @@ fun NewWellSurveyScreen(
                     )
                 }
 
-                // 3. Save Action
-                Button(
-                    onClick = { viewModel.saveSurvey() },
-                    modifier = Modifier.fillMaxWidth().height(56.dp),
-                    enabled = !uiState.isSaving && uiState.gpsLocation != null && uiState.gpsLocation!!.accuracyM < 15.0f,
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Emerald600,
-                        disabledContainerColor = Slate800
-                    )
+                // 3. Save Actions: Draft & Final
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    if (uiState.isSaving) {
-                        CircularProgressIndicator(modifier = Modifier.size(24.dp), color = Slate100)
-                    } else {
-                        Text("حفظ مسح البئر الميداني", fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                    // Save as Draft (No GPS gate, incomplete allowed)
+                    OutlinedButton(
+                        onClick = { viewModel.saveAsDraft() },
+                        modifier = Modifier.weight(1f).height(52.dp),
+                        enabled = !uiState.isSaving,
+                        colors = ButtonDefaults.outlinedButtonColors(contentColor = Amber400),
+                        border = CardDefaults.outlinedCardBorder().copy(brush = androidx.compose.ui.graphics.SolidColor(Amber400))
+                    ) {
+                        if (uiState.isSaving) {
+                            CircularProgressIndicator(modifier = Modifier.size(20.dp), color = Amber400)
+                        } else {
+                            Icon(Icons.Default.Save, contentDescription = null, modifier = Modifier.size(18.dp))
+                            Spacer(Modifier.width(6.dp))
+                            Text("حفظ كمسودة", fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                        }
+                    }
+
+                    // Complete / Save Final (Requires GPS < 15m and required fields)
+                    Button(
+                        onClick = { viewModel.saveSurvey() },
+                        modifier = Modifier.weight(1.3f).height(52.dp),
+                        enabled = !uiState.isSaving && uiState.gpsLocation != null && uiState.gpsLocation!!.accuracyM < 15.0f,
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Emerald600,
+                            disabledContainerColor = Slate800
+                        )
+                    ) {
+                        if (uiState.isSaving) {
+                            CircularProgressIndicator(modifier = Modifier.size(20.dp), color = Slate100)
+                        } else {
+                            Icon(Icons.Default.CheckCircle, contentDescription = null, modifier = Modifier.size(18.dp))
+                            Spacer(Modifier.width(6.dp))
+                            Text("إكمال وحفظ المسح", fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                        }
                     }
                 }
                 

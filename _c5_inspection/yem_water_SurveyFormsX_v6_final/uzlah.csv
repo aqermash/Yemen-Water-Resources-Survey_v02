@@ -1,0 +1,2019 @@
+﻿name,label,label_en,district_code,province_code
+YE130121,صنعاء القديمه,Old City,YE1301,YE13
+YE130321,ازال,Azaal,YE1303,YE13
+YE130421,الصافيه,As Safiyah,YE1304,YE13
+YE130521,السبعين,As Sab'in,YE1305,YE13
+YE130221,شعوب,Shu'ub,YE1302,YE13
+YE130621,الوحده,Al Wehdah,YE1306,YE13
+YE130721,التحرير,At Tahrir,YE1307,YE13
+YE130921,الثوره,Ath Thawrah,YE1309,YE13
+YE130821,معين,Ma'in,YE1308,YE13
+YE131021,بني الحارث,Bani Al Harith,YE1310,YE13
+YE131022,سدس الحدود,Suds Al Hudud,YE1310,YE13
+YE131023,الحماء,Al Hama'a,YE1310,YE13
+YE131024,بني جرموز,Bani Jarmuz,YE1310,YE13
+YE230121,ربع همدان,Rub' Hamdan,YE2301,YE23
+YE230123,جشم,Jusham,YE2301,YE23
+YE230124,بني مكرم,Bani Mukaram,YE2301,YE23
+YE230222,عيال عبد الله,Eyal Abdallah,YE2302,YE23
+YE230223,المنصور,Al Mansur,YE2302,YE23
+YE230224,شاكر,Shakir,YE2302,YE23
+YE230225,بيت مران,Bayt Marran,YE2302,YE23
+YE230226,بني حكم,Bani Hakam,YE2302,YE23
+YE230227,الزبيرات,Az Zubayrat,YE2302,YE23
+YE230229,حبار,Habar,YE2302,YE23
+YE230230,زندان,Zindan,YE2302,YE23
+YE230232,شعب,Sha'b,YE2302,YE23
+YE230234,هزم,Hazm,YE2302,YE23
+YE230235,بني مره,Bani Murah,YE2302,YE23
+YE231622,اليمانية السفلى,Al Yamaniyah As Sufla,YE2316,YE23
+YE231623,حضر,Hadar,YE2316,YE23
+YE231624,قروى,Qarawi,YE2316,YE23
+YE231625,سهمان جحانه,Sahman Jihanah,YE2316,YE23
+YE230621,ربع العبس,Rub' Al Abs,YE2306,YE23
+YE230622,وعلان,Wa'lan,YE2306,YE23
+YE230623,الربع الشرقي,Ar Rub' Ash Sharqi,YE2306,YE23
+YE230624,ربع اولاد حسن,Rub' Awlad Hasan,YE2306,YE23
+YE230521,الحمس العدني,Al Hams Al Adani,YE2305,YE23
+YE230522,الخمس الخامس,Al Khums Al Khamis,YE2305,YE23
+YE230523,وادي جبيب,Wadi Jubayb,YE2305,YE23
+YE230524,خمس وادي جناح,Khums Wadi Janah,YE2305,YE23
+YE230525,خمس الوادي الاوسط,Khums Al Wadi Al Awsat,YE2305,YE23
+YE230526,صرفةودجه,Sarfat Wadjah,YE2305,YE23
+YE230527,عناقه,Anaqah,YE2305,YE23
+YE230528,وادي الاجبار,Wadi Al Ajbar,YE2305,YE23
+YE230529,الربع الغربي,Ar Rub' Al Gharbi,YE2305,YE23
+YE230531,الفروات,Al Farwat,YE2305,YE23
+YE230532,قاع الحباب,Qa' Al Habab,YE2305,YE23
+YE231521,اليمانية العليا,Al Yamaniyah Al Olya,YE2315,YE23
+YE231121,متوح,Matuh,YE2311,YE23
+YE231123,بني جربن,Bani Jarban,YE2311,YE23
+YE231124,الجرواح,Al Jirwah,YE2311,YE23
+YE231126,بني عراف,Bani Araf,YE2311,YE23
+YE231127,مدول,Madwal,YE2311,YE23
+YE231128,الطرف,At Taraf,YE2311,YE23
+YE230421,عيال مالك,Eyal Malik,YE2304,YE23
+YE230422,سعوان,Sa'wan,YE2304,YE23
+YE230423,صرف,Sarif,YE2304,YE23
+YE230424,ذى مرمر,Dhi Marmar,YE2304,YE23
+YE230425,عضران,Adran,YE2304,YE23
+YE230426,رجام,Rujam,YE2304,YE23
+YE230427,الشرفه,Ash Shurfah,YE2304,YE23
+YE230428,الابناء,Al Abna'a,YE2304,YE23
+YE230429,الرونه,Ar Rawnah,YE2304,YE23
+YE231321,بني سحام,Bani Siham,YE2313,YE23
+YE231322,بني جبر,Bani Jabr,YE2313,YE23
+YE231323,السهمان,Al Sahman,YE2313,YE23
+YE231324,جبل اللوز,Jabal Al Lawz,YE2313,YE23
+YE231325,قروى الطيال,Qarawi At Tyal,YE2313,YE23
+YE231222,حباب ال حنتش,Habab Aal Hantash,YE2312,YE23
+YE231223,بني شداد,Bani Shaddad,YE2312,YE23
+YE231224,المكير اللغباء,Al Makir Al Laghba'a,YE2312,YE23
+YE231421,بني ضبيان,Bani Dabyan,YE2314,YE23
+YE230927,الجحادب,Al Jahadib,YE2309,YE23
+YE230942,الحطب,Al Hatab,YE2309,YE23
+YE230932,الربع,Ar Rub',YE2309,YE23
+YE230941,السدس,As Suds,YE2309,YE23
+YE230925,الصوفه,As Sufah,YE2309,YE23
+YE230934,العجز,Al Ajz,YE2309,YE23
+YE230943,المحيام,Al Mahyam,YE2309,YE23
+YE230947,بني القلام,Bani Al Qalam,YE2309,YE23
+YE230936,بني بجير,Bani Bajir,YE2309,YE23
+YE230937,بني جحدب,Bani Jahdab,YE2309,YE23
+YE230931,بني سليمان,Bani Sulayman,YE2309,YE23
+YE230951,بني شمهان,Bani Shamhan,YE2309,YE23
+YE230939,بني عروه,Bani orwah,YE2309,YE23
+YE230950,بني فراص,Bani Furas,YE2309,YE23
+YE230946,بني وليد,Bani Walid,YE2309,YE23
+YE230935,بيت ابن مهدي,Bayt Ibn Mahdi,YE2309,YE23
+YE230945,بيت الجريدي,Bayt Al Jaridi,YE2309,YE23
+YE230926,بيت العليي,Bayt Al Ali,YE2309,YE23
+YE230940,جحاله,Jahalah,YE2309,YE23
+YE230929,سحاح,Suhah,YE2309,YE23
+YE230948,سهام,Siham,YE2309,YE23
+YE230949,ضابي سهام,Dabi Siham,YE2309,YE23
+YE230921,مفحق,Mafhaq,YE2309,YE23
+YE230924,وهبي,Wahbi,YE2309,YE23
+YE230930,يادع,Yadi',YE2309,YE23
+YE230938,بني محمد,Bani Mohammad,YE2309,YE23
+YE230923,الاعروش,Al A'rush,YE2309,YE23
+YE230824,الاحبوب,Al Ahbub,YE2308,YE23
+YE230825,الجدعان,Al Jid'an,YE2308,YE23
+YE230821,الحدب,Al Hadab,YE2308,YE23
+YE230827,بلاد القبائل,Bilad Al Qaba'il,YE2308,YE23
+YE230830,بني الحذيفي,Bani Al Hudhayfi,YE2308,YE23
+YE230823,بني السياغ,Bani As Sayagh,YE2308,YE23
+YE230828,بني النمري,Bani An Nimri,YE2308,YE23
+YE230822,بني عمرو,Bani Amr,YE2308,YE23
+YE230826,بني مهلهل,Bani Mihalhal,YE2308,YE23
+YE231021,مناخه,Manakhah,YE2310,YE23
+YE231022,دعوه,Da'wah,YE2310,YE23
+YE231023,بني حسن وحسين,Bani Hasan wa Husayn,YE2310,YE23
+YE231024,بني بره,Bani Barah,YE2310,YE23
+YE231025,بني اسحاق,Bani Ishaq,YE2310,YE23
+YE231026,بني اسماعيل,Bani Isma'il,YE2310,YE23
+YE231027,الاغمور,Al Aghmur,YE2310,YE23
+YE231028,السدس وبني عطاء,As Suds wa Bani Ata'a,YE2310,YE23
+YE231030,المغارب العليا,Al Magharib Al Olya,YE2310,YE23
+YE231031,المغارب السفلى,Al Magharib As Sufla,YE2310,YE23
+YE231032,حصبان,Husban,YE2310,YE23
+YE231033,لهاب,Lahab,YE2310,YE23
+YE231034,اليعابر,Al Ya'abir,YE2310,YE23
+YE231036,بني مقاتل,Bani Muqatil,YE2310,YE23
+YE231037,هوزان,Hawzan,YE2310,YE23
+YE231038,مسار,Masar,YE2310,YE23
+YE230321,عيال صياد,Eyal Sayad,YE2303,YE23
+YE230322,عيال منصور,Eyal Mansur,YE2303,YE23
+YE230323,الحنشات,Al Hanashat,YE2303,YE23
+YE230324,عيال غفير,Eyal Ghafir,YE2303,YE23
+YE230325,مرهبه,Marhabah,YE2303,YE23
+YE230722,ديان,Diyan,YE2307,YE23
+YE230723,جبل النبي شعيب,Jabal An Nabi Shu'ib,YE2307,YE23
+YE230724,العروس,Al Arus,YE2307,YE23
+YE230725,جنب,Janb,YE2307,YE23
+YE230727,شهاب الاسفل,Shihab Al Asfal,YE2307,YE23
+YE230728,شهاب الاعلى,Shihab Al A'la,YE2307,YE23
+YE230731,البرويه,Al Barawiyah,YE2307,YE23
+YE230733,حزة سهمان,Hazzat Sahman,YE2307,YE23
+YE230734,بقلان,Baqlan,YE2307,YE23
+YE240121,دار سعد,Dar Sa'd,YE2401,YE24
+YE240221,الشيخ عثمان,Ash Shaykh Othman,YE2402,YE24
+YE240321,المنصوره,Al Mansurah,YE2403,YE24
+YE240421,البريقه,Al Burayqah,YE2404,YE24
+YE240521,التواهي,At Tawahi,YE2405,YE24
+YE240821,خور مكسر,Khur Maksar,YE2408,YE24
+YE240721,صيره,Sirah,YE2407,YE24
+YE240621,المعلا,Al Mu'alla,YE2406,YE24
+YE181721,بيت الفقيه,Bayt Al Faqih,YE1817,YE18
+YE181722,المجامله,Al Mujamalah,YE1817,YE18
+YE181723,الطرف اليمانى,At Taraf Al Yamani,YE1817,YE18
+YE181724,الطرف الشامي,At Taraf Ash Shami,YE1817,YE18
+YE181725,العماريه,Al Amariyah,YE1817,YE18
+YE181727,بني مقبول,Bani Maqbul,YE1817,YE18
+YE180821,بني محمد,Bani Mohammad,YE1808,YE18
+YE182621,التحيتا,At Tuhayta,YE1826,YE18
+YE182622,الرويه,Ar Rawiyah,YE1826,YE18
+YE182623,المجاهصه,Al Mujahasah,YE1826,YE18
+YE182624,المغرس,Al Maghras,YE1826,YE18
+YE182625,المتينه,Al Matinah,YE1826,YE18
+YE182626,القرشية السفلى,Al Qurshyah As Sufla,YE1826,YE18
+YE182630,جزيرة القرش(اللخم),Al Qirsh Island (Al Lakham),YE1826,YE18
+YE180321,كمران (جزيرة كمران),Kamaran Island,YE1803,YE18
+YE180323,جزيرة جبل الطير,Jabal At Tayr Island,YE1803,YE18
+YE180335,جزيرة عقبان كبير,Aqban Kabir Island,YE1803,YE18
+YE180336,جزيرة البظيع,Al Budhi' Island,YE1803,YE18
+YE182021,الخوخه,Al Khawkhah,YE1820,YE18
+YE182022,دوبله,Dawbalah,YE1820,YE18
+YE182024,جزيرة حنيش الكبرى,Hunaysh Al Kubra Island,YE1820,YE18
+YE182025,جزيرة حنيش الصغرى,Hunaysh As Sughra Island,YE1820,YE18
+YE182033,جزيرة زقر,Zuqar Island,YE1820,YE18
+YE182034,جزيرة سيول حنيش,Siyul Hunaysh Island,YE1820,YE18
+YE182051,جزيرة هيكوك الشرقيه,Haykuk Ash Sharqiyah,YE1820,YE18
+YE181421,الدريهمي,Ad Durayhimi,YE1814,YE18
+YE181422,المنافره,Al Manafirah,YE1814,YE18
+YE181423,المشاقنه,Al Mashaqinah,YE1814,YE18
+YE181424,المساعيد,Al Masa'id,YE1814,YE18
+YE181425,المغالسه,Al Maghalisah,YE1814,YE18
+YE181427,الجحبة العليا,Al Jahbah Al Olya,YE1814,YE18
+YE181428,الزرانيق,Az Zaraniq,YE1814,YE18
+YE181429,الجحبةالسفلى,Al Jahbah As Sufla,YE1814,YE18
+YE181430,جزيرة الطرفة,At Tarfah Island,YE1814,YE18
+YE181431,جزيرة الشعب,Ash Sha'b Island,YE1814,YE18
+YE182232,جزيرة حجرا,Hajraa Island,YE1822,YE18
+YE180221,بني جامع(ربع عدية),Bani Jami' (Rub' Adyah),YE1802,YE18
+YE180222,ربع الحضرمي,Rub' Al Hadrami,YE1802,YE18
+YE180223,ربع الشام,Rub' Ash Sham,YE1802,YE18
+YE180224,مور وربع الوادي,Mur wa Rub' Al Wadi,YE1802,YE18
+YE180226,الزعلية ربع السمعلي,Az Za'liyah Rub' As Sam'ali,YE1802,YE18
+YE180227,الزعلية ربع المحجوب,Az Za'liyah Rub' Al Mahjub,YE1802,YE18
+YE180228,ربع المقرني الزعليه,Rub' Al Maqrani Az Za'liyah,YE1802,YE18
+YE180229,الزعلية ربع عباك,Az Za'liyah Rub' Abak,YE1802,YE18
+YE180230,البعجيه,Al Bu'jyah,YE1802,YE18
+YE180231,ربع الفلو,Rub' Al Flu,YE1802,YE18
+YE180232,ربع الهجن(بني جامع),Rub' Al Hajn (Bani Jami'),YE1802,YE18
+YE180233,الخوبه,Al Khubah,YE1802,YE18
+YE180241,جزيرة تكفاش,Tikfash Island,YE1802,YE18
+YE180247,جزيرة زوربان,Zurban Island,YE1802,YE18
+YE180248,جزيرة الظهائر,Adh Dhaha'ir Island,YE1802,YE18
+YE180249,جزيرة الجوساك,Al Jawsak Island,YE1802,YE18
+YE180251,جزيرة حمر,Humar Island,YE1802,YE18
+YE180253,جزيرة الكوس,Al Kus Island,YE1802,YE18
+YE180254,جزيرة الكوس الصغير,Al Kus As Saghir Island,YE1802,YE18
+YE180255,جزيرة الكتاما,Al Kutama Island,YE1802,YE18
+YE180256,جزيرة المسودك,Al Maswadak Island,YE1802,YE18
+YE180257,جزيرة كدمان الصغير,Kadman As Saghir Island,YE1802,YE18
+YE180258,جزيرة كدمان الكبير,Kadman Al Kabir Island,YE1802,YE18
+YE180259,ربع الدوس,Rub' Ad Dus,YE1802,YE18
+YE180260,جزيرة المرك,Al Mark Island,YE1802,YE18
+YE180266,جزيرة بهيجه,Bahijah Island,YE1802,YE18
+YE180267,جزيرة فراعيه,Fra'yah Island,YE1802,YE18
+YE180269,جزيرة مخيضري,Mukhaydiri Island,YE1802,YE18
+YE180270,جزيرة يُمنى,Yumna Island,YE1802,YE18
+YE180271,جزيرة عنايب,Anayib Island,YE1802,YE18
+YE180272,جزيرة لبوان,Labwan Island,YE1802,YE18
+YE180273,جزيرة انتوفش,Antufish Island,YE1802,YE18
+YE180277,جزيرة دحريمة (دريما),Duhayrimah Island (Drima),YE1802,YE18
+YE182421,زبيد,Zabid,YE1824,YE18
+YE182422,بلاد الرقود,Bilad Al Ruqud,YE1824,YE18
+YE182423,التريبه,At Taribah,YE1824,YE18
+YE182424,القرشية السفلى,Al Qurshyah As Sufla,YE1824,YE18
+YE182425,المحط,Al Mahat,YE1824,YE18
+YE182426,المصاوفه,Al Masawifah,YE1824,YE18
+YE182427,البدوه,Al Badwah,YE1824,YE18
+YE182428,القراشيه,Al Qurashyah,YE1824,YE18
+YE182429,بلاد السلامه,Bilad As Salamah,YE1824,YE18
+YE182430,الحمى,Al Hami,YE1824,YE18
+YE182431,الشباريق,Ash Shabariq,YE1824,YE18
+YE182432,الزريبه,Az Zaribah,YE1824,YE18
+YE182433,محل الشيخ,Mahal Ash Shaykh,YE1824,YE18
+YE182434,القريه,Al Qaryah,YE1824,YE18
+YE182435,الموقر,Al Muqar,YE1824,YE18
+YE182436,الحبيل,Al Habil,YE1824,YE18
+YE182437,محل المبارك,Mahal Al Mubarak,YE1824,YE18
+YE182438,المرشديه,Al Murshadyah,YE1824,YE18
+YE182523,الركب,Ar Rakb,YE1825,YE18
+YE181821,الفواهه,Al Fawahah,YE1818,YE18
+YE181822,المرير,Al Marir,YE1818,YE18
+YE181823,خنه,Khanah,YE1818,YE18
+YE181825,القهراء,Al Qahra'a,YE1818,YE18
+YE181826,الاشاعر,Al Asha'ir,YE1818,YE18
+YE181827,مطاوفة عليا,Mutawafah Olya,YE1818,YE18
+YE181828,الدحابشه,Ad Dahabishah,YE1818,YE18
+YE181829,دباس,Dabas,YE1818,YE18
+YE181830,جزءمن مطاوفة سفلى,Part of Matawifah As Sufla,YE1818,YE18
+YE181831,الخان,Al Khan,YE1818,YE18
+YE181832,الفارسى,Al Farisi,YE1818,YE18
+YE181833,بني حاتم,Bani Hatim,YE1818,YE18
+YE181834,المجارين,Al Majarin,YE1818,YE18
+YE181835,العساكره,Al Asakirah,YE1818,YE18
+YE181836,الكوله,Al Kawlah,YE1818,YE18
+YE181837,الندافا,An Nadafa,YE1818,YE18
+YE181838,المحشور,Al Mahshur,YE1818,YE18
+YE181321,المراوعه,Al Marawi'ah,YE1813,YE18
+YE181322,الكتابية والوعاريه,Al Kitabyah wa Al Wa'ariyah,YE1813,YE18
+YE181323,القطيع,Al Qati',YE1813,YE18
+YE181324,الرقابه,Ar Raqabah,YE1813,YE18
+YE181325,الربصه,Ar Rabsah,YE1813,YE18
+YE181326,القطامله,Al Qutamlah,YE1813,YE18
+YE181327,الدمانيه,Ad Dumaniyah,YE1813,YE18
+YE181328,بني صلاح,Bani Salah,YE1813,YE18
+YE181329,العامرية والدحلي,Al Amiriah wa Ad Duhli,YE1813,YE18
+YE181330,الفلافله,Al Falafilah,YE1813,YE18
+YE182521,المعاصله,Al Ma'silah,YE1825,YE18
+YE182522,العيادية السفلى,Al Ayadiyah As sufla,YE1825,YE18
+YE182524,عقبى وقرة عامر,Oqba wa Qurat Amir,YE1825,YE18
+YE182525,المحارقه,Al Mahariqah,YE1825,YE18
+YE182526,العبادية العليا,Al Abadiyah al Olya,YE1825,YE18
+YE180121,الزهرة ربع الوادي,Az Zuhrah Rub' Al Wadi,YE1801,YE18
+YE180122,الفرانته,Al Farantah,YE1801,YE18
+YE180123,ربع الوسط,Rub' Al Wasat,YE1801,YE18
+YE180124,ربع الشام,Rub' Ash Sham,YE1801,YE18
+YE180125,الربع الشرقي,Ar Rub' Ash Sharqi,YE1801,YE18
+YE180126,الخشم,Al Khushm,YE1801,YE18
+YE180822,المحامده,Al Mahamidah,YE1808,YE18
+YE180823,بني البره,Bani Al Barah,YE1808,YE18
+YE181621,المناصره,Al Manasirah,YE1816,YE18
+YE181622,الوعاريه,Al Wa'ariyah,YE1816,YE18
+YE180721,الزيديه,Az Zaydyah,YE1807,YE18
+YE180722,الحشابره,Al Hashabirah,YE1807,YE18
+YE180723,القباعيه,Al Quba'yah,YE1807,YE18
+YE180724,العطاويه,Al Atawiyah,YE1807,YE18
+YE182321,الحديده,Al Hodeidah,YE1823,YE18
+YE181121,القطعة العليا,Al Qit'ah Al Olya,YE1811,YE18
+YE181122,القطعة السفلى,Al Qit'ah As Sufla,YE1811,YE18
+YE181521,الرامية السفلى,Ar Ramiyah As Sufla,YE1815,YE18
+YE181522,الرامية العليا,Ar Ramiyah Al Olya,YE1815,YE18
+YE180521,ربع القحم,Rub' Al Qahm,YE1805,YE18
+YE182121,الحوك,Al Hawak,YE1821,YE18
+YE180421,الصليف,As Salif,YE1804,YE18
+YE182221,الحديده,Al Hodeidah,YE1822,YE18
+YE181021,باجل,Bajil,YE1810,YE18
+YE181022,الجمادي,Al Jumadi,YE1810,YE18
+YE181023,الخلفيه,Al Khalfiyah,YE1810,YE18
+YE181024,الضامر,Ad Damir,YE1810,YE18
+YE181025,الحضاريه,Al Hadariyah,YE1810,YE18
+YE180921,الجرابح السفلى,Al Jarabih As Sufla,YE1809,YE18
+YE180922,الجرابح العليا,Al Jarabih Al Olya,YE1809,YE18
+YE181921,حيس,Hays,YE1819,YE18
+YE181922,ربع السوق,Rub' As Suq,YE1819,YE18
+YE181923,ربع الحضرمي,Rub' Al Hadrami,YE1819,YE18
+YE181924,ربع المحل,Rub' Al Mahal,YE1819,YE18
+YE180621,كشارب,Kasharib,YE1806,YE18
+YE180623,القوزى,Al Quzi,YE1806,YE18
+YE180624,المهادله,Al Mahadilah,YE1806,YE18
+YE180625,المقاعشه,Al Maqa'ishah,YE1806,YE18
+YE181221,بلاد الشرق,Bilad Ash Sharq,YE1812,YE18
+YE181222,الخزاعي,Al Khuza'i,YE1812,YE18
+YE181223,الموسطة الشرقيه,Al Mawsatah Ash Sharqiyah,YE1812,YE18
+YE181224,الموسطة الغربيه,Al Mawsatah Al Gharbiyah,YE1812,YE18
+YE181227,بلاد الطرف,Bilad At Taraf,YE1812,YE18
+YE200222,سفل جهران,Safl Jahran,YE2002,YE20
+YE200223,المدراج,Al Midraj,YE2002,YE20
+YE200224,علو جهران,Elu Jahran,YE2002,YE20
+YE200521,بني سويد,Bani Suwayd,YE2005,YE20
+YE200522,على الشرقى,Ala Ash Sharqi,YE2005,YE20
+YE200523,السفل,As Safl,YE2005,YE20
+YE200524,هجاره,Hajarah,YE2005,YE20
+YE200525,بني غصين,Bani Ghusayn,YE2005,YE20
+YE200526,رصب,Rassab,YE2005,YE20
+YE200527,المطبابه,Al Mitbabah,YE2005,YE20
+YE200528,الربيعه,Ar Rabi'ah,YE2005,YE20
+YE200529,بني مرتد,Bani Murtad,YE2005,YE20
+YE200530,الصفاء,As Safa'a,YE2005,YE20
+YE200531,على الغربى,Ali Al Gharbi,YE2005,YE20
+YE200532,الشعوب,Ash Shu'ub,YE2005,YE20
+YE200533,القعد,Al Qu'd,YE2005,YE20
+YE200534,الناصفه,An Nasifah,YE2005,YE20
+YE200535,الهادله,Al Hadilah,YE2005,YE20
+YE200536,المقرانه,Al Miqranah,YE2005,YE20
+YE200537,النوبتين,An Nubatayn,YE2005,YE20
+YE200538,القحصه,Al Qahsah,YE2005,YE20
+YE200539,عمر,Omar,YE2005,YE20
+YE200540,التام,At Tam,YE2005,YE20
+YE200541,حويز,Huwayz,YE2005,YE20
+YE200542,الحوادث,Al Hawadith,YE2005,YE20
+YE200543,الشقر وظلمان,Ash Shuqr wa Dhulman,YE2005,YE20
+YE200544,العقدالعالى,Al Aqd Al Aali,YE2005,YE20
+YE200545,العقدالسافل,Al Aqd As Safil,YE2005,YE20
+YE200546,تهيجر,Tahijir,YE2005,YE20
+YE200547,السلف,As Salaf,YE2005,YE20
+YE200548,المقنزعه,Al Muqanza'ah,YE2005,YE20
+YE200549,حمير ابزار,Himyar Abzaz,YE2005,YE20
+YE200551,لكمة بني الجيشي,Lakamat Bani Al Jayshi,YE2005,YE20
+YE200552,يفاعه,Yafa'ah,YE2005,YE20
+YE200554,بني البحري,Bani Al Bahri,YE2005,YE20
+YE200555,جوفه,Jawfah,YE2005,YE20
+YE200556,الذراع,Adh Dhira',YE2005,YE20
+YE200557,بني العراص,Bani Al Arass,YE2005,YE20
+YE200558,بني حسين,Bani Husayn,YE2005,YE20
+YE200559,الشرم السافل,Ash Sharm As Safil,YE2005,YE20
+YE200560,بني رفيع,Bani Rafi',YE2005,YE20
+YE200561,الشرم العالي,Ash Sharm Al Aali,YE2005,YE20
+YE200562,ربيعة بني بحر,Rabi'at Bani Bahr,YE2005,YE20
+YE200563,حلمةوبني ايوب,Halmah wa Bani Ayub,YE2005,YE20
+YE200564,القبل,Al Qabl,YE2005,YE20
+YE200565,بني بعيث,Bani Bu'ayth,YE2005,YE20
+YE200566,بني عبدالصمد,Bani Abdulsamad,YE2005,YE20
+YE200567,بروه,Barwah,YE2005,YE20
+YE200568,بني اسد,Bani Asad,YE2005,YE20
+YE200569,بني عيوه,Bani Aywah,YE2005,YE20
+YE200570,الغربي والطفن,Al Gharbi wa At Tafn,YE2005,YE20
+YE200572,القشب,Al Qushab,YE2005,YE20
+YE200573,الغربى والفجره,Al Gharbi wa Al Fajrah,YE2005,YE20
+YE200574,الشرفى,Ash sharafi,YE2005,YE20
+YE200575,كبيره,Kabirah,YE2005,YE20
+YE200576,ضوره,Dawrah,YE2005,YE20
+YE200577,بني غريب,Bani Gharib,YE2005,YE20
+YE200921,اسبيل,Asbil,YE2009,YE20
+YE200922,الاثلاء,Al Athla'a,YE2009,YE20
+YE200924,عنس السلامه,Ans As Salamah,YE2009,YE20
+YE200121,الكميم,Al Kumaym,YE2001,YE20
+YE200122,طميح,Tumih,YE2001,YE20
+YE200123,بني عيسى حيدبه,Bani Isa,YE2001,YE20
+YE200124,الرشده,Ar Rashdah,YE2001,YE20
+YE200125,نيسان,Nisan,YE2001,YE20
+YE200126,كومان المحرق,Kuman Al Muharraq,YE2001,YE20
+YE200127,اعماس الجبل,A'mas Al Jabal,YE2001,YE20
+YE200128,زراجه,Zurajah,YE2001,YE20
+YE200129,بني قوس,Bani Qaws,YE2001,YE20
+YE200130,الملحاء,Al Malha'a,YE2001,YE20
+YE200131,الشبطان,Ash Shabtan,YE2001,YE20
+YE200132,العابسيه,Al Abasiyah,YE2001,YE20
+YE200133,السواد,As Sawad,YE2001,YE20
+YE200134,الجرده,Al Jardah,YE2001,YE20
+YE200135,كلبة محذره,Kalabat Mahdharah,YE2001,YE20
+YE200136,عبيدة السفلى,Obaydah As sufla,YE2001,YE20
+YE200137,بني جميل,Bani Jamil,YE2001,YE20
+YE200138,اعماس الضلاع,A'mas Ad Dila',YE2001,YE20
+YE200139,بني زيدان,Bani Zaydan,YE2001,YE20
+YE200140,بني عيسى الصهيد,Bani Isa As Suhayd,YE2001,YE20
+YE200141,ثوبان,Thuban,YE2001,YE20
+YE200142,بيت ابو عاطف,Bayt Abu Atif,YE2001,YE20
+YE200143,بني فلاح,Bani Falah,YE2001,YE20
+YE200144,كومان سنامه,Kuman Sinamah,YE2001,YE20
+YE200145,سبلة بني بخيت,Sublat Bani Bukhayt,YE2001,YE20
+YE200146,بني حديجه,Bani Hudayjah,YE2001,YE20
+YE200147,عبيدة العليا,Obaydah Al Olya,YE2001,YE20
+YE200148,النصره,An Nassrah,YE2001,YE20
+YE200149,المغاديه,Al Maghadyah,YE2001,YE20
+YE201021,جبل الدار,Jabal Ad Dar,YE2010,YE20
+YE201022,وادي الحار,Wadi Al Har,YE2010,YE20
+YE201023,سائلة معسج,Sa'lat Ma'saj,YE2010,YE20
+YE201024,يعر,Ya'r,YE2010,YE20
+YE201025,سائلة زبيد,Sa'lat Zabid,YE2010,YE20
+YE201026,جبل زبيد,Jabal Zabid,YE2010,YE20
+YE201027,وادي زبيد,Wadi Zabid,YE2010,YE20
+YE200721,بني غشيم,Bani Ghushaym,YE2007,YE20
+YE200722,اللدول,Al Ladul,YE2007,YE20
+YE200724,بني احمدالعالي,Bani Ahmad Al Aali,YE2007,YE20
+YE200725,الظهره,Adh Dhuhrah,YE2007,YE20
+YE200726,بني حطام,Bani Hutam,YE2007,YE20
+YE200727,الشعيب,Ash Shu'ayb,YE2007,YE20
+YE200728,الاثبوت,Al Athbut,YE2007,YE20
+YE200729,بني حسام,Bani Husam,YE2007,YE20
+YE200730,الاجراف,Al Ajraf,YE2007,YE20
+YE200731,المجوحي,Al Majuhi,YE2007,YE20
+YE200732,بني غليس,Bani Ghulays,YE2007,YE20
+YE200733,القراقره,Al Qaraqirah,YE2007,YE20
+YE200734,بني مزيج,Bani Mazij,YE2007,YE20
+YE200735,طلحه,Talhah,YE2007,YE20
+YE200736,باخش,Bakhish,YE2007,YE20
+YE200737,بني لاهب,Bani Lahib,YE2007,YE20
+YE200738,بني سلمة الشرقي,Bani Salamah Ash Sharqi,YE2007,YE20
+YE200739,الشعاوروالشماعه,Ash Sha'awir wa Ash Shama'ah,YE2007,YE20
+YE200741,بني عبدالله,Bani Abdallah,YE2007,YE20
+YE200742,بني عريف,Bani Arif,YE2007,YE20
+YE200743,بني احمدالسافل,Bani Ahmad As Safil,YE2007,YE20
+YE200745,بني معانس,Bani Mu'anis,YE2007,YE20
+YE200746,جربان,Jarban,YE2007,YE20
+YE200747,بني سواده,Bani Sawadah,YE2007,YE20
+YE200748,بني صالح,Bani salih,YE2007,YE20
+YE200749,بني سعيد,Bani Sa'id,YE2007,YE20
+YE200751,الاثلاث,Al Athlath,YE2007,YE20
+YE200752,بني العزب والاسالمه,Bani Al Azab wa Al Asalimah,YE2007,YE20
+YE200753,بني الشماخ,Bani Ash Shamakh,YE2007,YE20
+YE200754,بني عياش,Bani Ayash,YE2007,YE20
+YE200756,بيت الحيي,Bayt Al Hay,YE2007,YE20
+YE200757,بني الرماد,Bani Ar Ramad,YE2007,YE20
+YE200758,المصباح,Al Misbah,YE2007,YE20
+YE200759,بني مرجف,Bani Marjaf,YE2007,YE20
+YE200760,المغارب,Al Magharib,YE2007,YE20
+YE200761,بني سلمة الغربيه,Bani Salamah Al Gharbiyah,YE2007,YE20
+YE200762,الداشر,Ad Dashir,YE2007,YE20
+YE200763,المجبه,Al Majabah,YE2007,YE20
+YE200764,العارس,Al Aris,YE2007,YE20
+YE200765,شكر,Shukr,YE2007,YE20
+YE200766,قرضان الصنع,Qardan As Sun',YE2007,YE20
+YE200767,ربع المغارم,Rub' Al Magharim,YE2007,YE20
+YE200768,سجير المحاوير,Sujayr Al Mahawir,YE2007,YE20
+YE200769,بني مسعود,Bani Mas'ud,YE2007,YE20
+YE200770,بني موسى,Bani Musa,YE2007,YE20
+YE200771,وادي الخشب,Wadi Al Khashab,YE2007,YE20
+YE200623,الاصلوح,Al Asluh,YE2006,YE20
+YE200624,العتب,Al Atab,YE2006,YE20
+YE200625,الهجره,Al Hijrah,YE2006,YE20
+YE200626,الشراقي,Ash Sharaqi,YE2006,YE20
+YE200627,نعمان,Nu'man,YE2006,YE20
+YE200628,الجراني,Al Jarani,YE2006,YE20
+YE200629,ضلاف,Dulaf,YE2006,YE20
+YE200630,الكلبيين,Al Kalbin,YE2006,YE20
+YE200631,القدمه,Al Qudmah,YE2006,YE20
+YE200632,بهوان,Bahwan,YE2006,YE20
+YE200633,حلبة والمعشار,Halabah wa Mi'shar,YE2006,YE20
+YE200634,قاعده,Qa'idah,YE2006,YE20
+YE200635,كالة والاحيام,Kalah wa Al Ahyam,YE2006,YE20
+YE200636,اجبار عوالي,Ijbar Awali,YE2006,YE20
+YE200637,الشركاء,Ash Shuraka'a,YE2006,YE20
+YE200638,المربعه,Al Murab'ah,YE2006,YE20
+YE200639,الصلول,As Salul,YE2006,YE20
+YE200640,الديادير,Ad Dayadir,YE2006,YE20
+YE200641,محزر,Mahzar,YE2006,YE20
+YE200643,القواتي,Al Quwati,YE2006,YE20
+YE200644,الهتارى,Al Hitari,YE2006,YE20
+YE200645,بني كنداش,Bani Kindash,YE2006,YE20
+YE200646,الموسطه,Al Mawsatah,YE2006,YE20
+YE200647,الجدله,Al Jadlah,YE2006,YE20
+YE200648,ظهر,Dhuhr,YE2006,YE20
+YE200649,العنين,Al Anin,YE2006,YE20
+YE200650,ذى حمد,Dhi Hamd,YE2006,YE20
+YE200651,قشط رماع,Qasht Ruma',YE2006,YE20
+YE200652,بلاد السدح,Bilad As Sadah,YE2006,YE20
+YE200653,المناره,Al Manarah,YE2006,YE20
+YE200654,عراف,Araf,YE2006,YE20
+YE200655,اجبار سوافل,Ijbar Sawafil,YE2006,YE20
+YE200656,يريس,Yaris,YE2006,YE20
+YE200657,بني كنده,Bani Kindah,YE2006,YE20
+YE200658,خدمان,Khadman,YE2006,YE20
+YE200659,مغرم الوسط,Maghram Al Wasat,YE2006,YE20
+YE200660,الغربي العالي,Al Gharbi Al Aali,YE2006,YE20
+YE200661,الغربي السافل,Al Gharbi As Safil,YE2006,YE20
+YE200662,بني الحبيشي,Bani Al Hubayshi,YE2006,YE20
+YE200663,حبر,Habr,YE2006,YE20
+YE200665,ظفران,Dhafran,YE2006,YE20
+YE200666,جبل مطحن,Jabal Matahan,YE2006,YE20
+YE200667,غيثان,Ghaythan,YE2006,YE20
+YE200668,الظاهر,Adh Dhahir,YE2006,YE20
+YE200669,صنوه,Sinwah,YE2006,YE20
+YE200670,البيادع,Al Bayadi',YE2006,YE20
+YE200671,الكلبين الجنوبي,Al Kalbayn Al Janubi,YE2006,YE20
+YE200672,عرف السمينه,Arf As Saminah,YE2006,YE20
+YE200673,بني النمار,Bani An Namar,YE2006,YE20
+YE200674,المحجر,Al Mahjar,YE2006,YE20
+YE200676,الاثلوث,Al Athluth,YE2006,YE20
+YE200677,الشوكاء,Ash Shawka'a,YE2006,YE20
+YE200678,بني المصنف,Bani Al Musanif,YE2006,YE20
+YE200679,الاجعود,Al Aj'ud,YE2006,YE20
+YE200680,بني ربيعه,Bani Rabi'ah,YE2006,YE20
+YE200682,بني حفص,Bani Hafs,YE2006,YE20
+YE200683,شرقي جعر,Sharqi Ja'r,YE2006,YE20
+YE200684,السنه,As Sanah,YE2006,YE20
+YE200685,زاجد,Zajid,YE2006,YE20
+YE200686,الاجبار,Al Ijbar,YE2006,YE20
+YE200687,شرقي كبود,Sharqi Kabud,YE2006,YE20
+YE200688,غربي كبود,Gharbi Kabud,YE2006,YE20
+YE200689,سبن والرقعي,Sabin wa Ar Ruq'i,YE2006,YE20
+YE200690,العول,Al Awl,YE2006,YE20
+YE200691,شجب,Shajb,YE2006,YE20
+YE200692,بني الوائلي,Bani Al Wa'ali,YE2006,YE20
+YE200693,جبل خيور,Jabal Khyur,YE2006,YE20
+YE200321,العدني,Al Adani,YE2003,YE20
+YE200322,شرقي جبل الشرق,Sharqi Jabal Ash Sharq,YE2003,YE20
+YE200323,الظهرة بن قشيب,Adh Dhuhrah bin Qushib,YE2003,YE20
+YE200324,مخلاف الحداء,Mikhlaf Al Hada,YE2003,YE20
+YE200325,مخلاف قران,Mikhlaf Qaran,YE2003,YE20
+YE200326,موسطة جبل الشرق,Mawsatat Jabal Ash Sharq,YE2003,YE20
+YE200327,قبلي بني قشيب,Qibli Bani Qushayb,YE2003,YE20
+YE200328,بني رويه,Bani Rawyah,YE2003,YE20
+YE200329,قرف,Qarf,YE2003,YE20
+YE200330,مغربة بني اليمني,Maghrabat Bani Al Yamani,YE2003,YE20
+YE200331,المعزبه,Al Ma'zabah,YE2003,YE20
+YE200332,دمام,Dimam,YE2003,YE20
+YE200333,الحميطه,Al Humaytah,YE2003,YE20
+YE200334,الجميحه,Al Jumayhah,YE2003,YE20
+YE200335,بني حريش,Bani Huraysh,YE2003,YE20
+YE200336,القاره,Al Qarrah,YE2003,YE20
+YE200337,بني اسعد,Bani As'ad,YE2003,YE20
+YE200338,موسطة بني قشب,Mawsatat Bani Qushayb,YE2003,YE20
+YE201221,الكينعه,Al Kayna'ah,YE2012,YE20
+YE201222,الصيد,As Sayd,YE2012,YE20
+YE201223,الجاهلي,Al Jahili,YE2012,YE20
+YE201224,كهال,Kuhal,YE2012,YE20
+YE201226,ذي حود,Dhi Hud,YE2012,YE20
+YE201227,جبل اسحاق,Jabal Ishaq,YE2012,YE20
+YE201228,ذاهب,Dhahib,YE2012,YE20
+YE201229,عنبان,Anaban,YE2012,YE20
+YE201230,بني الصغير,Bani As Saghir,YE2012,YE20
+YE201231,المجن,Al Majan,YE2012,YE20
+YE201232,الجعافره,Al Ja'afirah,YE2012,YE20
+YE201233,الرعيه,Ar Ra'iyah,YE2012,YE20
+YE201234,ماور,Mawir,YE2012,YE20
+YE201235,بني سلامه,Bani Salamah,YE2012,YE20
+YE201236,المعينه,Al Ma'inah,YE2012,YE20
+YE200421,موشك,Mushik,YE2004,YE20
+YE200422,الجنين العالي,Al Janin Al Aali,YE2004,YE20
+YE200423,الجنين السافل,Al Janin As Safil,YE2004,YE20
+YE200424,حصمان,Hasman,YE2004,YE20
+YE200425,اكمة الفتوح,Akimat Al Fituh,YE2004,YE20
+YE200426,بيت الحجي,Bayt Al Hajji,YE2004,YE20
+YE200427,شجن,Shajan,YE2004,YE20
+YE200428,بيت الجبري,Bayt Al Jabri,YE2004,YE20
+YE200429,معبره,Ma'barah,YE2004,YE20
+YE200430,بني عفير,Bani Ofayr,YE2004,YE20
+YE200431,نجاح,Najah,YE2004,YE20
+YE200433,بني طيبه,Bani Taybah,YE2004,YE20
+YE200434,بيت نصر,Bait Nassr,YE2004,YE20
+YE200435,وثن,Wathan,YE2004,YE20
+YE200436,الشعيبه,Ash Shu'aybah,YE2004,YE20
+YE200437,بني دهيم,Bani Duhaym,YE2004,YE20
+YE200438,الكرابة العليا,Al Karabah Al Olya,YE2004,YE20
+YE200439,قرضان,Qardan,YE2004,YE20
+YE200440,وتيح,Watih,YE2004,YE20
+YE201121,خمس الحقل,Khums Al Haql,YE2011,YE20
+YE201122,خمس الوسط,Khums Al Wasat,YE2011,YE20
+YE201123,القطعه,Al Qit'ah,YE2011,YE20
+YE201124,العارضه,Al Aridah,YE2011,YE20
+YE201125,بكيل,Bakil,YE2011,YE20
+YE201126,خمس حزيم,Khums Hazim,YE2011,YE20
+YE201127,بيت الحجري,Bayt Al Hajri,YE2011,YE20
+YE201128,خمس بني السهاقي,Khums Bani As Suhaqi,YE2011,YE20
+YE201130,حمير,Himyar,YE2011,YE20
+YE201131,بني الشيعى,Bani Ash Shi'i,YE2011,YE20
+YE201132,المرون,Al Marwan,YE2011,YE20
+YE201133,بيت العميسي,Bayt Al Omaysi,YE2011,YE20
+YE201134,ثمانه,Thumanah,YE2011,YE20
+YE201137,احلال,Ihlal,YE2011,YE20
+YE201138,الحبس,Al Habs,YE2011,YE20
+YE201139,ظليم,Dhulaym,YE2011,YE20
+YE201140,يتار,Yatar,YE2011,YE20
+YE201141,الكعب,Al Ka'b,YE2011,YE20
+YE201142,جبل السوق,Jabal As suq,YE2011,YE20
+YE201143,شارح,Sharih,YE2011,YE20
+YE201144,هداد,Hadad,YE2011,YE20
+YE201145,خمس بني فضل,Khums Bani Fadl,YE2011,YE20
+YE201146,عرجز,Arjaz,YE2011,YE20
+YE201147,بني الاشرم,Bani Al Ashram,YE2011,YE20
+YE201149,بيت العنسي,Bayt Al Ansi,YE2011,YE20
+YE201150,الجبل,Al Jabal,YE2011,YE20
+YE201151,الصيح,As Sayh,YE2011,YE20
+YE200821,ذمار,Dhamar,YE2008,YE20
+YE200822,منقذه,Manqadhah,YE2008,YE20
+YE290121,الحرف,Al Harf,YE2901,YE29
+YE290122,خيوان الحمراء,Khaywan Al Hamra'a,YE2901,YE29
+YE290123,وادي عدف,Wadi Adaf,YE2901,YE29
+YE290124,وادي جوفان وحباشه,Wadi Jawfan wa Hubashah,YE2901,YE29
+YE290125,وادى عيان,Wadi Ayan,YE2901,YE29
+YE290126,وادى سفيان,Wadi Sufyan,YE2901,YE29
+YE290127,الحيره,Al Hayrah,YE2901,YE29
+YE290128,العمشيه,Al Amshiyah,YE2901,YE29
+YE290129,السواد,As Sawad,YE2901,YE29
+YE290130,واسط,Wasit,YE2901,YE29
+YE290221,حوث,Huth,YE2902,YE29
+YE290222,ذو عناش,Dhu Anash,YE2902,YE29
+YE290223,السادده,As Sadidah,YE2902,YE29
+YE290224,الخمري,Al Khamri,YE2902,YE29
+YE290225,ذوعيد,Dhu Eid,YE2902,YE29
+YE290226,خراش,Kharash,YE2902,YE29
+YE290227,براوش,Barawish,YE2902,YE29
+YE290228,ذو علي,Dhu Ali,YE2902,YE29
+YE290229,ذو القطيش,Dhu Al Qutaysh,YE2902,YE29
+YE290230,ذوسيله,Dhu Silah,YE2902,YE29
+YE290231,المعامره,Al Ma'amirah,YE2902,YE29
+YE290232,ذى يبل,Dhi Yabil,YE2902,YE29
+YE290233,خيوان,Khaywan,YE2902,YE29
+YE290234,ذو عليان,Dhu Elayan,YE2902,YE29
+YE290235,بوبان,Buban,YE2902,YE29
+YE290321,صدان,Saddan,YE2903,YE29
+YE290322,ذو خيران,Dhu Khayran,YE2903,YE29
+YE290323,ريشان,Rishan,YE2903,YE29
+YE290325,قف ذو هديان,Qaf Dhu Hadyan,YE2903,YE29
+YE290326,قرهد والفردات,Qarhad wa Al Fardat,YE2903,YE29
+YE290327,حاشف,Hashif,YE2903,YE29
+YE290328,دنان,Danan,YE2903,YE29
+YE290329,المعراضة والواسع,Al Mi'radah wa Al Wasi',YE2903,YE29
+YE290330,قاعه,Qa'ah,YE2903,YE29
+YE290425,ذو غيثان,Dhu Ghaythan,YE2904,YE29
+YE290424,البطنه,Al Batnah,YE2904,YE29
+YE290423,الشط,Ash Shat,YE2904,YE29
+YE290422,الغربى,Al Gharbi,YE2904,YE29
+YE290421,القفله,Al Qaflah,YE2904,YE29
+YE290521,شهاره,Shaharah,YE2905,YE29
+YE290522,ذري,Dhari,YE2905,YE29
+YE290523,سيران الشرقي,Sayran Ash Sharqi,YE2905,YE29
+YE290524,سيران الغربي,Sayran Al Gharbi,YE2905,YE29
+YE290621,بني نسر,Bani Nasr,YE2906,YE29
+YE290622,بني عوف,Bani Awf,YE2906,YE29
+YE290623,بني نوف,Bani Nuf,YE2906,YE29
+YE290721,فليح,Fulayh,YE2907,YE29
+YE290722,الذيبه,Adh Dhibah,YE2907,YE29
+YE290723,الغنايا,Al Ghanaya,YE2907,YE29
+YE290724,العجيرات,Al Ojayrat,YE2907,YE29
+YE290823,خميس بني دهش,Khamis Bani Dahsh,YE2908,YE29
+YE290824,خميس حجور,Khamis Hajur,YE2908,YE29
+YE290821,الخميس الواسط,Al Khamis Al Wasit,YE2908,YE29
+YE290822,بني عيد,Bani Eid,YE2908,YE29
+YE291321,ناشر,Nashir,YE2913,YE29
+YE291322,عطيفه,Otayfah,YE2913,YE29
+YE291323,بني منصور,Bani Mansur,YE2913,YE29
+YE291324,ابن احكم,Ibn Ahkum,YE2913,YE29
+YE291922,السنتين والغيل,As Sanatayn wa Al Ghayl,YE2919,YE29
+YE291923,غشم,Ghashm,YE2919,YE29
+YE291924,اهلابا لحسين,Ahlan Bil Husayn,YE2919,YE29
+YE291925,غربان,Ghurban,YE2919,YE29
+YE291926,الجراف,Al Jiraf,YE2919,YE29
+YE290921,سفيان,Sufyan,YE2909,YE29
+YE290922,مرهبه,Marhabah,YE2909,YE29
+YE290923,بني جبر,Bani Jabr,YE2909,YE29
+YE291021,خميس القديمي,Khamis Al Qudaymi,YE2910,YE29
+YE291022,خميس القائفي,Khamis Al Qayfi,YE2910,YE29
+YE291023,خميس حرمل,Khamis Harmal,YE2910,YE29
+YE291024,خميس هراش,Khamis Harash,YE2910,YE29
+YE291025,ثلث الزودي,Thulth Az Zudi,YE2910,YE29
+YE291026,ثلث ضحيان,Thulth Dahyan,YE2910,YE29
+YE291027,ثلث الواسط,Thulth Al Wasit,YE2910,YE29
+YE291028,خميس ابوذيبه,Khamis Abu Dhibah,YE2910,YE29
+YE291121,ذيفان,Dhayfan,YE2911,YE29
+YE291122,ريده,Raydah,YE2911,YE29
+YE291123,حمده,Hamdah,YE2911,YE29
+YE291124,غولة عجيب,Ghulah Ajib,YE2911,YE29
+YE291221,الربع الشرقي,Ar Rub' Ash Sharqi,YE2912,YE29
+YE291222,عيال يحيى,Eyal Yahya,YE2912,YE29
+YE291223,الاكهوم,Al Akhum,YE2912,YE29
+YE291224,الثلث,Ath Thulth,YE2912,YE29
+YE291225,عيال حاتم,Eyal Hatim,YE2912,YE29
+YE291421,بني هنان والبدو,Bani Hanan wa Al Badu,YE2914,YE29
+YE291422,بلاد جنب,Bilad Janb,YE2914,YE29
+YE291423,بني طلق,Bani Talq,YE2914,YE29
+YE291424,الرحبين,Ar Rahabayn,YE2914,YE29
+YE291425,العمريين,Al Amrayin,YE2914,YE29
+YE291428,قطابه,Qatabah,YE2914,YE29
+YE291429,بني جيش الاعلى,Bani Jaysh Al A'la,YE2914,YE29
+YE291430,همل,Hamal,YE2914,YE29
+YE291431,بني جيش الاسفل,Bani Jaysh Al Asfal,YE2914,YE29
+YE291521,عمران,Amran,YE2915,YE29
+YE291522,الاشمور,Al Ashmur,YE2915,YE29
+YE291621,جبل مسور,Jabal Maswar,YE2916,YE29
+YE291622,الرغيل,Ar Rughayl,YE2916,YE29
+YE291624,عيال مومر,Eyal Mumar,YE2916,YE29
+YE291625,وادي عيال علي,Wadi Eyal Ali,YE2916,YE29
+YE291626,قيلاب,Qaylab,YE2916,YE29
+YE291627,بني جسمر,Bani Jasmar,YE2916,YE29
+YE291629,التهام,At Tuham,YE2916,YE29
+YE291630,بني حور,Bani Hur,YE2916,YE29
+YE291631,الجدم,Al Jadm,YE2916,YE29
+YE291632,بني الكريبي,Bani Al Kuraybi,YE2916,YE29
+YE291721,حبابه,Hababah,YE2917,YE29
+YE291722,الخميس,Al Khamis,YE2917,YE29
+YE291723,ثلاء,Thula,YE2917,YE29
+YE291724,الصرم,As Sirm,YE2917,YE29
+YE291725,بني العباس,Bani Al Abas,YE2917,YE29
+YE291726,المصانع,Al Masani',YE2917,YE29
+YE291821,خميس قهال,Khamis Quhal,YE2918,YE29
+YE291822,الراية الوسطى,Ar Rayah Al Wusta,YE2918,YE29
+YE291823,بني حجاج,Bani Hajjaj,YE2918,YE29
+YE291824,بني عبد,Bani Abd,YE2918,YE29
+YE292021,خيار,Khyar,YE2920,YE29
+YE292022,وادعة حاشد,Wadi'ah Hashid,YE2920,YE29
+YE292023,بني قيس,Bani Qays,YE2920,YE29
+YE292025,بني غثيمه,Bani Ghuthaymah,YE2920,YE29
+YE170121,عزمان,Azman,YE1701,YE17
+YE170122,ذو محمد وذو حسين,Dhu Mohammed wa Dhu Husayn,YE1701,YE17
+YE170123,صبران,Sabran,YE1701,YE17
+YE170124,العطن,Al Otn,YE1701,YE17
+YE170125,فاس,Fas,YE1701,YE17
+YE172721,ردمان,Radman,YE1727,YE17
+YE172722,العريف,Al Arif,YE1727,YE17
+YE172723,بني الذواد,Bani Adh Dhuad,YE1727,YE17
+YE172724,جبل نمر,Jabal Namir,YE1727,YE17
+YE172725,بني القدمي,Bani Al Qudami,YE1727,YE17
+YE172726,بني العوام,Bani Al Awam,YE1727,YE17
+YE172728,قطعة الصرابي,Qit'at As Surabi,YE1727,YE17
+YE171021,بني حربي,Bani Harbi,YE1710,YE17
+YE171022,بني ابو هادي والعباد,Bani Abu Hadi wa Al Obad,YE1710,YE17
+YE171024,بني حفيظ والمكارمه,Bani Hafidh wa Al Makarimah,YE1710,YE17
+YE171421,جياح,Jyah,YE1714,YE17
+YE171422,الجوان والقطابيه,Al Juwan wa Al Qatabiyah,YE1714,YE17
+YE171423,بني يعمر,Bani Ya'mur,YE1714,YE17
+YE171425,بني يوس,Bani Yus,YE1714,YE17
+YE172421,ربع مسعود,Rub' Mas'ud,YE1724,YE17
+YE172422,ربع البوني,Rub' Al Buni,YE1724,YE17
+YE172423,ربع هفج,Rub' Hafj,YE1724,YE17
+YE172424,ربع الشمري,Rub' Ash Shamri,YE1724,YE17
+YE170921,بني كعب,Bani Ka'b,YE1709,YE17
+YE170922,افصر,Afsar,YE1709,YE17
+YE170924,نوسان,Nusan,YE1709,YE17
+YE170925,مدوم,Madwam,YE1709,YE17
+YE171822,عزان,Azzan,YE1718,YE17
+YE171823,بني الطربى,Bani At Tarabi,YE1718,YE17
+YE171824,بني عشب,Bani Oshb,YE1718,YE17
+YE171825,قيدان,Qaydan,YE1718,YE17
+YE171826,الدقيمي,Ad Duqimi,YE1718,YE17
+YE171827,بني موهب,Bani Mawhab,YE1718,YE17
+YE171828,عفار,Afar,YE1718,YE17
+YE171122,مسروح,Masruh,YE1711,YE17
+YE171123,بني حمله,Bani Hamlah,YE1711,YE17
+YE171124,شرقي الخميسين,Sharqi Al Khamisin,YE1711,YE17
+YE171125,غربى الخميسين,Gharbi Al Khamisin,YE1711,YE17
+YE172921,هربه,Harbah,YE1729,YE17
+YE172922,جبل عيان,Jabal Ayan,YE1729,YE17
+YE172923,المعمري,Al Mi'mari,YE1729,YE17
+YE172924,بني علي,Bani Ali,YE1729,YE17
+YE172925,الغزي,Al Ghuzi,YE1729,YE17
+YE172926,النفيش,An Nafish,YE1729,YE17
+YE172927,خولان,Khawlan,YE1729,YE17
+YE172823,حملان,Hamlan,YE1728,YE17
+YE172824,عبس,Abs,YE1728,YE17
+YE172821,مدينة حجه,Hajjah City,YE1728,YE17
+YE171321,بني جل,Bani Jil,YE1713,YE17
+YE171322,الدانعي,Ad Dan'i,YE1713,YE17
+YE171324,شمرين,Shamrin,YE1713,YE17
+YE173121,قاره,Qarrah,YE1731,YE17
+YE171221,اسلم اليمن,Aslam Al Yemen,YE1712,YE17
+YE171222,اسلم الشام,Aslam Ash Sham,YE1712,YE17
+YE171223,اسلم الوسط,Aslam Al Wasat,YE1712,YE17
+YE170821,الجميمه,Al Jamimah,YE1708,YE17
+YE170822,خطوة الحمارين,Khutwat Al Himarayn,YE1708,YE17
+YE170823,بقرة الغربيه,Baqarah Al Gharbyah,YE1708,YE17
+YE170824,مساهر مور,Masahir Mur,YE1708,YE17
+YE170825,بقرة الشرقية والوسطى,Baqarah Ash Sharqiyah wa Al Wista,YE1708,YE17
+YE170826,وادى غامس,Wadi Ghamis,YE1708,YE17
+YE170827,ظهاى,Dhahai,YE1708,YE17
+YE170828,جفنه,Jafnah,YE1708,YE17
+YE170829,مسويا,Maswya,YE1708,YE17
+YE173021,ضاعن,Da'in,YE1730,YE17
+YE173022,بني رزق,Bani Rizq,YE1730,YE17
+YE173023,بني هني,Bani Hani,YE1730,YE17
+YE173024,بني سعد,Bani Sa'd,YE1730,YE17
+YE172521,قلعة حميد,Qal'at Hamid,YE1725,YE17
+YE172522,البجاليه,Al Bajalyah,YE1725,YE17
+YE172523,المزاوطه,Al Muzawitah,YE1725,YE17
+YE172524,عداعد,Ada'id,YE1725,YE17
+YE172525,جبل الشغادره,Jabal Ash Shaghadirah,YE1725,YE17
+YE172526,المعطن,Al Ma'tan,YE1725,YE17
+YE172527,داهم,Dahim,YE1725,YE17
+YE172528,السوالمه,As Swalymah,YE1725,YE17
+YE172530,المسواح,Al Miswah,YE1725,YE17
+YE171521,المحابشه,Al Mahabishah,YE1715,YE17
+YE171522,حجر,Hajar,YE1715,YE17
+YE171523,المخاويس,Al Makhawis,YE1715,YE17
+YE171524,بني مجيع,Bani Maji',YE1715,YE17
+YE171525,بني حيدان,Bani Haydan,YE1715,YE17
+YE171721,وكيه,Wakyah,YE1717,YE17
+YE171722,بني جديله,Bani Judilah,YE1717,YE17
+YE171723,نيسا,Nisa,YE1717,YE17
+YE171621,الجبر الاعلى,Al Jabr Al A'la,YE1716,YE17
+YE171622,علكمه,Alkamah,YE1716,YE17
+YE171623,الجبر الاسفل,Al Jabr Al Asfal,YE1716,YE17
+YE171624,الجبر الشرقي,Al Jabr Ash Sharqi,YE1716,YE17
+YE170221,حرض,Harad,YE1702,YE17
+YE170222,العتنه,Al Atnah,YE1702,YE17
+YE170223,الفج,Al Faj,YE1702,YE17
+YE170224,الشعاب,Ash Shi'ab,YE1702,YE17
+YE170225,بني الحداد,Bani Al Haddad,YE1702,YE17
+YE170521,الدير,Ad Dir,YE1705,YE17
+YE170522,بني فاضل,Bani Fadil,YE1705,YE17
+YE170721,خميس اليزيدي,Khamis Al Yazidi,YE1707,YE17
+YE170722,خميس القاضي,Khamis Al Qadi,YE1707,YE17
+YE170723,انهم الشرق,Anhum Ash Sharq,YE1707,YE17
+YE170724,الحماريين,Al Himarayin,YE1707,YE17
+YE170725,عاهم بني شهر,Ahim Bani Shahr,YE1707,YE17
+YE170726,بني داوود,Bani Dawud,YE1707,YE17
+YE170727,انهم الغرب,Anhum al Gharb,YE1707,YE17
+YE170728,عاهم,Ahim,YE1707,YE17
+YE170729,العبيسة+العبادله,Al Abisah + Al Abadilah,YE1707,YE17
+YE171921,شرس الاعلى,Sharis Al A'la,YE1719,YE17
+YE171922,شرس الاسفل,Sharis Al Asfal,YE1719,YE17
+YE171923,بيت قدم,Bait Qadam,YE1719,YE17
+YE170421,بني حسن,Bani Hasan,YE1704,YE17
+YE170422,بني ثواب,Bani Thawab,YE1704,YE17
+YE170423,بني عضابي,Bani Odabi,YE1704,YE17
+YE170424,الوسط,Al Wasat,YE1704,YE17
+YE170425,مطوله,Matwalah,YE1704,YE17
+YE170426,البتاريه,Al Bataryah,YE1704,YE17
+YE170427,قطبه,Qa'tabah,YE1704,YE17
+YE172221,بني نشر,Bani Nashr,YE1722,YE17
+YE172223,سواخ,Suwakh,YE1722,YE17
+YE172224,اسلم ناشر,Aslam Nashir,YE1722,YE17
+YE172225,السكابة والحماريين,As Sakabah wa Al Himarayin,YE1722,YE17
+YE172227,كعيدنه,Ku'aydinah,YE1722,YE17
+YE172021,مبين,Mabyan,YE1720,YE17
+YE172022,الجبر,Al Jabr,YE1720,YE17
+YE172023,الادبعه,Al Adb'ah,YE1720,YE17
+YE172024,بني عكاب,Bani Okab,YE1720,YE17
+YE172025,بني الشومي,Bani Ash Shumi,YE1720,YE17
+YE172026,المراحبه,Al Marahibah,YE1720,YE17
+YE172027,الظفير,Adh Dhafir,YE1720,YE17
+YE172121,الامرور,Al Amrur,YE1721,YE17
+YE172122,جانب الشام,Janib Ash Sham,YE1721,YE17
+YE172123,جانب اليمن,Janib Al Yemen,YE1721,YE17
+YE172124,مديخه,Mudikhah,YE1721,YE17
+YE172321,مفرح وطفيان,Mufrih wa Tafyan,YE1723,YE17
+YE172323,القحطاني,Al Qahtani,YE1723,YE17
+YE172324,وضره,Wadrah,YE1723,YE17
+YE172325,النصيرى,An Nussayri,YE1723,YE17
+YE172326,دعقين والحناك,Da'qin wa Al Hinak,YE1723,YE17
+YE170621,غرب مستباء,Gharb Mustaba'a,YE1706,YE17
+YE170622,شرق مستباء,Sharq Mustaba'a,YE1706,YE17
+YE170623,شرق مستباءالاقصى,Sharq Mustaba'a Al Aqsa,YE1706,YE17
+YE170321,بني ميدي,Bani Midi,YE1703,YE17
+YE170322,بني العاتي,Bani Al Ati,YE1703,YE17
+YE170323,الجعده,Al Ja'dah,YE1703,YE17
+YE170324,بني فايد,Bani Fayd,YE1703,YE17
+YE170349,جزر ميدي,Midi Islands,YE1703,YE17
+YE172621,قدم,Qudam,YE1726,YE17
+YE172622,دواس,Dawas,YE1726,YE17
+YE172624,الشعاثمه,Ash Sha'athimah,YE1726,YE17
+YE172625,الكابه,Al Kabah,YE1726,YE17
+YE172626,القيله,Al Qilah,YE1726,YE17
+YE111121,بني عوض,Bani Awad,YE1111,YE11
+YE111122,الغضيبه,Al Ghudaybah,YE1111,YE11
+YE111123,بني هات,Bani Hat,YE1111,YE11
+YE111124,صنيد الشرقي,Sanid Ash Sharqi,YE1111,YE11
+YE111125,عردن,Ardan,YE1111,YE11
+YE111126,الرضائى,Ar Rida'i,YE1111,YE11
+YE111127,الوادي,Al Wadi,YE1111,YE11
+YE111128,بلاد المليكي,Bilad Al Mulayki,YE1111,YE11
+YE111129,جبل بحري,Jabal Bahri,YE1111,YE11
+YE111130,بني زهير,Bani Zuhir,YE1111,YE11
+YE111131,غابر,Ghabir,YE1111,YE11
+YE111132,بني عمران,Bani Amran,YE1111,YE11
+YE111133,شلف,Shalf,YE1111,YE11
+YE111134,الجبلين,Al Jabalin,YE1111,YE11
+YE111135,شرف حاتم,Sharaf Hatim,YE1111,YE11
+YE111136,قداس,Qadas,YE1111,YE11
+YE111137,قصل,Qasl,YE1111,YE11
+YE111138,بني عبد الله,Bani Abdallah,YE1111,YE11
+YE111139,العمارنه,Al Amaranah,YE1111,YE11
+YE111140,خباز,Khubaz,YE1111,YE11
+YE111141,قصع حليان,Qusa' Hilyan,YE1111,YE11
+YE111142,الساره,As Sarah,YE1111,YE11
+YE112021,ثواب اعلى,Thawab A'la,YE1120,YE11
+YE112022,ميتم,Maytam,YE1120,YE11
+YE112023,ريمان,Rayman,YE1120,YE11
+YE112024,المقاطن,Al Maqatin,YE1120,YE11
+YE112025,المويه,Al Mawyah,YE1120,YE11
+YE112026,البحريين,Al Bahrin,YE1120,YE11
+YE112027,جبل معود,Jabal M'wad,YE1120,YE11
+YE112029,شعب يافع,Sha'b Yafi',YE1120,YE11
+YE112030,حرد,Hard,YE1120,YE11
+YE112031,بني محرم,Bani Muharam,YE1120,YE11
+YE112032,الروس,Ar Rus,YE1120,YE11
+YE112033,بلادشار,Bilad Shar,YE1120,YE11
+YE112034,بني مدسم,Bani Madsam,YE1120,YE11
+YE111321,المنار,Al Manar,YE1113,YE11
+YE111322,الحرث,Al Harth,YE1113,YE11
+YE111323,دلال,Dalal,YE1113,YE11
+YE111324,حيسان,Haysan,YE1113,YE11
+YE111325,بني عواض,Bani Awad,YE1113,YE11
+YE111327,العذارب,Al Adharib,YE1113,YE11
+YE111328,الدعيس,Ad Du'is,YE1113,YE11
+YE111329,الحيث,Al Hayth,YE1113,YE11
+YE111330,جرانه,Jaranah,YE1113,YE11
+YE111331,المشكي,Al Mushki,YE1113,YE11
+YE111332,ضابي,Dabi,YE1113,YE11
+YE111333,سير,Sir,YE1113,YE11
+YE111334,ذي قحم,Dhi Quhm,YE1113,YE11
+YE111221,الشهلي,Ash Shahli,YE1112,YE11
+YE111222,جبل رعوين,Jabal Ra'win,YE1112,YE11
+YE111224,الثوابي,Ath Thawabi,YE1112,YE11
+YE111225,الشراعي,Ash Shira'i,YE1112,YE11
+YE111226,انامر اعلى,Anamr A'la,YE1112,YE11
+YE111228,وراف,Wiraf,YE1112,YE11
+YE111229,الربادي,Ar Rabadi,YE1112,YE11
+YE111230,المكتب,Al Maktab,YE1112,YE11
+YE111231,جبله,Jiblah,YE1112,YE11
+YE110421,حده,Hadah,YE1104,YE11
+YE110422,شعب المريسي,Sha'b Al Muraysi,YE1104,YE11
+YE110423,الزمازمه,Az Zamazimah,YE1104,YE11
+YE110424,الفجره,Al Fajrah,YE1104,YE11
+YE110425,الشرنمة العليا,Ash Sharnamah Al Olya,YE1104,YE11
+YE110426,العارضه,Al Aridah,YE1104,YE11
+YE110427,حزيب,Hazib,YE1104,YE11
+YE110428,شريح,Sharih,YE1104,YE11
+YE110429,مقنع الاعلى,Muqana' Al A'la,YE1104,YE11
+YE110430,المفتاح الاعلى,Al Miftah Al A'la,YE1104,YE11
+YE110431,ظلم,Dhulm,YE1104,YE11
+YE110432,مالك,Malik,YE1104,YE11
+YE110433,عمقه,Amqah,YE1104,YE11
+YE110434,شخب,Shakhb,YE1104,YE11
+YE110821,ربع ظلمه,Rub' Dhalmah,YE1108,YE11
+YE110822,جبل عميقه,Jabal Amiqah,YE1108,YE11
+YE110823,بني معين,Bani Ma'in,YE1108,YE11
+YE110824,بني الضاحتين,Bani Ad Dahatin,YE1108,YE11
+YE110825,صائر,Saer,YE1108,YE11
+YE110826,جبل خضراء,Jabal Khadra'a,YE1108,YE11
+YE110827,نقيل العقاب,Naqil Al Oqab,YE1108,YE11
+YE110828,الفراعي,Al Fara'i,YE1108,YE11
+YE110829,السلق,Al Salq,YE1108,YE11
+YE110830,وادي المعقاب,Wadi Al Mi'qab,YE1108,YE11
+YE110831,الجعافره,Al Ja'afirah,YE1108,YE11
+YE110832,شباع,Shiba',YE1108,YE11
+YE110833,الذارحي,Adh Dharihi,YE1108,YE11
+YE110834,التفادي,At Tafadi,YE1108,YE11
+YE110835,كومان,Kawman,YE1108,YE11
+YE110836,الوطئه,Al Wat'ah,YE1108,YE11
+YE110837,قحزه,Qahzah,YE1108,YE11
+YE110838,المشيرق,Al Mushayriq,YE1108,YE11
+YE110839,الصدر,As Sadr,YE1108,YE11
+YE110840,العارضه,Al Aridah,YE1108,YE11
+YE110841,الناحيه,An Nahyah,YE1108,YE11
+YE110842,بني شبيب,Bani Shabib,YE1108,YE11
+YE110921,حقين,Haqin,YE1109,YE11
+YE110922,بني وائل,Bani Wa'il,YE1109,YE11
+YE110923,بني الفخر,Bani Al Fakhr,YE1109,YE11
+YE110924,الابعون,Al Ab'un,YE1109,YE11
+YE110925,حليمه,Halimah,YE1109,YE11
+YE110928,بني سليمان,Bani Sulayman,YE1109,YE11
+YE110929,الشعاور,Ash Sha'awir,YE1109,YE11
+YE110930,السيدم,As Saydam,YE1109,YE11
+YE110931,جبل حريم,Jabal Harim,YE1109,YE11
+YE110932,المزارقه,Al Mazariqah,YE1109,YE11
+YE110933,الاحكوم,Al Ahkum,YE1109,YE11
+YE110935,المجاهده,Al Mujahadah,YE1109,YE11
+YE110936,المعيظه,Al Ma'idhah,YE1109,YE11
+YE110937,الشرقي,Ash Sharqi,YE1109,YE11
+YE110938,الاصيور,Al Asyur,YE1109,YE11
+YE110939,الاسلوم,Al Aslum,YE1109,YE11
+YE110940,الاجعوم,Al Aj'um,YE1109,YE11
+YE111621,العداني,Al Adani,YE1116,YE11
+YE111622,حبير,Habir,YE1116,YE11
+YE111623,ذي الحود ومعاين,Dhi Al Hud wa Ma'ayn,YE1116,YE11
+YE111624,ريدة ورياد,Raydah wa Riad,YE1116,YE11
+YE111625,بني عبدالله,Bani Abdallah,YE1116,YE11
+YE111626,الحبله,Al Hablah,YE1116,YE11
+YE111627,الصفه,As Sifah,YE1116,YE11
+YE111628,رعاش,Ru'ash,YE1116,YE11
+YE111629,العنسيين,Al Ansi'in,YE1116,YE11
+YE111630,الدخال,Ad Dakhal,YE1116,YE11
+YE111631,شوائط,Shawa'it,YE1116,YE11
+YE111632,الوحص,Al Wahs,YE1116,YE11
+YE111633,شقح وطانف,Shaqh wa Tanif,YE1116,YE11
+YE111634,السيف,As Sayf,YE1116,YE11
+YE111636,خنوه,Khnwah,YE1116,YE11
+YE111637,وادي ضباء,Wadi Diba'a,YE1116,YE11
+YE110321,بني قيس,Bani Qays,YE1103,YE11
+YE110322,شيزر,Shizar,YE1103,YE11
+YE110323,كحلان,Kuhlan,YE1103,YE11
+YE110324,البكره,Al Bakrah,YE1103,YE11
+YE110325,عجيب,Ajeeb,YE1103,YE11
+YE110326,ازال,Azaal,YE1103,YE11
+YE110327,سودان,Sudan,YE1103,YE11
+YE110328,يحير,Yahir,YE1103,YE11
+YE110329,حارث الحيدرى,Harith Al Haydari,YE1103,YE11
+YE111421,بلادالجماعي,Bilad Al Juma'i,YE1114,YE11
+YE111422,مطايه,Matayah,YE1114,YE11
+YE111423,عروان,Orwan,YE1114,YE11
+YE111424,بلادالشعيبي العليا,Bilad Ash Shu'aybi Al Olya,YE1114,YE11
+YE111425,بلادالشعيبي السفلى,Bilad Ash Shu'aybi As Sufla,YE1114,YE11
+YE111426,عينان,Aynan,YE1114,YE11
+YE111427,المساعده,Al Musa'dah,YE1114,YE11
+YE111429,بني عاطف,Bani Atif,YE1114,YE11
+YE111431,الاخلود,Al Akhlud,YE1114,YE11
+YE111432,الابروه,Al Abrwah,YE1114,YE11
+YE111433,التربه,At Turbah,YE1114,YE11
+YE110621,وادي حجاج,Wadi Hajjaj,YE1106,YE11
+YE110622,وادي الحبالي,Wadi Al Habali,YE1106,YE11
+YE110623,التويتي,At Tuwiti,YE1106,YE11
+YE110624,الزعلاء,Az Za'la'a,YE1106,YE11
+YE110625,الاعماس,Al A'mas,YE1106,YE11
+YE110626,جبل حجاج,Jabal Hajjaj,YE1106,YE11
+YE110627,بني العثمانيين,Bani Al Othmaniyyen,YE1106,YE11
+YE110628,بني الحارث,Bani Al Harith,YE1106,YE11
+YE110629,المرخام,Al Markham,YE1106,YE11
+YE110630,جبل عصام,Jabal Isam,YE1106,YE11
+YE110631,جبل الجبالي,Jabal Al Jabaali,YE1106,YE11
+YE110632,العرافه,Al Arafah,YE1106,YE11
+YE110633,وادي عصام,Wadi Isam,YE1106,YE11
+YE111521,نخلان,Nakhlan,YE1115,YE11
+YE111522,ذي شراق,Dhi Shraq,YE1115,YE11
+YE111523,النقيلين,An Naqilin,YE1115,YE11
+YE111524,الدامغ,Ad Damigh,YE1115,YE11
+YE111525,عميد الخارج,Amid Al Kharij,YE1115,YE11
+YE111527,عميد الداخل,Amid Ad Dakhil,YE1115,YE11
+YE111528,وادي سير,Wadi Sir,YE1115,YE11
+YE111529,هدفان,Hadfan,YE1115,YE11
+YE111530,الهادس,Al Hadis,YE1115,YE11
+YE111531,المجزع,Al Majza',YE1115,YE11
+YE111532,العارضه,Al Aridah,YE1115,YE11
+YE111533,العربيين,Al Arabiayn,YE1115,YE11
+YE110521,الا ملؤك,Al Amluk,YE1105,YE11
+YE110522,بيت الصائدي,Bait As Saydi,YE1105,YE11
+YE110523,القابل الاسفل,Al Qabil Al Asfal,YE1105,YE11
+YE110524,مقنع,Maqna',YE1105,YE11
+YE110525,المفتاح,Al Miftah,YE1105,YE11
+YE110526,القابل الاعلى,Al Qabil Al A'la,YE1105,YE11
+YE110528,العبس,Al Abs,YE1105,YE11
+YE111921,الظهار,Adh Dhihar,YE1119,YE11
+YE111922,ثواب الاسفل,Thawab Al Asfal,YE1119,YE11
+YE111923,الحوج القبلي,Al Hawj Al Qibli,YE1119,YE11
+YE111924,انامر,Anamir,YE1119,YE11
+YE111021,المزاحن,Al Mazahin,YE1110,YE11
+YE111022,الاهمول,Al Ahmul,YE1110,YE11
+YE111023,المسيل,Al Masil,YE1110,YE11
+YE111024,العاقبه,Al Aqibah,YE1110,YE11
+YE111025,الوزيره,Al Wazirah,YE1110,YE11
+YE111027,بني احمد والثلث,Bani Ahmad wa Ath Thulth,YE1110,YE11
+YE111028,الاخماس,Al Akhmas,YE1110,YE11
+YE110121,بني سيف السافل,Bani Sayf As Safil,YE1101,YE11
+YE110122,بني مرغم,Bani Murghim,YE1101,YE11
+YE110123,بني سيف العالي,Bani Sayf Al Aali,YE1101,YE11
+YE110124,بني سباء,Bani Saba,YE1101,YE11
+YE110125,بني مسلم,Bani Muslim,YE1101,YE11
+YE110126,بني مبارز,Bani Mubariz,YE1101,YE11
+YE110127,بني عمر العالي,Bani Omar Al Aali,YE1101,YE11
+YE110128,بني عمر السافل,Bani Omar As Safil,YE1101,YE11
+YE110129,النخله,An Nakhlah,YE1101,YE11
+YE110130,الكرابه,Al Karabah,YE1101,YE11
+YE110131,بني جماعه,Bani Jama'ah,YE1101,YE11
+YE110133,مدحجين,Mad'hajein,YE1101,YE11
+YE110134,حمير,Himyar,YE1101,YE11
+YE110135,بني ساوي,Bani Sawi,YE1101,YE11
+YE110721,السحول,As Sahul,YE1107,YE11
+YE110722,الشرف,Ash Sharaf,YE1107,YE11
+YE110723,الوادي,Al Wadi,YE1107,YE11
+YE110724,بضعه,Bid'ah,YE1107,YE11
+YE110725,ذاري عثمان,Dhari Othman,YE1107,YE11
+YE110726,الصفي,As Safi,YE1107,YE11
+YE110727,المحرم,Al Mahram,YE1107,YE11
+YE110728,المعشار,Al Mi'shar,YE1107,YE11
+YE110729,جبل عقد,Jabal Aqd,YE1107,YE11
+YE110730,بني سرحه,Bani Sarhah,YE1107,YE11
+YE111721,مذيخره,Mudhaykhirah,YE1117,YE11
+YE111723,الجوالح,Al Jawalih,YE1117,YE11
+YE111724,حزه,Hazah,YE1117,YE11
+YE111725,حليان,Hilyan,YE1117,YE11
+YE111726,خولان,Khawlan,YE1117,YE11
+YE111727,حمير,Himyar,YE1117,YE11
+YE111728,المغاربه,Al Magharibah,YE1117,YE11
+YE111729,الاشعوب,Al Ash'ub,YE1117,YE11
+YE111730,بني الورد,Bani Al Ward,YE1117,YE11
+YE111731,بني علي,Bani Ali,YE1117,YE11
+YE111732,الافيوش,Al Afyush,YE1117,YE11
+YE111733,الزامليه,Az Zamlyah,YE1117,YE11
+YE111734,المزهر,Al Mazhar,YE1117,YE11
+YE111821,الحوج العدنى,Al Hawj Al Adani,YE1118,YE11
+YE111822,انامر اسفل,Anamir Asfal,YE1118,YE11
+YE111823,المشنه,Al Mashannah,YE1118,YE11
+YE110221,يريم,Yarim,YE1102,YE11
+YE110222,خاو,Khaw,YE1102,YE11
+YE110223,رعين,Ra'in,YE1102,YE11
+YE110224,عبيده,Abidah,YE1102,YE11
+YE110225,عراس,Aras,YE1102,YE11
+YE110226,بني عمر,Bani Omar,YE1102,YE11
+YE110227,بني سباء,Bani Saba,YE1102,YE11
+YE110228,بني مسلم,Bani Muslim,YE1102,YE11
+YE110229,خودان,Khawdan,YE1102,YE11
+YE110230,بني منبه,Bani Manbah,YE1102,YE11
+YE110231,ارياب,Aryab,YE1102,YE11
+YE221321,املح,Amlah,YE2213,YE22
+YE221323,العقيق,Al Aqiq,YE2213,YE22
+YE221324,عظله,Adhlah,YE2213,YE22
+YE221221,نشور,Nashur,YE2212,YE22
+YE221222,عكوان,Akwan,YE2212,YE22
+YE221223,وادي مذاب,Wadi Madhab,YE2212,YE22
+YE221224,وادعه,Wadi'ah,YE2212,YE22
+YE221225,شرمات,Sharmat,YE2212,YE22
+YE221226,المقباب,Al Miqbab,YE2212,YE22
+YE221227,ولد مسعود,Wald Mas'ud,YE2212,YE22
+YE220722,غافره,Ghafirah,YE2207,YE22
+YE220121,باقم,Baqim,YE2201,YE22
+YE220122,سحار الشام,Suhar Ash Sham,YE2201,YE22
+YE220123,شراوه,Sharawah,YE2201,YE22
+YE220124,يسنم,Yasnam,YE2201,YE22
+YE220125,قهربني الحارث,Qahr Bani Al Harith,YE2201,YE22
+YE220126,القطينات,Al Qutaynat,YE2201,YE22
+YE220127,بني معالي,Bani Ma'ali,YE2201,YE22
+YE220821,حيدان,Haydan,YE2208,YE22
+YE220822,زبيد الجبل,Zabid Al Jabal,YE2208,YE22
+YE220823,عريمه,Oraymah,YE2208,YE22
+YE220824,زبيد الوادي,Zabid Al Wadi,YE2208,YE22
+YE220825,ذويب العليا,Dhwaib Al Olya,YE2208,YE22
+YE220826,مران الصنوان,Maran As Sinwan,YE2208,YE22
+YE220827,مران ولد جعشن,Maran Wald Ja'shan,YE2208,YE22
+YE220828,مران ولد يحى,Maran Wald Yahya,YE2208,YE22
+YE220829,ولد عياش,Wald Ayish,YE2208,YE22
+YE220830,ولد نوار,Wald Nuwar,YE2208,YE22
+YE220831,ولد عمر (مران),Wald Omar (Maran),YE2208,YE22
+YE220832,ذويب السفلى,Dhuayb As Sufla,YE2208,YE22
+YE220521,غمار,Ghumar,YE2205,YE22
+YE220522,بني ربيعه,Bani Rabi'ah,YE2205,YE22
+YE220523,بكيل,Bakil,YE2205,YE22
+YE220524,العلا,Al Alaa,YE2205,YE22
+YE220525,شعبان,Sha'ban,YE2205,YE22
+YE220526,القد الت على,Al Qadalat Ali,YE2205,YE22
+YE220527,الازهور,Al Azhur,YE2205,YE22
+YE220528,ال عطيف,Aal Otayf,YE2205,YE22
+YE220529,جبل الازد,Jabal Al Ozd,YE2205,YE22
+YE220530,الغور,Al Ghur,YE2205,YE22
+YE220531,الحجله,Al Hajlah,YE2205,YE22
+YE220532,النظير,An Nadhir,YE2205,YE22
+YE220533,بركان,Burkan,YE2205,YE22
+YE220534,الشوارق,Ash Shawariq,YE2205,YE22
+YE220535,بني القم,Bani Al Qum,YE2205,YE22
+YE220536,بني صباح,Bani Sabah,YE2205,YE22
+YE220921,ساقين,Saqin,YE2209,YE22
+YE220922,عرو,Erw,YE2209,YE22
+YE220923,الكرب,Al Karb,YE2209,YE22
+YE220924,الخوالد,Al Khawalid,YE2209,YE22
+YE220925,البيضان,Al Baydan,YE2209,YE22
+YE220926,بني سعد الجهوز,Bani Sa'd Al Jahuz,YE2209,YE22
+YE220927,شرف عريمه,Sharaf Oraymah,YE2209,YE22
+YE220928,بني غربان,Bani Ghurban,YE2209,YE22
+YE220929,وادي الحبال,Wadi Al Hibal,YE2209,YE22
+YE220930,الة الغمر,Alat Al Ghamr,YE2209,YE22
+YE220931,النوعه,An Naw'ah,YE2209,YE22
+YE220932,وعري وعمري,Wa'ri wa Omri,YE2209,YE22
+YE220933,الة الافخاذ,Alat Al Afkhadh,YE2209,YE22
+YE220934,ال القاسم,Aal Al Qasim,YE2209,YE22
+YE220935,بني سعد عراش,Bani Sa'd Arash,YE2209,YE22
+YE220936,بني واس,Bani Was,YE2209,YE22
+YE220937,ال الوقيش,Aal Al Waqish,YE2209,YE22
+YE220938,المحرث,Al Mahrath,YE2209,YE22
+YE220939,ال يوسف,Aal Yusuf,YE2209,YE22
+YE220940,الجرهه,Al Jahrah,YE2209,YE22
+YE220941,نونى ووادي خير,Nuni wa Wadi Khayr,YE2209,YE22
+YE221121,الازقول,Al Azqul,YE2211,YE22
+YE221122,بني عوير,Bani Owayr,YE2211,YE22
+YE221123,الحمزات,Al Hamzat,YE2211,YE22
+YE221124,الصحن,As Sahn,YE2211,YE22
+YE221127,بني معاذ,Bani Mu'adh,YE2211,YE22
+YE221128,وادي علاف,Wadi Alaf,YE2211,YE22
+YE221129,فروة والمهاذر,Farwah wa Al Mahadhir,YE2211,YE22
+YE220621,الوقر,Al Waqr,YE2206,YE22
+YE220622,الوقيش,Al Waqish,YE2206,YE22
+YE221521,صعده,Sa'dah,YE2215,YE22
+YE221522,العبدين غراز,Al Abdin Gharaz,YE2215,YE22
+YE220421,الرحمانين,Ar Rahmanin,YE2204,YE22
+YE220422,ولد عامر,Wald Amir,YE2204,YE22
+YE220423,ذوي محمد,Dhawi Mohammad,YE2204,YE22
+YE220424,الربعين,Ar Rub'ayn,YE2204,YE22
+YE220221,قطابر,Qatabir,YE2202,YE22
+YE220222,خاشر,Khashir,YE2202,YE22
+YE220223,حنبه,Hanbah,YE2202,YE22
+YE220224,ال ثابت,Aal Thabit,YE2202,YE22
+YE220225,ال عبدل,Aal Abdal,YE2202,YE22
+YE221422,املح ال سالم,Amlah Aal Salim,YE2214,YE22
+YE221423,املح وائله,Amlah Wa'ilah,YE2214,YE22
+YE221424,وادي ال ابوجباره,Wadi Aal Abu Jabarah,YE2214,YE22
+YE221425,الفرع,Al Far',YE2214,YE22
+YE221426,البقع,Al Buq',YE2214,YE22
+YE221427,العطفين,Al Atfin,YE2214,YE22
+YE221021,مجز,Majz,YE2210,YE22
+YE221022,بني شنيف,Bani Shunayf,YE2210,YE22
+YE221023,ضحيان,Dahyan,YE2210,YE22
+YE221024,بني سويد,Bani Suwayd,YE2210,YE22
+YE221025,بني حذيفه,Bani Hudhayfah,YE2210,YE22
+YE221026,وادى فله,Wadi Falah,YE2210,YE22
+YE221027,صاره,Sarrah,YE2210,YE22
+YE221028,الت الربيع,Alt Ar Rabi',YE2210,YE22
+YE221029,المعاريف,Al Ma'arif,YE2210,YE22
+YE221030,ال جابر,Aal Jabir,YE2210,YE22
+YE221031,ساحة ولد عمر,Sahat Wald Omar,YE2210,YE22
+YE221032,بني عباد,Bani Obad,YE2210,YE22
+YE220321,ال يزيد,Aal Yazid,YE2203,YE22
+YE220322,ال مقنع وطارق ويحى,Aal Muqana' wa Tariq wa Yahya,YE2203,YE22
+YE220323,البطين,Al Butayn,YE2203,YE22
+YE220325,ال كثير,Aal Kathir,YE2203,YE22
+YE220326,ولد عبده,Wald Abduh,YE2203,YE22
+YE220327,ال مسود,Aal Maswad,YE2203,YE22
+YE220328,ال مشيخ,Aal Mashyakh,YE2203,YE22
+YE220329,القهرتين,Al Qahratayn,YE2203,YE22
+YE220330,الوقيشين,Al Waqishin,YE2203,YE22
+YE220331,شوذان,Shudhan,YE2203,YE22
+YE220333,جلحاء,Jalha'a,YE2203,YE22
+YE141021,ال مظفرالاعلى,Aal Mudhaffar Al A'la,YE1410,YE14
+YE141023,ال اللبني,Aal Al Labani,YE1410,YE14
+YE141024,مذوقين,Midhwiqin,YE1410,YE14
+YE141026,العيوف,Al Ayuf,YE1410,YE14
+YE141027,الضحاكي,Ad Dahaki,YE1410,YE14
+YE141028,ال هصيص,Aal Hassis,YE1410,YE14
+YE141029,ال مظفرالاسفل,Aal Mudhaffar Al Asfal,YE1410,YE14
+YE141030,السوداء وال عيسى وحي,As Sawda'a wa Aal Isa Wahi,YE1410,YE14
+YE140521,الزاهر,Az Zahir,YE1405,YE14
+YE140522,ال برمان,Aal Barman,YE1405,YE14
+YE140523,الناصفه,An Nasifah,YE1405,YE14
+YE140524,الحبج,Al Habj,YE1405,YE14
+YE140525,قربه,Qurbah,YE1405,YE14
+YE141221,المرية بني مر,Al Muryah Bani Mur,YE1412,YE14
+YE141222,غول سليمان,Ghul Sulayman,YE1412,YE14
+YE141223,فاقع ال عوض,Faqa' Aal Awad,YE1412,YE14
+YE141224,الاغوال العلياء,Al Aghwal Al Olya,YE1412,YE14
+YE141225,قانيه,Qaniyah,YE1412,YE14
+YE141226,الاغوال السفلى,Al Aghwal As Sufla,YE1412,YE14
+YE141227,ال عامر حوران,Al Amir Hawran,YE1412,YE14
+YE141228,ال بقش,Aal Buqsh,YE1412,YE14
+YE141229,ردمان ال عوض,Radman Aal Awad,YE1412,YE14
+YE141230,ال عامر,Aal Amir,YE1412,YE14
+YE141821,جبل الرياشيه,Jabal Ar Ryashyyah,YE1418,YE14
+YE141822,ثمن الرياشيه,Thumn Ar Ryashyyah,YE1418,YE14
+YE141823,وادي الرياشيه,Wadi Ar Ryashyyah,YE1418,YE14
+YE141121,ال حسن,Aal Hasan,YE1411,YE14
+YE141122,ال الساده,Aal As Sadah,YE1411,YE14
+YE141123,الحراتيك,Al Haratik,YE1411,YE14
+YE141124,ذاهبه,Dhahibah,YE1411,YE14
+YE141125,الطاهريه,At Tahiriah,YE1411,YE14
+YE141126,ال هادي بني وهب,Aal Hadi Bani Wahb,YE1411,YE14
+YE141127,ال منصور بني وهب,Aal Mansur Bani Wahb,YE1411,YE14
+YE141921,ال غنيم,Aal Ghunim,YE1419,YE14
+YE141721,صباح,Sabah,YE1417,YE14
+YE140421,الفروي(ذي مسنام),Al Farawi (Dhi Misnam),YE1404,YE14
+YE140422,عقلة بني عامر,Oqlat Bani Amir,YE1404,YE14
+YE140423,ال سعيد,Aal Sa'id,YE1404,YE14
+YE140424,الجرو,Al Jirw,YE1404,YE14
+YE140425,المحمدين,Al Muhamadin,YE1404,YE14
+YE140426,العروين,Al Arwin,YE1404,YE14
+YE140427,ال عبيد,Aal Obayd,YE1404,YE14
+YE140428,الصومعه,As Sawma'ah,YE1404,YE14
+YE140429,ال اليحوي,Aal Al Yahwi,YE1404,YE14
+YE140430,ال الثرياء,Aal Ath Thuraya'a,YE1404,YE14
+YE140431,الردماني,Ar Radmani,YE1404,YE14
+YE140432,القيسين,Al Qayssin,YE1404,YE14
+YE140433,عوين,Owayn,YE1404,YE14
+YE140721,الظفرين,Adh Dhufrin,YE1407,YE14
+YE140722,المشاعره,Al Masha'rah,YE1407,YE14
+YE140723,ال عبد اللة وال هشام,Aal Abdallah wa Aal Hisham,YE1407,YE14
+YE140724,ال هياش,Aal Hayash,YE1407,YE14
+YE140725,صنه,Sannah,YE1407,YE14
+YE140726,السعيديه,As Sa'idyah,YE1407,YE14
+YE140727,القهابه,Al Qahabah,YE1407,YE14
+YE140728,الخربه,Al Kharbah,YE1407,YE14
+YE140730,المساحره,Al Masahirah,YE1407,YE14
+YE140731,بني غيلان,Bani Ghaylan,YE1407,YE14
+YE140732,ثمنان,Thamnan,YE1407,YE14
+YE141621,العرش,Al Arsh,YE1416,YE14
+YE141622,اللمعان,Al Lama'an,YE1416,YE14
+YE141421,قيفة ال محن يزيد,Qayfat Aal Mahn Yazid,YE1414,YE14
+YE141422,قيفة ال محن لظهره,Qayfat Aal Mahn Lidhahruh,YE1414,YE14
+YE141423,قيفة ال محن الجوف,Qayfat Aal Mahn Al Jawf,YE1414,YE14
+YE140621,المنقطع,Al Munqati',YE1406,YE14
+YE140622,الدريعا,Ad Duri'a,YE1406,YE14
+YE140623,ذمجير,Dhamjir,YE1406,YE14
+YE140624,الرباط,Ar Ribat,YE1406,YE14
+YE140625,الحيكل,Al Haykal,YE1406,YE14
+YE140626,طياب,Tayab,YE1406,YE14
+YE140321,مسوره,Maswarah,YE1403,YE14
+YE140322,دثران ال علوي,Dathran Aal Alawi,YE1403,YE14
+YE140323,دماج,Damajj,YE1403,YE14
+YE140324,الطرثور,At Tarthur,YE1403,YE14
+YE140325,شعيان,Sha'yan,YE1403,YE14
+YE140326,بيحان الدوله,Bayhan Al-Dawlah,YE1403,YE14
+YE140821,مكيراس,Mukayras,YE1408,YE14
+YE142021,ال منصور الملاجم,Aal Mansur Al Malajim,YE1420,YE14
+YE142022,ال غشام الملاجم,Aal Ghasham Al Malajim,YE1420,YE14
+YE142023,عفار ال مفتاح,Afar Aal Miftah,YE1420,YE14
+YE142024,ذى خير,Dhi Khirah,YE1420,YE14
+YE142025,الرشده,Ar Rashdah,YE1420,YE14
+YE140221,ال سودان,Aal Sudan,YE1402,YE14
+YE140222,وعلة ال رقاب,Wa'lah Aal Riqab,YE1402,YE14
+YE140223,الدعيمه,Ad Du'imah,YE1402,YE14
+YE140224,ال منصور,Aal Mansur,YE1402,YE14
+YE140225,الغيله,Al Ghaylah,YE1402,YE14
+YE140226,ال فرج,Aal Faraj,YE1402,YE14
+YE140227,ريمه,Raymah,YE1402,YE14
+YE140228,وحلان,Wahlan,YE1402,YE14
+YE140229,مسور ال دباش,Maswar Aal Dabash,YE1402,YE14
+YE140230,بارماد,Barmad,YE1402,YE14
+YE140231,ذمسنومه,Dhimasnumah,YE1402,YE14
+YE140232,الحساء,Al Hasa'a,YE1402,YE14
+YE140121,الغول,Al Ghul,YE1401,YE14
+YE140122,الرحبه,Ar Rahabah,YE1401,YE14
+YE140123,حصير الجار,Hasir Al Jar,YE1401,YE14
+YE140124,الجدير,Al Jadir,YE1401,YE14
+YE140125,البديع,Al Badi',YE1401,YE14
+YE140127,حجراء,Hajra'a,YE1401,YE14
+YE140128,المرحاض,Al Mirhad,YE1401,YE14
+YE140129,اللخف,Al lakhaf,YE1401,YE14
+YE140130,الساحه,As Sahah,YE1401,YE14
+YE141521,قيفة ال مهدي,Qayfat Aal Mahdi,YE1415,YE14
+YE141321,رداع,Rada',YE1413,YE14
+YE211521,الروضه,Ar Rawdah,YE2115,YE21
+YE210721,العليا,Al-Olya,YE2107,YE21
+YE210321,جردان,Jardan,YE2103,YE21
+YE211421,حبان,Habban,YE2114,YE21
+YE210621,عين,Ayn,YE2106,YE21
+YE211121,حطيب,Hatib,YE2111,YE21
+YE210121,دهر,Dahr,YE2101,YE21
+YE211721,رضوم,Radum,YE2117,YE21
+YE211221,الصعيد,As Sa'id,YE2112,YE21
+YE210221,الطلح,At Talh,YE2102,YE21
+YE211321,عتق,Ataq,YE2113,YE21
+YE210421,عرماء,Arma'a,YE2104,YE21
+YE210521,عسيلان,Osaylan,YE2105,YE21
+YE210921,مرخة السفلى,Markhah As Sufla,YE2109,YE21
+YE210821,الجفره,Al Jafrah,YE2108,YE21
+YE210822,الحيده,Al Haydah,YE2108,YE21
+YE210823,الخيس,Al Khis,YE2108,YE21
+YE210824,السلمين,As Salmin,YE2108,YE21
+YE210825,العاقر,Al Aqir,YE2108,YE21
+YE210826,القوه,Al Quwah,YE2108,YE21
+YE210827,حلحل,Halhal,YE2108,YE21
+YE210828,نقاق,Nuqaq,YE2108,YE21
+YE211621,ميفعه,Mayfa'ah,YE2116,YE21
+YE211021,نصاب,Nisab,YE2110,YE21
+YE150121,حوامره,Hawamrah,YE1501,YE15
+YE150122,اساوده,Asawdah,YE1501,YE15
+YE150123,اشجور,Ashjur,YE1501,YE15
+YE150124,الشميره,Ash Shamirah,YE1501,YE15
+YE150125,اصرار,Issrar,YE1501,YE15
+YE150126,خدير البريهى,Khadir Al Burihi,YE1501,YE15
+YE150127,قماعره,Qama'rah,YE1501,YE15
+YE150128,العومان,Al Awman,YE1501,YE15
+YE150129,عماعمه,Ama'mah,YE1501,YE15
+YE150130,اوجوه,Awjuh,YE1501,YE15
+YE150131,باهر,Bahir,YE1501,YE15
+YE150132,مومج,Mawmaj,YE1501,YE15
+YE150133,شرقي سورق,Sharqi Sawraq,YE1501,YE15
+YE150134,مريه,Maryah,YE1501,YE15
+YE150135,سائلة سورق,Sa'lat Sawraq,YE1501,YE15
+YE150136,خلاوة سودق,Khalawah Sudaq,YE1501,YE15
+YE150137,المحطه,Al Mahatah,YE1501,YE15
+YE150138,القماهده,Al Qumahidah,YE1501,YE15
+YE150139,جرانع,Jarani',YE1501,YE15
+YE150140,اخرق,Akhraq,YE1501,YE15
+YE150141,قرينع,Qurini',YE1501,YE15
+YE150142,معبر,Ma'bar,YE1501,YE15
+YE150143,الظهره,Adh Dhuhrah,YE1501,YE15
+YE150221,القفاعه,Al Qufa'ah,YE1502,YE15
+YE150222,اقيوس,Aqyus,YE1502,YE15
+YE150223,الاحجور,Al Ahjur,YE1502,YE15
+YE150224,التبهه,At Tabhah,YE1502,YE15
+YE150225,اشموس,Ashmus,YE1502,YE15
+YE150226,بني عون,Bani Awn,YE1502,YE15
+YE150227,ايفوع اعلى,Ayfu' A'la,YE1502,YE15
+YE150228,الامجود,Al Amjud,YE1502,YE15
+YE150229,بني سباء,Bani Saba,YE1502,YE15
+YE150230,ايفوع اسفل,Ayfu' Asfal,YE1502,YE15
+YE150231,الاكروف,Al Akruf,YE1502,YE15
+YE150232,بني شعب,Bani Sha'b,YE1502,YE15
+YE150233,العسيله,Al Osaylah,YE1502,YE15
+YE150234,بني بخير,Bani Bakhir,YE1502,YE15
+YE150235,بني وهبان,Bani Wahban,YE1502,YE15
+YE150236,الشريف,Ash Sharif,YE1502,YE15
+YE150237,عزبان,Azban,YE1502,YE15
+YE150238,الزوحه,Az Zuhah,YE1502,YE15
+YE150321,بني مرير,Bani Murir,YE1503,YE15
+YE150322,الزراري,Az Zarari,YE1503,YE15
+YE150323,عوادر,Awadir,YE1503,YE15
+YE150324,بني زياد,Bani Ziad,YE1503,YE15
+YE150325,بني سري,Bani Sari,YE1503,YE15
+YE150326,الاشراف,Al Ashraf,YE1503,YE15
+YE150327,شرقي حمير,Sharqi Himyar,YE1503,YE15
+YE150328,الرعينه,Ar Ru'inah,YE1503,YE15
+YE150329,بني الحسام,Bani Al Husam,YE1503,YE15
+YE150330,نصف العزل,Nisf Al Ozal,YE1503,YE15
+YE150331,حليه,Hilyah,YE1503,YE15
+YE150332,الاجشوب,Al Ashjub,YE1503,YE15
+YE150333,الزغارير,Az Zagharir,YE1503,YE15
+YE150334,مورخه,Murkhah,YE1503,YE15
+YE150335,الحسيه,Al Hasyah,YE1503,YE15
+YE150336,بني سميع,Bani Sumi',YE1503,YE15
+YE150337,الاحطوب,Al Ahtub,YE1503,YE15
+YE150338,الهياجم,Al Hayajim,YE1503,YE15
+YE150339,الغربي,Al Gharbi,YE1503,YE15
+YE150340,الاسد,al Asad,YE1503,YE15
+YE150341,الملاوحه,Al Malawhah,YE1503,YE15
+YE150421,بني صلاح,Bani Salah,YE1504,YE15
+YE150422,بني حمير,Bani Himyar,YE1504,YE15
+YE150423,بني سيف,Bani Sayf,YE1504,YE15
+YE150424,الفكيكه,Al Fakikah,YE1504,YE15
+YE150425,القحيفه,Al Quhaifah,YE1504,YE15
+YE150426,العفيره,Al Afirah,YE1504,YE15
+YE150427,اليمن,Al Yemen,YE1504,YE15
+YE150428,الملاحطه,Al Mulahatah,YE1504,YE15
+YE150429,السواغين,As Sawaghin,YE1504,YE15
+YE150430,بيدحه,Bidahah,YE1504,YE15
+YE150431,محرقه,Mahraqah,YE1504,YE15
+YE150432,الكرابده,Al Karabidah,YE1504,YE15
+YE150433,العشمله,Al Ashmlah,YE1504,YE15
+YE150434,اخدوع اسفل,Akhdu' Asfal,YE1504,YE15
+YE150435,اخدوع اعلى,Akhdu' A'la,YE1504,YE15
+YE150436,ميراب,Mirab,YE1504,YE15
+YE150437,الحبيبه,Al Hubibah,YE1504,YE15
+YE150438,الاقحوز,Al Aqhuz,YE1504,YE15
+YE150439,الجماهره,Al Jamahirah,YE1504,YE15
+YE150440,المجاهده,Al Mujahadah,YE1504,YE15
+YE150441,الصعيره,As Sa'irah,YE1504,YE15
+YE150442,الخياشين,Al Khayashin,YE1504,YE15
+YE150443,الوريف,Al Warif,YE1504,YE15
+YE150444,براشه,Barashah,YE1504,YE15
+YE150445,المجاعشه,Al Muja'shah,YE1504,YE15
+YE150446,الاعدوف,Al A'duf,YE1504,YE15
+YE150447,جاحر,Jahir,YE1504,YE15
+YE150448,الاخلود,Al Akhlud,YE1504,YE15
+YE150449,العبدله,Al Abdalah,YE1504,YE15
+YE150521,المخاء,Al Makha,YE1505,YE15
+YE150522,المشالحه,Al Mashalihah,YE1505,YE15
+YE150523,الزهارى,Az Zahari,YE1505,YE15
+YE150524,الجمعه,Al Jum'ah,YE1505,YE15
+YE150621,بني الحكم,Bani Al Hakam,YE1506,YE15
+YE150622,جزيرة ميون,Miyun Island,YE1506,YE15
+YE150721,موزع,Mawza',YE1507,YE15
+YE150722,الاهمول,Al Ahmul,YE1507,YE15
+YE150723,العواشقه,Al Awashqah,YE1507,YE15
+YE150724,الايتمه,Al Aytamah,YE1507,YE15
+YE150821,يفرس,Yafrus,YE1508,YE15
+YE150822,الحقل,Al Haql,YE1508,YE15
+YE150823,القحاف,Al Quhaf,YE1508,YE15
+YE150824,نمره,Nimrah,YE1508,YE15
+YE150825,بني عيسى,Bani Isa,YE1508,YE15
+YE150826,المراتبه,Al Maratibah,YE1508,YE15
+YE150827,الجبل,Al Jabal,YE1508,YE15
+YE150828,البريهه,Al Burihah,YE1508,YE15
+YE150829,بلادالوافي,Bilad Al Wafi,YE1508,YE15
+YE150830,وادي بني خولان,Wadi Bani Khawlan,YE1508,YE15
+YE150831,الشراجه,Ash Shurajah,YE1508,YE15
+YE150832,بني بكاري,Bani Bukari,YE1508,YE15
+YE150833,عدينه,Adinah,YE1508,YE15
+YE150921,حدنان,Hadnan,YE1509,YE15
+YE150922,مشرعه,Mashra'ah,YE1509,YE15
+YE151021,الضباب,Ad Dabab,YE1510,YE15
+YE151022,برداد,Birdad,YE1510,YE15
+YE151023,الموادم,Al Mawadim,YE1510,YE15
+YE151024,الجرن,Al Jarn,YE1510,YE15
+YE151025,سيعه,Say'ah,YE1510,YE15
+YE151026,المعقاب,Al Mi'qab,YE1510,YE15
+YE151027,ذي البرح,Dhi Al Barh,YE1510,YE15
+YE151028,العارضه,Al Aridah,YE1510,YE15
+YE151029,النجاده,An Nijadah,YE1510,YE15
+YE151030,تباشعه,Tubash'ah,YE1510,YE15
+YE151031,العدنه,Al Adnah,YE1510,YE15
+YE151032,مرعيت,Mar'it,YE1510,YE15
+YE151033,الذراع,Adh Dhira',YE1510,YE15
+YE151034,الحازه,Al Hazah,YE1510,YE15
+YE151121,حصبان اسفل,Hasban Asfal,YE1511,YE15
+YE151122,انبيان,Anbyan,YE1511,YE15
+YE151123,مسفر,Masfar,YE1511,YE15
+YE151124,عرش,Arsh,YE1511,YE15
+YE151125,وتير,Watir,YE1511,YE15
+YE151126,جاره,Jarah,YE1511,YE15
+YE151127,طالوق,Taluq,YE1511,YE15
+YE151128,حصبان اعلى,Hasban A'la,YE1511,YE15
+YE151129,الاقروض,Al Aqrud,YE1511,YE15
+YE151130,خريشه,Khurishah,YE1511,YE15
+YE151131,صنمات,Sanamat,YE1511,YE15
+YE151132,عبدان,Abdan,YE1511,YE15
+YE151221,خدير السلمى,Khadir Al Silmi,YE1512,YE15
+YE151222,خدير البدو,Khadir Al Badu,YE1512,YE15
+YE151223,الشويفه,Ash Shuwayfah,YE1512,YE15
+YE151321,الضبه,Ad Dabah,YE1513,YE15
+YE151322,الشرف,Ash Sharaf,YE1513,YE15
+YE151323,الضعه,Ad Di'ah,YE1513,YE15
+YE151324,العكيشه,Al Okayshah,YE1513,YE15
+YE151325,الحريبه,Al Huribah,YE1513,YE15
+YE151326,القابله,Al Qabilah,YE1513,YE15
+YE151327,الاشعوب,Al Ash'ub,YE1513,YE15
+YE151328,المشجب,Al Mashjub,YE1513,YE15
+YE151329,الظهرين,Adh Dhahrin,YE1513,YE15
+YE151330,سائلة قراضه,Sa'lat Quradah,YE1513,YE15
+YE151331,الودر,Al Wadar,YE1513,YE15
+YE151421,شرجب,Sharjab,YE1514,YE15
+YE151422,الربيصه,Ar Rubaysah,YE1514,YE15
+YE151423,المداحج,Al Madahij,YE1514,YE15
+YE151424,المشارقه,Al Mashariqah,YE1514,YE15
+YE151425,بني غازى,Bani Ghazi,YE1514,YE15
+YE151426,جبل صبران,Jabal Sabran,YE1514,YE15
+YE151427,القريشه,Al Qurayshah,YE1514,YE15
+YE151428,الحضارم,Al Hadarim,YE1514,YE15
+YE151429,اديم,Adim,YE1514,YE15
+YE151430,ذبحان,Dhubhan,YE1514,YE15
+YE151431,التربه,At Turbah,YE1514,YE15
+YE151432,العزاعز,Al Aza'iz,YE1514,YE15
+YE151433,بني شيبة الغرب,Bani Shaybah Al Gharb,YE1514,YE15
+YE151434,بني عمر,Bani Omar,YE1514,YE15
+YE151435,المساحين,Al Masahin,YE1514,YE15
+YE151436,الزعازع,Az Za'azi',YE1514,YE15
+YE151437,راسن,Rasin,YE1514,YE15
+YE151438,العلقمه,Al Alqamah,YE1514,YE15
+YE151439,الشمايا الغربيه,Ash Shamayah Al Gharbyah,YE1514,YE15
+YE151440,البذيجه,Al Badhijah,YE1514,YE15
+YE151441,الكويره,Al Kuwayrah,YE1514,YE15
+YE151442,بني محمد,Bani Mohammad,YE1514,YE15
+YE151443,بني شيبة الشرق,Bani Shaybah Ash Sharq,YE1514,YE15
+YE151444,المقارمه,Al Maqarimah,YE1514,YE15
+YE151445,الزكيره,Az Zakirah,YE1514,YE15
+YE151446,دبع الداخل,Duba' Ad Dakhil,YE1514,YE15
+YE151447,الرجاعيه,Ar Rija'yah,YE1514,YE15
+YE151448,دبع الخارج,Duba' Al Kharij,YE1514,YE15
+YE151449,الصافيه,As Safyah,YE1514,YE15
+YE151450,الصنعة زريقه,As San'ah Zurayqah,YE1514,YE15
+YE151451,الاصابح,Al Asabih,YE1514,YE15
+YE151452,الحنان,Al Hanan,YE1514,YE15
+YE151453,الشمايا الشرقيه,Ash Shamayah Ash Sharqiyah,YE1514,YE15
+YE151521,المشاوله,Al Mashawlah,YE1515,YE15
+YE151522,الظريفه,Adh Dharifah,YE1515,YE15
+YE151523,السويداء,As Suwayda'a,YE1515,YE15
+YE151524,البوكره,Al Bukarah,YE1515,YE15
+YE151525,الاحيوق,Al Ahyuq,YE1515,YE15
+YE151621,الاعروق,Al A'ruq,YE1516,YE15
+YE151622,الاغابره,Al Aghabirah,YE1516,YE15
+YE151623,الاعبوس,Al A'bus,YE1516,YE15
+YE151624,الاثاور,Al Athawir,YE1516,YE15
+YE151625,الاحكوم,Al Ahkum,YE1516,YE15
+YE151721,المظفر,Al Mudhaffar,YE1517,YE15
+YE151821,القاهره,Al Qahirah,YE1518,YE15
+YE151921,صاله,Salah,YE1519,YE15
+YE152021,الشعبانية السفلى,Ash Sha'banyah As Sufla,YE1520,YE15
+YE152022,الشعبانية العليا,Ash Sha'banyah Al Olya,YE1520,YE15
+YE152023,الهشمه,Al Hashamah,YE1520,YE15
+YE152024,الحيمة السفلى,Al Haymah As Sufla,YE1520,YE15
+YE152025,الحيمة العليا,Al Haymah Al Olya,YE1520,YE15
+YE152026,الزواقر,Az Zawaqir,YE1520,YE15
+YE152027,مخلاف اسفل,Mikhlaf Asfal,YE1520,YE15
+YE152028,الاجعود,Al Aj'ud,YE1520,YE15
+YE152029,الدعيسه,Ad Du'aysah,YE1520,YE15
+YE152030,الشحنه,Ash Shuhnah,YE1520,YE15
+YE152031,القصيبه,Al Qusaybah,YE1520,YE15
+YE152032,المسنح,Al Masnah,YE1520,YE15
+YE152033,الجعدي,Al Ja'di,YE1520,YE15
+YE152034,قياض,Qiyad,YE1520,YE15
+YE152035,حذران,Hadhran,YE1520,YE15
+YE152036,الربيعي,Ar Rubay'i,YE1520,YE15
+YE152037,الجندية العليا,Al Janadyah Al Olya,YE1520,YE15
+YE152038,الاعمور,Al A'mur,YE1520,YE15
+YE152039,الاصرار,Al Esrar,YE1520,YE15
+YE152040,الجندية السفلى,Al Janadyah As Sufla,YE1520,YE15
+YE152121,الكلائبه,Al Kala'bah,YE1521,YE15
+YE152122,الجبزيه,Al Jibzyah,YE1521,YE15
+YE152123,الصنه,As Sanah,YE1521,YE15
+YE152124,السواء,Al Suwa'a,YE1521,YE15
+YE152125,الانبوة الاعلى,Al Anbuh Al A'la,YE1521,YE15
+YE152126,الشعوبه,Ash Sh'ubah,YE1521,YE15
+YE152127,المشاوله,Al Mashawilah,YE1521,YE15
+YE152221,قدس,Qadas,YE1522,YE15
+YE152222,الاعلوم,Al A'lum,YE1522,YE15
+YE152223,بني حماد,Bani Hamad,YE1522,YE15
+YE152224,بني يوسف,Bani Yusuf,YE1522,YE15
+YE152225,بني عباس,Bani Abas,YE1522,YE15
+YE152226,اخمور,Akhmur,YE1522,YE15
+YE152227,الايفوع,Al Ayfu',YE1522,YE15
+YE152321,سامع,Sami',YE1523,YE15
+YE161021,العنان,Al Anan,YE1610,YE16
+YE161022,ذو موسى,Dhu Musa,YE1610,YE16
+YE161023,ذو زيد,Dhu Zayd,YE1610,YE16
+YE161024,رحوب,Rahub,YE1610,YE16
+YE161025,ال احمد بن كول,Aal Ahmad Bin Kul,YE1610,YE16
+YE161026,المعاطره,Al Ma'atirah,YE1610,YE16
+YE161027,ال صلاح,Aal Salah,YE1610,YE16
+YE161028,ال دمينه,Aal Duminah,YE1610,YE16
+YE161029,ال سالم,Aal Salim,YE1610,YE16
+YE161030,ال سليمان,Aal Sulayman,YE1610,YE16
+YE160521,همدان,Hamdan,YE1605,YE16
+YE160522,ذو الحسين,Dhu Al Husayn,YE1605,YE16
+YE160523,السيل,As Sayl,YE1605,YE16
+YE160221,الحميدات,Al Humaydat,YE1602,YE16
+YE160222,الصلل,As Salal,YE1602,YE16
+YE160223,الواغره,Al Waghirah,YE1602,YE16
+YE160121,اليتمه,Al Yatamah,YE1601,YE16
+YE160122,الشعف,Ash Sha'f,YE1601,YE16
+YE160123,الريان,Ar Rayan,YE1601,YE16
+YE160124,وادي خب,Wadi Khab,YE1601,YE16
+YE161221,المرانه,Al Muranah,YE1612,YE16
+YE161222,الخراب,Al Kharab,YE1612,YE16
+YE161223,الشعراء,Ash Shu'ara'a,YE1612,YE16
+YE161224,هيجان,Hayjan,YE1612,YE16
+YE160921,الروض,Ar Rawd,YE1609,YE16
+YE161121,رجوزه,Rajuzah,YE1611,YE16
+YE161122,العرين,Al Arin,YE1611,YE16
+YE161123,السرار,As Sarar,YE1611,YE16
+YE161124,وادي بني نوف,Wadi Bani Nawf,YE1611,YE16
+YE161125,دحيه,Dahyah,YE1611,YE16
+YE161126,العرضيه,Al Ardyah,YE1611,YE16
+YE161127,القرشه,Al Qirshah,YE1611,YE16
+YE161128,المجعله,Al Maj'lah,YE1611,YE16
+YE161129,الخشعه,Al Khash'ah,YE1611,YE16
+YE161130,مداجر,Madajir,YE1611,YE16
+YE161131,البحباحه,Al Bihbahah,YE1611,YE16
+YE160421,الزاهر,Az Zahir,YE1604,YE16
+YE160422,السعموم,As Sa'mum,YE1604,YE16
+YE160423,العقده,Al Oqdah,YE1604,YE16
+YE160424,المبنى,Al Mabna,YE1604,YE16
+YE160425,سوق ادعام,Suq Ad'am,YE1604,YE16
+YE160821,الغيل,Al Ghayl,YE1608,YE16
+YE160621,المتون,Al Mutun,YE1606,YE16
+YE160622,بن شهاب,Bin Shihab,YE1606,YE16
+YE160721,المصلوب,Al Maslub,YE1607,YE16
+YE160321,حصن بني سعد,Hissn Bani Sa'd,YE1603,YE16
+YE160322,حصون ال شنان,Aal Shinan Forts,YE1603,YE16
+YE260521,اهل علي,Ahl Ali,YE2605,YE26
+YE260522,العبده,Al Abdah,YE2605,YE26
+YE260523,بني معوض,Bani Ma'ud,YE2605,YE26
+YE260526,بني شاكر,Bani Shakir,YE2605,YE26
+YE260527,الجريدا,Al Jarida,YE2605,YE26
+YE261421,جبل مراد,Jabal Murad,YE2614,YE26
+YE260321,مدغل الجدعان,Madghal Al Jid'an,YE2603,YE26
+YE260922,الطابير,At Tabir,YE2609,YE26
+YE260923,شرق السيح,Sharq As Sih,YE2609,YE26
+YE260924,ال مظفرالصداره,Aal Mudhaffar As Sadarah,YE2609,YE26
+YE260925,العادي,Al Adi,YE2609,YE26
+YE260926,القحيطه,Al Quhaytah,YE2609,YE26
+YE260928,ال ابو طهيف,Aal Abu Tuhayf,YE2609,YE26
+YE260929,القويم,Al Qawim,YE2609,YE26
+YE260930,ال عقيل,Aal Aqil,YE2609,YE26
+YE260931,جراذا,Jaradha,YE2609,YE26
+YE260422,بني سكران,Bani Sakran,YE2604,YE26
+YE260821,رحبه,Rahabah,YE2608,YE26
+YE260822,ال بوعشه,Aal Bu'shah,YE2608,YE26
+YE260823,ال جميل,Aal Jamil,YE2608,YE26
+YE260824,القرادعه,Al Qaradi'ah,YE2608,YE26
+YE260825,ال حم,Aal Ham,YE2608,YE26
+YE260221,رغوان,Raghwan,YE2602,YE26
+YE260621,المحجزه,Al Mahjazah,YE2606,YE26
+YE260622,صرواح,Sirwah,YE2606,YE26
+YE260623,اراك,Arak,YE2606,YE26
+YE261121,ال غانم,Aal Ghanim,YE2611,YE26
+YE261122,ال الثابثي,Aal Ath Thabithi,YE2611,YE26
+YE261123,ال عوض,Aal Awad,YE2611,YE26
+YE261124,ال بلغيث ولمذود,Aal Balghayth wa Lamdhud,YE2611,YE26
+YE261125,ال الزبيدي,Aal Az Zabidi,YE2611,YE26
+YE261126,ال السعيدي,Aal As Sa'idi,YE2611,YE26
+YE261127,ال مقبل,Aal Muqbil,YE2611,YE26
+YE261128,ال حمران,Aal Hamran,YE2611,YE26
+YE261021,العمود ال طالب,Al Amud Aal Talib,YE2610,YE26
+YE261022,القرش ال احمد,Al Qirsh Aal Ahmad,YE2610,YE26
+YE261024,حلاقة ال حسين,Halaqat Aal Husayn,YE2610,YE26
+YE260721,الجديده,Al Jadidah,YE2607,YE26
+YE260722,الجرشه,Al Jarshah,YE2607,YE26
+YE260723,نجا,Naja,YE2607,YE26
+YE260724,جبل السحل,Jabal As Sahl,YE2607,YE26
+YE260725,يعره,Ya'rah,YE2607,YE26
+YE260121,ال حذقين,Aal Hadhqayn,YE2601,YE26
+YE260122,الاشراف,Al Ashraf,YE2601,YE26
+YE260123,السحاري,As Sahari,YE2601,YE26
+YE261321,ال جلال,Aal Jalal,YE2613,YE26
+YE261322,ال فجيح,Aal Fujayh,YE2613,YE26
+YE261323,ال راشد منيف,Aal Rashid Munif,YE2613,YE26
+YE261324,ال مشعل,Aal Mash'al,YE2613,YE26
+YE261325,ال قزعه,Aal Qaz'ah,YE2613,YE26
+YE261326,ال شبوان,Aal Shabwan,YE2613,YE26
+YE192621,المكلا,Al Mukalla,YE1926,YE19
+YE190221,ثمود,Thamud,YE1902,YE19
+YE190321,القف,Al Qaff,YE1903,YE19
+YE190421,زمخ ومنوخ,Zamakh wa Manwakh,YE1904,YE19
+YE192421,الجول,Al Jul,YE1924,YE19
+YE192422,الصداره,As Sadarah,YE1924,YE19
+YE190621,العبر,Al Abr,YE1906,YE19
+YE190721,القطن,Al Qatn,YE1907,YE19
+YE190722,وادي سر,Wadi Sir,YE1907,YE19
+YE190821,شبام,Shibam,YE1908,YE19
+YE190921,ساه,Sah,YE1909,YE19
+YE191021,سيئون,Sayun,YE1910,YE19
+YE191121,تريم,Tarim,YE1911,YE19
+YE191221,السوم,As Sawm,YE1912,YE19
+YE191321,الريدة وقصيعر,Ar Raydah wa Qussay'ar,YE1913,YE19
+YE191421,الديس,Ad Dis,YE1914,YE19
+YE191521,الشحر,Ash Shihr,YE1915,YE19
+YE191522,الحامي,Al Hami,YE1915,YE19
+YE191621,غيل بن يمين,Ghayl bin Yamin,YE1916,YE19
+YE191721,غيل باوزير,Ghayl Bawazir,YE1917,YE19
+YE191821,صيف,Saif,YE1918,YE19
+YE192121,عمد,Amd,YE1921,YE19
+YE191921,حوره,Hawrah,YE1919,YE19
+YE191922,وادي العين,Wadi Al Ayn,YE1919,YE19
+YE192021,رخيه,Rakhyah,YE1920,YE19
+YE192321,يبعث,Yab'uth,YE1923,YE19
+YE190521,حجر الصيعر,Hajar As Say'ar,YE1905,YE19
+YE192521,بروم,Brum,YE1925,YE19
+YE192522,ميفع,Mayfa',YE1925,YE19
+YE192221,الضليعه,Ad Dulay'ah,YE1922,YE19
+YE190121,رماه,Rumah,YE1901,YE19
+YE192821,حريضه,Haridah,YE1928,YE19
+YE192721,مدينة المكلا,Al Mukalla City,YE1927,YE19
+YE280221,حات,Hat,YE2802,YE28
+YE280921,حصوين,Haswin,YE2809,YE28
+YE280321,جاذب,Jadhib,YE2803,YE28
+YE280322,دمقوت,Damqut,YE2803,YE28
+YE280721,سيحوت,Sayhut,YE2807,YE28
+YE280722,عتاب,Etab,YE2807,YE28
+YE280121,حبروت,Habrut,YE2801,YE28
+YE280421,الغيظه,Al Ghaydhah,YE2804,YE28
+YE280422,الفيدمي,Al Faydami,YE2804,YE28
+YE280821,قشن,Qishn,YE2808,YE28
+YE280621,المسيله,Al Masilah,YE2806,YE28
+YE280622,العيص,Al Ayss,YE2806,YE28
+YE280521,منعر,Man'ar,YE2805,YE28
+YE300821,الازارق,Al Azariq,YE3008,YE30
+YE300921,عمارة السفلى,Imarah As Sufla,YE3009,YE30
+YE300922,عمارة العليا,Imarah Al Olya,YE3009,YE30
+YE300923,الحيقى الاسفل,Al Hayqi Al Asfal,YE3009,YE30
+YE300924,الحيقى الاعلى,Al Hayqi Al A'la,YE3009,YE30
+YE300925,الاحذوف,Al Ahdhuf,YE3009,YE30
+YE300926,عتابه,Otabah,YE3009,YE30
+YE300927,زربة بني عبدالله,Zurbat Bani Abdallah,YE3009,YE30
+YE300928,المسالمه,Al Masalimah,YE3009,YE30
+YE300929,البيت,Al Bayt,YE3009,YE30
+YE300930,بني مالك,Bani Malik,YE3009,YE30
+YE300931,بني صبح,Bani Subh,YE3009,YE30
+YE300932,ضوران,Dawran,YE3009,YE30
+YE300933,المشرقى,Al Mashriqi,YE3009,YE30
+YE300521,الحصين,Al Hasayn,YE3005,YE30
+YE300421,الشعيب,Ash Shu'ayb,YE3004,YE30
+YE300621,الضالع,Ad Dale',YE3006,YE30
+YE300121,جبن,Juban,YE3001,YE30
+YE300122,نعوه,Na'wah,YE3001,YE30
+YE300123,الاوديه,Al Awdyah,YE3001,YE30
+YE300124,الربيعتين,Ar Rabi'tayn,YE3001,YE30
+YE300125,الضبيانيه,Ad Dubiyaniyah,YE3001,YE30
+YE300126,حجاج,Hajaj,YE3001,YE30
+YE300721,جحاف,Jahaf,YE3007,YE30
+YE300221,دمت,Damt,YE3002,YE30
+YE300222,رخمه,Rakhmah,YE3002,YE30
+YE300223,منقير,Manqir,YE3002,YE30
+YE300224,ال عمر,Aal Amr,YE3002,YE30
+YE300225,الظاهره,Adh Dhahirah,YE3002,YE30
+YE300226,كنه,Kannah,YE3002,YE30
+YE300227,ال عبدالله,Aal Abdallah,YE3002,YE30
+YE300228,المثيل,Al Mathil,YE3002,YE30
+YE300229,غور لهب,Ghur Lahab,YE3002,YE30
+YE300230,ربع الحمه,Rub' Al Himah,YE3002,YE30
+YE300321,قعطبه,Qa'tabah,YE3003,YE30
+YE300322,بلاداليوبي,Bilad Al Yubi,YE3003,YE30
+YE300323,الوحج,Al Wahj,YE3003,YE30
+YE300324,الشرنمة السفلى,Ash Sharnamah As Sufla,YE3003,YE30
+YE300325,الاعشور,Al A'shur,YE3003,YE30
+YE300326,العمريه,Al Amriyah,YE3003,YE30
+YE300327,عساف مريس,Asaf Muris,YE3003,YE30
+YE300328,المجانح,Al Majanih,YE3003,YE30
+YE270521,الشجاف,Ash Shujaf,YE2705,YE27
+YE270522,الشماريه,Ash Shamaryah,YE2705,YE27
+YE270523,الروضه,Ar Rawdah,YE2705,YE27
+YE270524,القبله,Al Qiblah,YE2705,YE27
+YE270525,العصافره,Al Asafirah,YE2705,YE27
+YE270526,باحش,Bahish,YE2705,YE27
+YE270527,بني علي,Bani Ali,YE2705,YE27
+YE270528,بني مليك,Bani Mulayk,YE2705,YE27
+YE270529,المعازبه,Al Ma'azibah,YE2705,YE27
+YE270531,هباط,Habat,YE2705,YE27
+YE270533,بدح,Badah,YE2705,YE27
+YE270534,جبع,Juba',YE2705,YE27
+YE270535,الشماسنه,Ash Shamasinah,YE2705,YE27
+YE270537,العسوس,Al Asus,YE2705,YE27
+YE270538,بني وهب,Bani Wahb,YE2705,YE27
+YE270539,الشرق الغزاونه,Ash Sharq Al Ghazawinah,YE2705,YE27
+YE270540,بني العصيفري,Bani Al Osayfiri,YE2705,YE27
+YE270541,بني مكار,Bani Makar,YE2705,YE27
+YE270421,نمره,Nimrah,YE2704,YE27
+YE270424,الشعافل العليا,Ash Sha'afil Al Olya,YE2704,YE27
+YE270425,الشعافل السفلى,Ash Sha'afil As Sufla,YE2704,YE27
+YE270426,الواسطه,Al Wasitah,YE2704,YE27
+YE270427,اذرع,Adhru',YE2704,YE27
+YE270428,عبان,Oban,YE2704,YE27
+YE270430,العماريه,Al Amariyah,YE2704,YE27
+YE270431,بني عماره,Bani Imarah,YE2704,YE27
+YE270432,وادي سميع,Wadi Sumay',YE2704,YE27
+YE270221,القصبه,Al Qasabah,YE2702,YE27
+YE270222,بني الخياط,Bani Al Khayat,YE2702,YE27
+YE270223,شمات (حصن المخير),Shamat (Hissn Al Makhir),YE2702,YE27
+YE270224,بني الذولاني,Bani Adh Dhulani,YE2702,YE27
+YE270226,لاعه,La'ah,YE2702,YE27
+YE270227,الزبيح,Az Zabih,YE2702,YE27
+YE270228,بني الحجاج,Bani Al Hajjaj,YE2702,YE27
+YE270230,الضلاع الاسفل,Ad Dula' Al Asfal,YE2702,YE27
+YE270721,الجعافرة الشرقى,Al Ja'afirah Ash Sharqi,YE2707,YE27
+YE270722,بني مقدم,Bani Maqdam,YE2707,YE27
+YE270724,بني الازراق,Bani Al Azraq,YE2707,YE27
+YE270725,بني شديد,Bani Shadid,YE2707,YE27
+YE270726,بني زيد,Bani Zayd,YE2707,YE27
+YE270727,الجعافرة الغربيه,Al Ja'afirah Al Gharbiyah,YE2707,YE27
+YE270728,عتمه,Otmah,YE2707,YE27
+YE270729,الوحاوح,Al Wahawih,YE2707,YE27
+YE270730,قرن المسجد,Qarn Al Masjid,YE2707,YE27
+YE270731,الطويل,At Tawil,YE2707,YE27
+YE270732,قيهمه,Qayhamah,YE2707,YE27
+YE270733,بني حمادي,Bani Hamadi,YE2707,YE27
+YE270734,دير الشريف,Dir Ash Sharif,YE2707,YE27
+YE270736,بني الشويشى,Bani Ash Shuwayshi,YE2707,YE27
+YE270737,القوازعه,Al Qawazi'ah,YE2707,YE27
+YE270739,الشويع,Ash Shuway',YE2707,YE27
+YE270740,هواع,Huwa',YE2707,YE27
+YE270741,بني قراط,Bani Qirat,YE2707,YE27
+YE270321,الرجم,Ar Rujum,YE2703,YE27
+YE270322,بني المصعب,Bani Al Mus'ab,YE2703,YE27
+YE270323,السلطان,As Sultan,YE2703,YE27
+YE270324,الجرادي,Al Jaradi,YE2703,YE27
+YE270325,المدني,Al Madani,YE2703,YE27
+YE270326,البشاري,Al Bishari,YE2703,YE27
+YE270327,بني الغذيفي,Bani Al Ghudhayfi,YE2703,YE27
+YE270328,بني الغسال,Bani Al Ghasal,YE2703,YE27
+YE270331,بني هيثم,Bani Haytham,YE2703,YE27
+YE270332,العزكي,Al Azaki,YE2703,YE27
+YE270333,الروحاني,Ar Rawhani,YE2703,YE27
+YE270334,بني الجلبي,Bani Al Jalabi,YE2703,YE27
+YE270335,غالب ربيعي,Ghalib Rubay'i,YE2703,YE27
+YE270336,بني البدي,Bani Al Badi,YE2703,YE27
+YE270921,الاحجول,Al Ahjul,YE2709,YE27
+YE270922,العرقوب,Al Arqub,YE2709,YE27
+YE270923,جبل الطرف,Jabal At Taraf,YE2709,YE27
+YE270925,عنبر,Anbar,YE2709,YE27
+YE270926,قبلة ابن عبدالله,Qiblat Ibn Abdallah,YE2709,YE27
+YE270927,قبلة خديف,Qiblat Khadif,YE2709,YE27
+YE270928,ثامر,Thamir,YE2709,YE27
+YE270929,بيت القحطاني,Bayt Al Qahtani,YE2709,YE27
+YE270930,طحامه,Tuhamah,YE2709,YE27
+YE270931,الحواصله,Al Hawasilah,YE2709,YE27
+YE270932,بني الوليد,Bani Al Walid,YE2709,YE27
+YE270933,المجاديل,Al Majadil,YE2709,YE27
+YE270934,الغربي الاعلى,Al Gharbi Al A'la,YE2709,YE27
+YE270935,بني ابجر,Bani Abjar,YE2709,YE27
+YE270936,الغربي الاسفل,Al Gharbi Al Asfal,YE2709,YE27
+YE270937,بلاد غيل,Bilad Ghayl,YE2709,YE27
+YE270821,المحويت,Al Mahwit,YE2708,YE27
+YE270121,شبام,Shibam,YE2701,YE27
+YE270122,ضلاع الاعلى,Dila' Al A'la,YE2701,YE27
+YE270123,الاهجر,Al Ahjir,YE2701,YE27
+YE270621,بني دهمان,Bani Dahman,YE2706,YE27
+YE270622,الملاحنه,Al Malahinah,YE2706,YE27
+YE270623,بني قشب,Bani Qushb,YE2706,YE27
+YE270337,الذاري,Adh Dhari,YE2703,YE27
+YE270625,بني احمد,Bani Ahmad,YE2706,YE27
+YE270626,السهمان بني عمر,As Sahman Bani Omar,YE2706,YE27
+YE270627,بيت الشماع,Bayt Ash Shama',YE2706,YE27
+YE270628,حماطه,Humatah,YE2706,YE27
+YE270629,راس الاحجول,Ras Al Ahjul,YE2706,YE27
+YE270630,جبل نعمان,Jabal Nu'man,YE2706,YE27
+YE270631,بني مامون,Bani Ma'mun,YE2706,YE27
+YE270632,بني اسعد,Bani As'ad,YE2706,YE27
+YE250121,الحد,Al Had,YE2501,YE25
+YE251421,الحوطه,Al Hawtah,YE2514,YE25
+YE251021,القبيطه,Al Qubaytah,YE2510,YE25
+YE251022,اليوسفين,Al Yusufayn,YE2510,YE25
+YE251023,الهجرهدلان,Al Hajr Hadlan,YE2510,YE25
+YE251024,كرش,Karish,YE2510,YE25
+YE250921,المسيمير,Al Musaymir,YE2509,YE25
+YE251321,المضاربه,Al Madaribah,YE2513,YE25
+YE251322,العاره,Al Arah,YE2513,YE25
+YE250321,المفلحي,Al Maflahi,YE2503,YE25
+YE251221,زريقة الشام,Zurayqat Ash Sham,YE2512,YE25
+YE251222,زريقة اليمن,Zurayqat Al Yaman,YE2512,YE25
+YE251223,النجيشه,An Najishah,YE2512,YE25
+YE251224,العبادله,Al Abadilah,YE2512,YE25
+YE251225,بعيمه,Bu'aymah,YE2512,YE25
+YE251226,الكعاوش,Al Ka'awish,YE2512,YE25
+YE251227,الاشاهبه,Al Ashahibah,YE2512,YE25
+YE251228,الاكاحله,Al Akahilah,YE2512,YE25
+YE251229,زعازع,Za'azi',YE2512,YE25
+YE251230,الاشبوط,Al Ashbut,YE2512,YE25
+YE251231,المدجره,Al Madjarah,YE2512,YE25
+YE251232,زقيحه,Zuqayhah,YE2512,YE25
+YE251233,الزعيمه,Az Za'imah,YE2512,YE25
+YE251234,الحنيشه,Al Hunayshah,YE2512,YE25
+YE251235,الانبوه,Al Anbuh,YE2512,YE25
+YE251236,الصوالحه,As Sawalihah,YE2512,YE25
+YE251237,معبق,Ma'baq,YE2512,YE25
+YE251238,السود,As Sud,YE2512,YE25
+YE251239,الجليله,Al Jalilah,YE2512,YE25
+YE251240,المكابره,Al Mukabarah,YE2512,YE25
+YE251241,المغارمه,Al Magharimah,YE2512,YE25
+YE251242,الهويشه,Al Huwayshah,YE2512,YE25
+YE251243,الدهمشه,Ad Dahmashah,YE2512,YE25
+YE250821,الملاح,Al Malah,YE2508,YE25
+YE251521,الحوطه,Al Hawtah,YE2515,YE25
+YE250621,حبيل الريده,Habil Ar Raydah,YE2506,YE25
+YE250521,حبيل جبر,Habil Jabr,YE2505,YE25
+YE250721,الحبيلين,al Habilin,YE2507,YE25
+YE251121,طور الباحه,Tur Al Bahah,YE2511,YE25
+YE250221,لبعوس,Lab'us,YE2502,YE25
+YE250421,يهر,Yahr,YE2504,YE25
+YE310121,بني عبد الكريم,Bani Abdulkarim,YE3101,YE31
+YE310122,بني عمر,Bani Omar,YE3101,YE31
+YE310124,بني خولي,Bani Khawli,YE3101,YE31
+YE310125,العر,Al Arr,YE3101,YE31
+YE310126,بني وقيد,Bani Waqid,YE3101,YE31
+YE310127,بني نديب,Bani Nadib,YE3101,YE31
+YE310128,ذرحان,Dharhan,YE3101,YE31
+YE310129,بني شرعب,Bani Shar'ab,YE3101,YE31
+YE310130,بني اعسر,Bani A'sar,YE3101,YE31
+YE310131,المسخن,Al Maskhan,YE3101,YE31
+YE310132,العساكره,Al Asakirah,YE3101,YE31
+YE310133,التالقه,At Taliqah,YE3101,YE31
+YE310134,جداجد,Jadajid,YE3101,YE31
+YE310221,الاسلاف,Al Aslaf,YE3102,YE31
+YE310222,بني الجرادي,Bani Al Jaradi,YE3102,YE31
+YE310223,بني الثميلي,Bani Athumayli,YE3102,YE31
+YE310224,النوبه,An Nubah,YE3102,YE31
+YE310225,بني القرضي,Bani Al Qardi,YE3102,YE31
+YE310226,كحله,Kahlah,YE3102,YE31
+YE310227,بني العبدي,Bani Al Abdi,YE3102,YE31
+YE310228,بني العسكري,Bani Al Askari,YE3102,YE31
+YE310229,بني الواحدي صعدى,Bani Al Wahidi Sa'di,YE3102,YE31
+YE310230,بني الواحدي صوفان,Bani Al Wahidi Sufan,YE3102,YE31
+YE310231,بني نفيع,Bani Nafi',YE3102,YE31
+YE310232,نوفان,Nufan,YE3102,YE31
+YE310233,قدره,Qadrah,YE3102,YE31
+YE310234,بني قشيب,Bani Qushayb,YE3102,YE31
+YE310235,يفعان,Yaf'an,YE3102,YE31
+YE310236,الجباهي,Al Jabahi,YE3102,YE31
+YE310237,الدومر,Ad Dumar,YE3102,YE31
+YE310238,جعيره,Ju'irah,YE3102,YE31
+YE310239,بني الواحدي سلا,Bani Al Wahidi Sala,YE3102,YE31
+YE310321,الجبين,Al Jabin,YE3103,YE31
+YE310322,عدن,Aden,YE3103,YE31
+YE310323,بني الرون,Bani Ar Rawn,YE3103,YE31
+YE310324,بني الضبيبي,Bani Ad Dubaybi,YE3103,YE31
+YE310325,قطو,Qatw,YE3103,YE31
+YE310326,بني ابو الضيف,Bani Abu Ad Daif,YE3103,YE31
+YE310327,حوره,Hawrah,YE3103,YE31
+YE310329,بدج,Badj,YE3103,YE31
+YE310330,بني ناحت,Bani Nahit,YE3103,YE31
+YE310331,بني شرعب,Bani Shar'ab,YE3103,YE31
+YE310332,القبليه,Al Qabalyah,YE3103,YE31
+YE310333,الحداده,Al Hidadah,YE3103,YE31
+YE310334,بني بلحوت,Bani Balhut,YE3103,YE31
+YE310335,الحديديه,Al Hadidiyah,YE3103,YE31
+YE310336,قعار,Qu'ar,YE3103,YE31
+YE310337,شعبون,Sha'bun,YE3103,YE31
+YE310338,التكارير,At Takarir,YE3103,YE31
+YE310339,خضم,Khadm,YE3103,YE31
+YE310340,بني خطاب,Bani Khattab,YE3103,YE31
+YE310421,المخلاف,Al Mikhlaf,YE3104,YE31
+YE310422,بكال,Bukal,YE3104,YE31
+YE310423,مسور,Maswar,YE3104,YE31
+YE310424,عدنها,Adnaha,YE3104,YE31
+YE310425,الجون,Al Jun,YE3104,YE31
+YE310426,الشزب,Ash Shazb,YE3104,YE31
+YE310427,بني يعفر,Bani Ya'fur,YE3104,YE31
+YE310428,الريم,Al Rim,YE3104,YE31
+YE310429,الاباره,Al Abarah,YE3104,YE31
+YE310521,الضباره,Ad Dubarah,YE3105,YE31
+YE310522,يامن,Yamin,YE3105,YE31
+YE310523,القرصب,Al Qarsab,YE3105,YE31
+YE310524,المغارم,Al Magharim,YE3105,YE31
+YE310525,بني عبدالعزيز,Bani Abdulaziz,YE3105,YE31
+YE310526,بني منصور,Bani Mansur,YE3105,YE31
+YE310527,شعف,Sha'f,YE3105,YE31
+YE310528,البقعه,Al Buq'ah,YE3105,YE31
+YE310529,ظلملم,Dhalamlam,YE3105,YE31
+YE310530,الجبوب,Al Jabub,YE3105,YE31
+YE310531,المصبحي,Al Masbahi,YE3105,YE31
+YE310532,سلوكه,Salukah,YE3105,YE31
+YE310533,بني مصعب,Bani Mus'ab,YE3105,YE31
+YE310622,بني الحرازي,Bani Al Harazi,YE3106,YE31
+YE310623,بني نفيع,Bani Nafi',YE3106,YE31
+YE310624,بني الغزي,Bani Al Ghuzzi,YE3106,YE31
+YE310625,بني الجعد,Bani Al Ja'd,YE3106,YE31
+YE310626,بني القحوي الشرف,Bani Al-Qahwi Al-Sharaf,YE3106,YE31
+YE310627,اليمانيه,Al Yamaniyah,YE3106,YE31
+YE310628,رماع,Rama',YE3106,YE31
+YE310629,البيادح,Al Bayadih,YE3106,YE31
+YE310630,بني القحوي العتم,Bani Al Qahawi Al Otm,YE3106,YE31
+YE310631,بني احمد,Bani Ahmad,YE3106,YE31
+YE310632,بني جديع,Bani Judi',YE3106,YE31
+YE310633,الحواذل,Al Hawadhil,YE3106,YE31
+YE310634,بني واقد,Bani Waqid,YE3106,YE31
+YE320121,حديبو,Hadibu,YE3201,YE32
+YE320227,جزيرة الاخوين,Al Akhawayn Island,YE3202,YE32
+YE320225,جزيرة درسه,Darsah Island,YE3202,YE32
+YE320224,جزيرة سمحه,Samhah Island,YE3202,YE32
+YE320222,جزيرة صابور كمال فرعون,Sabur Kamal Fir'un Island,YE3202,YE32
+YE320221,قلنسية وعبد الكوري,Qalansiyah wa Abd Al Kuri,YE3202,YE32
+YE320223,جزيرة كمال فرعون,Kamal Fir'un Island,YE3202,YE32
+YE120221,موديه,Mudiyah,YE1202,YE12
+YE120121,المحفد,Al Mahfad,YE1201,YE12
+YE120321,جيشان,Jayshan,YE1203,YE12
+YE120421,زاره,Zarah,YE1204,YE12
+YE120521,سباح,Sibah,YE1205,YE12
+YE120621,القاره,Al Qarrah,YE1206,YE12
+YE120721,سرار,Sirar,YE1207,YE12
+YE120821,الوضيع,Al Wadi',YE1208,YE12
+YE120921,احور,Ahwar,YE1209,YE12
+YE121021,زنجبار,Zinjibar,YE1210,YE12
+YE121121,جعار,Ja'ar,YE1211,YE12
+other,أخرى,Other,,

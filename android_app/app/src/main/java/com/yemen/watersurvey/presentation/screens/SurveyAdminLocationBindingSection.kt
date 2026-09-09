@@ -39,10 +39,11 @@ fun SurveyAdminLocationBindingSection(
     selector: AdminCascadingSelector,
     resolver: GpsAdministrativeResolver,
     currentGpsLocation: GpsLocationResult?,
-    initialAdmin1Pcode: String = "YE11",
-    initialAdmin2Pcode: String = "YE1101",
-    initialAdmin3Pcode: String = "YE110101",
-    initialVillageRefId: String? = "VIL-YE110101-001",
+    initialAdmin1Pcode: String = "",
+    initialAdmin2Pcode: String = "",
+    initialAdmin3Pcode: String = "",
+    initialVillageRefId: String? = null,
+    initialSnapshot: AdministrativeLocationSnapshot? = null,
     initialCustomVillageName: String? = null,
     initialIsOverride: Boolean = false,
     initialOverrideReason: String? = null,
@@ -112,8 +113,13 @@ fun SurveyAdminLocationBindingSection(
     val liveGpsLocation = gpsState.currentLocation
 
     fun updateAndEmitBinding() {
+        val hasAnySelection = selectedAdmin1.isNotBlank() || selectedAdmin2.isNotBlank() || selectedAdmin3.isNotBlank() || !selectedVillageId.isNullOrBlank() || isLocalOverride || initialSnapshot != null
+        if (!hasAnySelection) {
+            return
+        }
+
         coroutineScope.launch {
-            val snapshot = selector.createAdministrativeSnapshot(
+            val newSnapshot = selector.createAdministrativeSnapshot(
                 admin1Pcode = selectedAdmin1,
                 admin2Pcode = selectedAdmin2,
                 admin3Pcode = selectedAdmin3,
@@ -123,6 +129,23 @@ fun SurveyAdminLocationBindingSection(
                 localOverrideId = if (isLocalOverride) "OVR-${System.currentTimeMillis()}" else null
             )
 
+            val finalSnapshot = AdministrativeLocationSnapshot(
+                admin1Pcode = newSnapshot.admin1Pcode,
+                admin2Pcode = newSnapshot.admin2Pcode,
+                admin3Pcode = newSnapshot.admin3Pcode,
+                governorateNameAr = newSnapshot.governorateNameAr.ifBlank {
+                    if (selectedAdmin1 == initialSnapshot?.admin1Pcode) initialSnapshot.governorateNameAr else ""
+                },
+                districtNameAr = newSnapshot.districtNameAr.ifBlank {
+                    if (selectedAdmin2 == initialSnapshot?.admin2Pcode) initialSnapshot.districtNameAr else ""
+                },
+                subDistrictNameAr = newSnapshot.subDistrictNameAr.ifBlank {
+                    if (selectedAdmin3 == initialSnapshot?.admin3Pcode) initialSnapshot.subDistrictNameAr else ""
+                },
+                villageNameAr = newSnapshot.villageNameAr ?: if (selectedVillageId == initialVillageRefId) initialSnapshot?.villageNameAr else null,
+                localOverrideId = newSnapshot.localOverrideId ?: initialSnapshot?.localOverrideId
+            )
+
             val status = consistencyResult?.first ?: AdminResolutionStatus.NOT_EVALUATED
 
             onAdministrativeIdentityChanged(
@@ -130,15 +153,16 @@ fun SurveyAdminLocationBindingSection(
                 selectedAdmin2,
                 selectedAdmin3,
                 selectedVillageId,
-                snapshot,
+                finalSnapshot,
                 isLocalOverride,
                 if (isLocalOverride) overrideReason else null,
                 status,
                 resolvedGpsLocation,
-                liveGpsLocation
+                liveGpsLocation ?: currentGpsLocation
             )
         }
     }
+
 
     fun performSpatialVerification() {
         if (liveGpsLocation == null) {
@@ -173,18 +197,35 @@ fun SurveyAdminLocationBindingSection(
         }
     }
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(initialAdmin1Pcode, initialAdmin2Pcode, initialAdmin3Pcode, initialVillageRefId, initialCustomVillageName, initialIsOverride, initialOverrideReason) {
+        selectedAdmin1 = initialAdmin1Pcode
+        selectedAdmin2 = initialAdmin2Pcode
+        selectedAdmin3 = initialAdmin3Pcode
+        selectedVillageId = initialVillageRefId
+        isLocalOverride = initialIsOverride
+        customVillageName = initialCustomVillageName ?: ""
+        overrideReason = initialOverrideReason ?: ""
+
         admin1List = selector.getGovernorates()
-        if (selectedAdmin1.isNotBlank()) {
-            admin2List = selector.getDistrictsForGovernorate(selectedAdmin1)
+        if (initialAdmin1Pcode.isNotBlank()) {
+            admin2List = selector.getDistrictsForGovernorate(initialAdmin1Pcode)
+        } else {
+            admin2List = emptyList()
         }
-        if (selectedAdmin2.isNotBlank()) {
-            admin3List = selector.getUzlahsForDistrict(selectedAdmin2)
+        if (initialAdmin2Pcode.isNotBlank()) {
+            admin3List = selector.getUzlahsForDistrict(initialAdmin2Pcode)
+        } else {
+            admin3List = emptyList()
         }
-        if (selectedAdmin3.isNotBlank()) {
-            villageList = selector.getVillagesForUzlah(selectedAdmin3)
+        if (initialAdmin3Pcode.isNotBlank()) {
+            villageList = selector.getVillagesForUzlah(initialAdmin3Pcode)
+        } else {
+            villageList = emptyList()
         }
-        updateAndEmitBinding()
+
+        if (initialAdmin1Pcode.isNotBlank() || initialAdmin2Pcode.isNotBlank() || initialAdmin3Pcode.isNotBlank() || !initialVillageRefId.isNullOrBlank()) {
+            updateAndEmitBinding()
+        }
     }
 
     LaunchedEffect(liveGpsLocation, selectedAdmin1, selectedAdmin2, selectedAdmin3) {
@@ -339,8 +380,14 @@ fun SurveyAdminLocationBindingSection(
                     onExpandedChange = { expandedAdmin1 = !expandedAdmin1 }
                 ) {
                     val currentGov = admin1List.find { it.admin1Pcode == selectedAdmin1 }
+                    val govDisplay = when {
+                        currentGov != null -> "${currentGov.nameAr} (${currentGov.admin1Pcode})"
+                        selectedAdmin1.isNotBlank() && selectedAdmin1 == initialSnapshot?.admin1Pcode && !initialSnapshot.governorateNameAr.isBlank() -> "${initialSnapshot.governorateNameAr} (${selectedAdmin1})"
+                        selectedAdmin1.isNotBlank() -> selectedAdmin1
+                        else -> "اختر المحافظة..."
+                    }
                     OutlinedTextField(
-                        value = if (currentGov != null) "${currentGov.nameAr} (${currentGov.admin1Pcode})" else "اختر المحافظة...",
+                        value = govDisplay,
                         onValueChange = {},
                         readOnly = true,
                         trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedAdmin1) },
@@ -403,8 +450,15 @@ fun SurveyAdminLocationBindingSection(
                     onExpandedChange = { if (selectedAdmin1.isNotBlank()) expandedAdmin2 = !expandedAdmin2 }
                 ) {
                     val currentDist = admin2List.find { it.admin2Pcode == selectedAdmin2 }
+                    val distDisplay = when {
+                        currentDist != null -> "${currentDist.nameAr} (${currentDist.admin2Pcode})"
+                        selectedAdmin2.isNotBlank() && selectedAdmin2 == initialSnapshot?.admin2Pcode && !initialSnapshot.districtNameAr.isBlank() -> "${initialSnapshot.districtNameAr} (${selectedAdmin2})"
+                        selectedAdmin2.isNotBlank() -> selectedAdmin2
+                        selectedAdmin1.isBlank() -> "يرجى اختيار المحافظة أولاً"
+                        else -> "اختر المديرية..."
+                    }
                     OutlinedTextField(
-                        value = if (currentDist != null) "${currentDist.nameAr} (${currentDist.admin2Pcode})" else if (selectedAdmin1.isBlank()) "يرجى اختيار المحافظة أولاً" else "اختر المديرية...",
+                        value = distDisplay,
                         onValueChange = {},
                         readOnly = true,
                         enabled = selectedAdmin1.isNotBlank(),
@@ -466,8 +520,15 @@ fun SurveyAdminLocationBindingSection(
                     onExpandedChange = { if (selectedAdmin2.isNotBlank()) expandedAdmin3 = !expandedAdmin3 }
                 ) {
                     val currentUzlah = admin3List.find { it.admin3Pcode == selectedAdmin3 }
+                    val uzlahDisplay = when {
+                        currentUzlah != null -> "${currentUzlah.nameAr} (${currentUzlah.admin3Pcode})"
+                        selectedAdmin3.isNotBlank() && selectedAdmin3 == initialSnapshot?.admin3Pcode && !initialSnapshot.subDistrictNameAr.isBlank() -> "${initialSnapshot.subDistrictNameAr} (${selectedAdmin3})"
+                        selectedAdmin3.isNotBlank() -> selectedAdmin3
+                        selectedAdmin2.isBlank() -> "يرجى اختيار المديرية أولاً"
+                        else -> "اختر العزلة..."
+                    }
                     OutlinedTextField(
-                        value = if (currentUzlah != null) "${currentUzlah.nameAr} (${currentUzlah.admin3Pcode})" else if (selectedAdmin2.isBlank()) "يرجى اختيار المديرية أولاً" else "اختر العزلة...",
+                        value = uzlahDisplay,
                         onValueChange = {},
                         readOnly = true,
                         enabled = selectedAdmin2.isNotBlank(),
@@ -558,8 +619,15 @@ fun SurveyAdminLocationBindingSection(
                         onExpandedChange = { if (selectedAdmin3.isNotBlank()) expandedVillage = !expandedVillage }
                     ) {
                         val currentVil = villageList.find { it.villageId == selectedVillageId }
+                        val vilDisplay = when {
+                            currentVil != null -> currentVil.nameAr
+                            selectedVillageId != null && selectedVillageId == initialVillageRefId && !initialSnapshot?.villageNameAr.isNullOrBlank() -> initialSnapshot!!.villageNameAr!!
+                            selectedAdmin3.isBlank() -> "يرجى اختيار العزلة أولاً"
+                            villageList.isEmpty() -> "لا توجد قرى مسجلة (يمكنك تفعيل المسمى المحلي)"
+                            else -> "اختر القرية المعتمدة..."
+                        }
                         OutlinedTextField(
-                            value = if (currentVil != null) currentVil.nameAr else if (selectedAdmin3.isBlank()) "يرجى اختيار العزلة أولاً" else if (villageList.isEmpty()) "لا توجد قرى مسجلة (يمكنك تفعيل المسمى المحلي)" else "اختر القرية المعتمدة...",
+                            value = vilDisplay,
                             onValueChange = {},
                             readOnly = true,
                             enabled = selectedAdmin3.isNotBlank() && villageList.isNotEmpty(),

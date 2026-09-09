@@ -4,11 +4,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.yemen.watersurvey.presentation.navigation.ScreenRoute
 import com.yemen.watersurvey.presentation.screens.DashboardScreen
+import com.yemen.watersurvey.presentation.screens.DynamicSurveyScreen
 import com.yemen.watersurvey.presentation.screens.ExportScreen
 import com.yemen.watersurvey.presentation.screens.FormManagementScreen
 import com.yemen.watersurvey.presentation.screens.NewWellSurveyScreen
@@ -16,6 +19,7 @@ import com.yemen.watersurvey.presentation.screens.NewSpringSurveyScreen
 import com.yemen.watersurvey.presentation.screens.NewDamSurveyScreen
 import com.yemen.watersurvey.presentation.screens.PinLockScreen
 import com.yemen.watersurvey.presentation.screens.RecordsManagerScreen
+import com.yemen.watersurvey.presentation.screens.SurveyPreviewScreen
 import com.yemen.watersurvey.presentation.screens.AdminReferenceManagementScreen
 import com.yemen.watersurvey.presentation.screens.SettingsScreen
 import com.yemen.watersurvey.presentation.screens.SupervisorSyncDashboardScreen
@@ -86,6 +90,66 @@ private fun YemenWaterSurveyNavHost() {
             RecordsManagerScreen(
                 onNavigateBack = {
                     navController.popBackStack()
+                },
+                onNavigateToPreview = { surveyUUID ->
+                    navController.navigate(ScreenRoute.SurveyPreview.createRoute(surveyUUID))
+                },
+                onNavigateToEdit = { surveyType, surveyUUID ->
+                    val route = when (surveyType) {
+                        "WELL" -> ScreenRoute.EditWellSurvey.createRoute(surveyUUID)
+                        "SPRING" -> ScreenRoute.EditSpringSurvey.createRoute(surveyUUID)
+                        "DAM" -> ScreenRoute.EditDamSurvey.createRoute(surveyUUID)
+                        else -> ScreenRoute.EditWellSurvey.createRoute(surveyUUID)
+                    }
+                    navController.navigate(route)
+                }
+            )
+        }
+        composable(
+            route = ScreenRoute.SurveyPreview.route,
+            arguments = listOf(navArgument("surveyUUID") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val surveyUUID = backStackEntry.arguments?.getString("surveyUUID") ?: ""
+            SurveyPreviewScreen(
+                surveyUUID = surveyUUID,
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        composable(
+            route = ScreenRoute.EditWellSurvey.route,
+            arguments = listOf(navArgument("surveyUUID") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val surveyUUID = backStackEntry.arguments?.getString("surveyUUID") ?: ""
+            DynamicSurveyScreen(
+                surveyUUID = surveyUUID,
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        composable(
+            route = ScreenRoute.EditSpringSurvey.route,
+            arguments = listOf(navArgument("surveyUUID") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val surveyUUID = backStackEntry.arguments?.getString("surveyUUID") ?: ""
+            DynamicSurveyScreen(
+                surveyUUID = surveyUUID,
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        composable(
+            route = ScreenRoute.EditDamSurvey.route,
+            arguments = listOf(navArgument("surveyUUID") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val surveyUUID = backStackEntry.arguments?.getString("surveyUUID") ?: ""
+            DynamicSurveyScreen(
+                surveyUUID = surveyUUID,
+                onNavigateBack = {
+                    navController.popBackStack()
                 }
             )
         }
@@ -146,21 +210,24 @@ private fun YemenWaterSurveyNavHost() {
             )
         }
         composable(ScreenRoute.NewWellSurvey.route) {
-            NewWellSurveyScreen(
+            DynamicSurveyScreen(
+                surveyType = com.yemen.watersurvey.domain.model.SurveyType.WELL,
                 onNavigateBack = {
                     navController.popBackStack()
                 }
             )
         }
         composable(ScreenRoute.NewSpringSurvey.route) {
-            NewSpringSurveyScreen(
+            DynamicSurveyScreen(
+                surveyType = com.yemen.watersurvey.domain.model.SurveyType.SPRING,
                 onNavigateBack = {
                     navController.popBackStack()
                 }
             )
         }
         composable(ScreenRoute.NewDamSurvey.route) {
-            NewDamSurveyScreen(
+            DynamicSurveyScreen(
+                surveyType = com.yemen.watersurvey.domain.model.SurveyType.DAM,
                 onNavigateBack = {
                     navController.popBackStack()
                 }
