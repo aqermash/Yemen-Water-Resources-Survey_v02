@@ -32,3 +32,6 @@ desktop.ini
 # Gradle cache/directories
 .gradle/
 **/.gradle/
+
+# Login audit outputs (regenerated locally)
+_login_audit/output/
